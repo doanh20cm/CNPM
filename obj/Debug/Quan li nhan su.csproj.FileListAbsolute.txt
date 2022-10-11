@@ -1,0 +1,12 @@
+C:\Users\Administrator\source\repos\Quan li nhan su\bin\Debug\Quan li nhan su.exe.config
+C:\Users\Administrator\source\repos\Quan li nhan su\bin\Debug\Quan li nhan su.exe
+C:\Users\Administrator\source\repos\Quan li nhan su\bin\Debug\Quan li nhan su.pdb
+C:\Users\Administrator\source\repos\Quan li nhan su\obj\Debug\Quan li nhan su.csproj.AssemblyReference.cache
+C:\Users\Administrator\source\repos\Quan li nhan su\obj\Debug\Quan li nhan su.csproj.SuggestedBindingRedirects.cache
+C:\Users\Administrator\source\repos\Quan li nhan su\obj\Debug\Quan_li_nhan_su.DangNhap.resources
+C:\Users\Administrator\source\repos\Quan li nhan su\obj\Debug\Quan_li_nhan_su.Properties.Resources.resources
+C:\Users\Administrator\source\repos\Quan li nhan su\obj\Debug\Quan li nhan su.csproj.GenerateResource.cache
+C:\Users\Administrator\source\repos\Quan li nhan su\obj\Debug\Quan li nhan su.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\Quan li nhan su\obj\Debug\Quan li nhan su.exe
+C:\Users\Administrator\source\repos\Quan li nhan su\obj\Debug\Quan li nhan su.pdb
+C:\Users\Administrator\source\repos\Quan li nhan su\obj\Debug\Quan_li_nhan_su.GiaoDienChinh.resources
