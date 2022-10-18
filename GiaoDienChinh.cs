@@ -14,7 +14,7 @@ namespace Quan_li_nhan_su
             InitializeComponent();
         }
 
-        KetNoi kn = new KetNoi();
+        readonly KetNoi kn = new KetNoi();
 
         private void SetQuyen()
         {
@@ -155,6 +155,7 @@ namespace Quan_li_nhan_su
             form.Text = title;
             label.Text = promptText;
             form.AcceptButton = buttonOk;
+            textBox.UseSystemPasswordChar = true;
 
             buttonOk.Text = "OK";
             buttonCancel.Text = "Cancel";

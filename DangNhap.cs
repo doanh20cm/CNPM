@@ -13,7 +13,7 @@ namespace Quan_li_nhan_su
             InitializeComponent();
         }
 
-        KetNoi kn = new KetNoi();
+        readonly KetNoi kn = new KetNoi();
 
         public static string GetMd5(string pass)
         {
