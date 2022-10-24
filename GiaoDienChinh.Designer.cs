@@ -48,16 +48,22 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.mstTaiKhoan, this.mstQuanLy, this.mstThongKe });
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mstTaiKhoan,
+            this.mstQuanLy,
+            this.mstThongKe});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1064, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // mstTaiKhoan
             // 
-            this.mstTaiKhoan.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.menuDangNhap, this.menuDoiMatKhau, this.menuDangXuat });
+            this.mstTaiKhoan.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuDangNhap,
+            this.menuDoiMatKhau,
+            this.menuDangXuat});
             this.mstTaiKhoan.Name = "mstTaiKhoan";
             this.mstTaiKhoan.Size = new System.Drawing.Size(69, 20);
             this.mstTaiKhoan.Text = "Tài khoản";
@@ -66,7 +72,7 @@
             // menuDangNhap
             // 
             this.menuDangNhap.Name = "menuDangNhap";
-            this.menuDangNhap.Size = new System.Drawing.Size(152, 22);
+            this.menuDangNhap.Size = new System.Drawing.Size(145, 22);
             this.menuDangNhap.Text = "Đăng nhập";
             this.menuDangNhap.Click += new System.EventHandler(this.menuDangNhap_Click);
             // 
@@ -74,7 +80,7 @@
             // 
             this.menuDoiMatKhau.Enabled = false;
             this.menuDoiMatKhau.Name = "menuDoiMatKhau";
-            this.menuDoiMatKhau.Size = new System.Drawing.Size(152, 22);
+            this.menuDoiMatKhau.Size = new System.Drawing.Size(145, 22);
             this.menuDoiMatKhau.Text = "Đổi mật khẩu";
             this.menuDoiMatKhau.Click += new System.EventHandler(this.menuDoiMatKhau_Click);
             // 
@@ -82,13 +88,19 @@
             // 
             this.menuDangXuat.Enabled = false;
             this.menuDangXuat.Name = "menuDangXuat";
-            this.menuDangXuat.Size = new System.Drawing.Size(152, 22);
+            this.menuDangXuat.Size = new System.Drawing.Size(145, 22);
             this.menuDangXuat.Text = "Đăng xuất";
             this.menuDangXuat.Click += new System.EventHandler(this.menuDangXuat_Click);
             // 
             // mstQuanLy
             // 
-            this.mstQuanLy.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.menuQLBoPhan, this.menuQLPhongBan, this.menuQLNhanVienPhongBan, this.menuQLHoSo, this.menuQLLuong, this.menuQLTaiKhoan });
+            this.mstQuanLy.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuQLBoPhan,
+            this.menuQLPhongBan,
+            this.menuQLNhanVienPhongBan,
+            this.menuQLHoSo,
+            this.menuQLLuong,
+            this.menuQLTaiKhoan});
             this.mstQuanLy.Enabled = false;
             this.mstQuanLy.Name = "mstQuanLy";
             this.mstQuanLy.Size = new System.Drawing.Size(60, 20);
@@ -121,6 +133,7 @@
             this.menuQLHoSo.Name = "menuQLHoSo";
             this.menuQLHoSo.Size = new System.Drawing.Size(189, 22);
             this.menuQLHoSo.Text = "Hồ sơ nhân viên";
+            this.menuQLHoSo.Click += new System.EventHandler(this.menuQLHoSo_Click);
             // 
             // menuQLLuong
             // 
@@ -138,7 +151,9 @@
             // 
             // mstThongKe
             // 
-            this.mstThongKe.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.menuBCLuong, this.menuBCNhanVien });
+            this.mstThongKe.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuBCLuong,
+            this.menuBCNhanVien});
             this.mstThongKe.Enabled = false;
             this.mstThongKe.Name = "mstThongKe";
             this.mstThongKe.Size = new System.Drawing.Size(68, 20);
@@ -163,16 +178,22 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackgroundImage = global::Quan_li_nhan_su.Properties.Resources.daniela_cuevas_t7YycgAoVSw_unsplash;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1064, 681);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "GiaoDienChinh";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "GiaoDienChinh";
+            this.Text = "Phần mềm quản lý nhân sự AnPhatComputer";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

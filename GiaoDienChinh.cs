@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -8,13 +9,23 @@ namespace Quan_li_nhan_su
     {
         public static string Chucvu = "";
         public static string Username = "";
+        public static List<Form> Opened_forms = new List<Form>();
 
         public GiaoDienChinh()
         {
             InitializeComponent();
         }
 
-        readonly KetNoi kn = new KetNoi();
+        private readonly KetNoi _kn = new KetNoi();
+
+        private void DongForm()
+        {
+            for(int i = 0; i < Opened_forms.Count; i++)
+            {
+                Opened_forms[i].Close();
+            }
+            Opened_forms = new List<Form>();
+        }
 
         private void SetQuyen()
         {
@@ -103,6 +114,8 @@ namespace Quan_li_nhan_su
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (luachon != DialogResult.Yes) return;
             Chucvu = "";
+            Username = "";
+            DongForm();
             SetQuyen();
             MessageBox.Show(@"Đăng xuất thành công", @"Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -115,50 +128,50 @@ namespace Quan_li_nhan_su
         private void menuDoiMatKhau_Click(object sender, EventArgs e)
         {
             var oldPass = "";
-            if (InputBox("Đổi mật khẩu", "Nhập mật khẩu cũ:", ref oldPass) != DialogResult.OK)
+            if (InputBox(@"Đổi mật khẩu", "Nhập mật khẩu cũ:", ref oldPass) != DialogResult.OK)
             {
                 return;
             }
             if (oldPass == "")
             {
-                MessageBox.Show("Bạn chưa nhập mật khẩu cũ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(@"Bạn chưa nhập mật khẩu cũ!", @"Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (kn.GetData($"select Username from tbuser where Username = '{Username}' and  Pass = '{DangNhap.GetMd5(oldPass)}'").Rows.Count != 1)
+            if (_kn.GetData($"select TaiKhoan from NguoiDung where TaiKhoan = '{Username}' and  MatKhau = '{DangNhap.GetMd5(oldPass)}'").Rows.Count != 1)
             {
                 MessageBox.Show(@"Mật khẩu cũ không đúng", @"Lỗi", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
             var newPass = "";
-            if (InputBox("Đổi mật khẩu", "Nhập mật khẩu mới:", ref newPass) != DialogResult.OK)
+            if (InputBox(@"Đổi mật khẩu", "Nhập mật khẩu mới:", ref newPass) != DialogResult.OK)
             {
                 return;
             }
             if (newPass == "")
             {
-                MessageBox.Show("Bạn chưa nhập mật khẩu mới!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(@"Bạn chưa nhập mật khẩu mới!", @"Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var kq = kn.Execute($"update tbuser set Pass = '{DangNhap.GetMd5(newPass)}' where Username = '{Username}'");
+            var kq = _kn.Execute($"update NguoiDung set MatKhau = '{DangNhap.GetMd5(newPass)}' where TaiKhoan = '{Username}'");
             MessageBox.Show(kq ? "Đổi mật khẩu thành công!" : "Đổi mật khẩu thất bại!", kq ? "Thông báo" : "Lỗi", MessageBoxButtons.OK, kq ? MessageBoxIcon.Information : MessageBoxIcon.Error);
         }
 
-        public static DialogResult InputBox(string title, string promptText, ref string value)
+        private static DialogResult InputBox(string title, string promptText, ref string value)
         {
-            Form form = new Form();
-            Label label = new Label();
-            TextBox textBox = new TextBox();
-            Button buttonOk = new Button();
-            Button buttonCancel = new Button();
+            var form = new Form();
+            var label = new Label();
+            var textBox = new TextBox();
+            var buttonOk = new Button();
+            var buttonCancel = new Button();
 
             form.Text = title;
             label.Text = promptText;
             form.AcceptButton = buttonOk;
             textBox.UseSystemPasswordChar = true;
 
-            buttonOk.Text = "OK";
-            buttonCancel.Text = "Cancel";
+            buttonOk.Text = @"OK";
+            buttonCancel.Text = @"Cancel";
             buttonOk.DialogResult = DialogResult.OK;
             buttonCancel.DialogResult = DialogResult.Cancel;
 
@@ -184,6 +197,14 @@ namespace Quan_li_nhan_su
                 value = textBox.Text;
             }
             return dialogResult;
+        }
+
+        private void menuQLHoSo_Click(object sender, EventArgs e)
+        {
+            var qlhsnv = new QLHoSoNhanVien();
+            qlhsnv.MdiParent = this;
+            qlhsnv.Show();
+            Opened_forms.Add(qlhsnv);
         }
     }
 }

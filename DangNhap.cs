@@ -13,7 +13,7 @@ namespace Quan_li_nhan_su
             InitializeComponent();
         }
 
-        readonly KetNoi kn = new KetNoi();
+        private readonly KetNoi _kn = new KetNoi();
 
         public static string GetMd5(string pass)
         {
@@ -37,7 +37,7 @@ namespace Quan_li_nhan_su
                 return;
             }
 
-            var quyen = kn.GetData($"select Quyen, Username from tbuser where Username = '{taikhoan}' and Pass = '{GetMd5(matkhau)}'");
+            var quyen = _kn.GetData($"select ChucVu, TaiKhoan from NguoiDung where TaiKhoan = '{taikhoan}' and MatKhau = '{GetMd5(matkhau)}'");
 
             if (quyen.Rows.Count != 1)
             {
@@ -50,7 +50,7 @@ namespace Quan_li_nhan_su
             GiaoDienChinh.Username = quyen.Rows[0][1].ToString().Trim();
 
             Close();
-            MessageBox.Show($@"Chào {quyen.Rows[0][1]}, bạn đã đăng nhập thành công với quyền {quyen.Rows[0][0]}!", @"Thông báo", MessageBoxButtons.OK,
+            MessageBox.Show($@"Chào {quyen.Rows[0][1]}, đăng nhập thành công với quyền {quyen.Rows[0][0]}!", @"Thông báo", MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
     }

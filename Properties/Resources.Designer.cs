@@ -18,7 +18,7 @@ namespace Quan_li_nhan_su.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -56,6 +56,26 @@ namespace Quan_li_nhan_su.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _360_F_122719641_V0yw2cAOrfxsON3HeWi2Sf4iVxhv27QO {
+            get {
+                object obj = ResourceManager.GetObject("_360_F_122719641_V0yw2cAOrfxsON3HeWi2Sf4iVxhv27QO", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap daniela_cuevas_t7YycgAoVSw_unsplash {
+            get {
+                object obj = ResourceManager.GetObject("daniela-cuevas-t7YycgAoVSw-unsplash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
