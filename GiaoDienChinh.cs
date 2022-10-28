@@ -10,9 +10,13 @@ namespace Quan_li_nhan_su
         public static string Chucvu = "";
         public static string Username = "";
         public static List<Form> Opened_forms = new List<Form>();
+        readonly Timer time = new Timer();
 
         public GiaoDienChinh()
         {
+            time.Interval = 1000;
+            time.Tick += time_Tick;
+            time.Start();
             InitializeComponent();
         }
 
@@ -20,11 +24,13 @@ namespace Quan_li_nhan_su
 
         private void DongForm()
         {
-            for(int i = 0; i < Opened_forms.Count; i++)
+            for (int i = 0; i < Opened_forms.Count; i++)
             {
                 Opened_forms[i].Close();
             }
             Opened_forms = new List<Form>();
+            label1.Visible = true;
+            label2.Visible = true;
         }
 
         private void SetQuyen()
@@ -93,7 +99,7 @@ namespace Quan_li_nhan_su
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            var luachon = MessageBox.Show(@"Bạn chắc chắn muốn thoát ?", @"Xác nhận thoát", MessageBoxButtons.YesNo,
+            var luachon = MessageBox.Show("Bạn chắc chắn muốn thoát ?", "Xác nhận thoát", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
             if (luachon == DialogResult.No) e.Cancel = true;
         }
@@ -110,47 +116,42 @@ namespace Quan_li_nhan_su
 
         private void menuDangXuat_Click(object sender, EventArgs e)
         {
-            var luachon = MessageBox.Show(@"Bạn chắc chắn muốn đăng xuất ?", @"Xác nhận đăng xuất",
+            var luachon = MessageBox.Show("Bạn chắc chắn muốn đăng xuất ?", "Xác nhận đăng xuất",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (luachon != DialogResult.Yes) return;
             Chucvu = "";
             Username = "";
             DongForm();
             SetQuyen();
-            MessageBox.Show(@"Đăng xuất thành công", @"Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void mstTaiKhoan_Click(object sender, EventArgs e)
-        {
-
+            MessageBox.Show("Đăng xuất thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void menuDoiMatKhau_Click(object sender, EventArgs e)
         {
             var oldPass = "";
-            if (InputBox(@"Đổi mật khẩu", "Nhập mật khẩu cũ:", ref oldPass) != DialogResult.OK)
+            if (InputBox("Đổi mật khẩu", "Nhập mật khẩu cũ:", ref oldPass) != DialogResult.OK)
             {
                 return;
             }
-            if (oldPass == "")
+            if (oldPass?.Length == 0)
             {
-                MessageBox.Show(@"Bạn chưa nhập mật khẩu cũ!", @"Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Bạn chưa nhập mật khẩu cũ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (_kn.GetData($"select TaiKhoan from NguoiDung where TaiKhoan = '{Username}' and  MatKhau = '{DangNhap.GetMd5(oldPass)}'").Rows.Count != 1)
             {
-                MessageBox.Show(@"Mật khẩu cũ không đúng", @"Lỗi", MessageBoxButtons.OK,
+                MessageBox.Show("Mật khẩu cũ không đúng", "Lỗi", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
             var newPass = "";
-            if (InputBox(@"Đổi mật khẩu", "Nhập mật khẩu mới:", ref newPass) != DialogResult.OK)
+            if (InputBox("Đổi mật khẩu", "Nhập mật khẩu mới:", ref newPass) != DialogResult.OK)
             {
                 return;
             }
-            if (newPass == "")
+            if (newPass?.Length == 0)
             {
-                MessageBox.Show(@"Bạn chưa nhập mật khẩu mới!", @"Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Bạn chưa nhập mật khẩu mới!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             var kq = _kn.Execute($"update NguoiDung set MatKhau = '{DangNhap.GetMd5(newPass)}' where TaiKhoan = '{Username}'");
@@ -170,8 +171,9 @@ namespace Quan_li_nhan_su
             form.AcceptButton = buttonOk;
             textBox.UseSystemPasswordChar = true;
 
-            buttonOk.Text = @"OK";
-            buttonCancel.Text = @"Cancel";
+
+            buttonOk.Text = "OK";
+            buttonCancel.Text = "Cancel";
             buttonOk.DialogResult = DialogResult.OK;
             buttonCancel.DialogResult = DialogResult.Cancel;
 
@@ -201,10 +203,98 @@ namespace Quan_li_nhan_su
 
         private void menuQLHoSo_Click(object sender, EventArgs e)
         {
-            var qlhsnv = new QLHoSoNhanVien();
-            qlhsnv.MdiParent = this;
+            label1.Visible = false;
+            label2.Visible = false;
+            var qlhsnv = new QLHoSoNhanVien
+            {
+                MdiParent = this
+            };
             qlhsnv.Show();
             Opened_forms.Add(qlhsnv);
+
+        }
+
+        private void menuQLNhanVienPhongBan_Click(object sender, EventArgs e)
+        {
+            label1.Visible = false;
+            label2.Visible = false;
+            var qlnvpb = new QLNhanVienPhongBan
+            {
+                MdiParent = this
+            };
+            qlnvpb.Show();
+            Opened_forms.Add(qlnvpb);
+        }
+
+        private void time_Tick(object sender, EventArgs e)
+        {
+            int hh = DateTime.Now.Hour;
+            int mm = DateTime.Now.Minute;
+            int ss = DateTime.Now.Second;
+            string time = "";
+            if (hh < 10)
+            {
+                time += "0" + hh;
+            }
+            else
+            {
+                time += hh;
+            }
+            time += ":";
+            if (mm < 10)
+            {
+                time += "0" + mm;
+            }
+            else
+            {
+                time += mm;
+            }
+            time += ":";
+
+            if (ss < 10)
+            {
+                time += "0" + ss;
+            }
+            else
+            {
+                time += ss;
+            }
+            label1.Text = time;
+            switch (hh)
+            {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                    label2.Text = "Chào buổi sáng";
+                    break;
+                case 11:
+                case 12:
+                    label2.Text = "Chào buổi trưa";
+                    break;
+                case 13:
+                case 14:
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                    label2.Text = "Chào buổi chiều";
+                    break;
+                case 19:
+                case 20:
+                case 21:
+                    label2.Text = "Chào buổi tối";
+                    break;
+                default:
+                    label2.Text = "Chào buổi đêm";
+                    break;
+            }
         }
     }
 }

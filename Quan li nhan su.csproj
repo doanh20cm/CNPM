@@ -70,6 +70,17 @@
     <Compile Include="QLHoSoNhanVien.Designer.cs">
       <DependentUpon>QLHoSoNhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="QLNhanVienPhongBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QLNhanVienPhongBan.Designer.cs">
+      <DependentUpon>QLNhanVienPhongBan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="test2DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>test2DataSet.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="DangNhap.resx">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +100,9 @@
     <EmbeddedResource Include="QLHoSoNhanVien.resx">
       <DependentUpon>QLHoSoNhanVien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QLNhanVienPhongBan.resx">
+      <DependentUpon>QLNhanVienPhongBan.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -99,6 +113,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="test2DataSet.xsc">
+      <DependentUpon>test2DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="test2DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>test2DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="test2DataSet.xss">
+      <DependentUpon>test2DataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -107,6 +132,7 @@
     <None Include="Resources\daniela-cuevas-t7YycgAoVSw-unsplash.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\space blue sky pastel background.jpg" />
     <Content Include="Resources\_360_F_122719641_V0yw2cAOrfxsON3HeWi2Sf4iVxhv27QO.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

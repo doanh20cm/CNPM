@@ -25,15 +25,15 @@ namespace Quan_li_nhan_su
         {
             var taikhoan = txtUsername.Text.Trim();
             var matkhau = txtPassword.Text.Trim();
-            if (taikhoan == "")
+            if (taikhoan?.Length == 0)
             {
-                MessageBox.Show(@"Bạn chưa nhập tài khoản!", @"Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Bạn chưa nhập tài khoản!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (matkhau == "")
+            if (matkhau?.Length == 0)
             {
-                MessageBox.Show(@"Bạn chưa nhập mật khẩu!", @"Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Bạn chưa nhập mật khẩu!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -41,7 +41,7 @@ namespace Quan_li_nhan_su
 
             if (quyen.Rows.Count != 1)
             {
-                MessageBox.Show(@"Tài khoản không tồn tại hoặc sai mật khẩu", @"Lỗi", MessageBoxButtons.OK,
+                MessageBox.Show("Tài khoản không tồn tại hoặc sai mật khẩu", "Lỗi", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
@@ -50,7 +50,7 @@ namespace Quan_li_nhan_su
             GiaoDienChinh.Username = quyen.Rows[0][1].ToString().Trim();
 
             Close();
-            MessageBox.Show($@"Chào {quyen.Rows[0][1]}, đăng nhập thành công với quyền {quyen.Rows[0][0]}!", @"Thông báo", MessageBoxButtons.OK,
+            MessageBox.Show($"Chào {quyen.Rows[0][1]}, đăng nhập thành công với quyền {quyen.Rows[0][0]}!", "Thông báo", MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
     }

@@ -96,6 +96,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.label1);
+            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DangNhap";
@@ -103,6 +105,7 @@
             this.Text = "Đăng nhập";
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

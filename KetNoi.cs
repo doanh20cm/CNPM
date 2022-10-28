@@ -13,10 +13,15 @@ namespace Quan_li_nhan_su
         {
             try
             {
-                var sda = new SqlDataAdapter(select, ConnStr);
-                var ds = new DataSet();
-                sda.Fill(ds);
-                return ds.Tables[0];
+                using (var sda = new SqlDataAdapter(select, ConnStr))
+                {
+                    using (var ds = new DataSet())
+                    {
+                        sda.Fill(ds);
+                        return ds.Tables[0];
+                    }
+                   
+                }
             }
             catch (Exception)
             {
@@ -28,12 +33,16 @@ namespace Quan_li_nhan_su
         {
             try
             {
-                var conn = new SqlConnection(ConnStr);
-                conn.Open();
-                var cmd = new SqlCommand(exec, conn);
-                var kq = cmd.ExecuteNonQuery();
-                conn.Close();
-                return kq == 1;
+                using (var conn = new SqlConnection(ConnStr))
+                {
+                    conn.Open();
+                    using (var cmd = new SqlCommand(exec, conn))
+                    {
+                        var kq = cmd.ExecuteNonQuery();
+                        conn.Close();
+                        return kq == 1;
+                    }
+                }
             }
             catch (Exception)
             {
