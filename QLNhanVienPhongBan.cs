@@ -18,6 +18,8 @@ namespace Quan_li_nhan_su
 
         private void QLNhanVienPhongBan_Load(object sender, EventArgs e)
         {
+            dgvNhanVienPhongBan.RowsDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dgvNhanVienPhongBan.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             GetData();
         }
 
@@ -29,7 +31,7 @@ namespace Quan_li_nhan_su
             dgvNhanVienPhongBan.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvNhanVienPhongBan.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvNhanVienPhongBan.Columns[0].HeaderText = "Mã nhân viên";
-            dgvNhanVienPhongBan.Columns[1].HeaderText = "Họ và tên";
+            dgvNhanVienPhongBan.Columns[1].HeaderText = "Tên nhân viên";
             dgvNhanVienPhongBan.Columns[2].HeaderText = "Mã phòng ban";
             dgvNhanVienPhongBan.Columns[3].HeaderText = "Tên phòng ban";
             dgvNhanVienPhongBan.Columns[4].HeaderText = "Loại hợp đồng";
@@ -46,6 +48,14 @@ namespace Quan_li_nhan_su
             cbTenPhongBan.DataSource = _kn.GetData("select MaPhongBan, TenPhongBan from PhongBan");
             cbTenPhongBan.DisplayMember = "TenPhongBan";
             cbTenPhongBan.ValueMember = "MaPhongBan";
+
+            dgvNhanVienPhongBan.Columns[0].Visible = false;
+            dgvNhanVienPhongBan.Columns[2].Visible = false;     
+            cbHoTenNV.Enabled = true;
+
+            cbHoTenNV.Text = cbTenPhongBan.Text = txtLoaiHopDong.Text = txtThoiGian.Text = rtGhiChu.Text = "";
+            dtpNgayKy.Value = dtpNgayHetHan.Value = DateTime.Now;
+            cbHoTenNV.Enabled = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -85,9 +95,10 @@ namespace Quan_li_nhan_su
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Thêm thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var IsDuplicated = ex.Message.Contains("Cannot insert duplicate key in object");
+                MessageBox.Show(IsDuplicated ? "Nhân viên đó đã ở trong phòng ban" : "Thêm thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             GetData();
         }
@@ -97,6 +108,9 @@ namespace Quan_li_nhan_su
             index = e.RowIndex;
             if (index > -1 && dgvNhanVienPhongBan.SelectedCells.Count != 0)
             {
+                button1.Enabled = false;
+                btnSua.Enabled = true;
+                btnXoa.Enabled = true;
                 cbHoTenNV.Text = dgvNhanVienPhongBan.Rows[index].Cells[1].Value.ToString();
                 cbTenPhongBan.Text = dgvNhanVienPhongBan.Rows[index].Cells[3].Value.ToString();
                 txtLoaiHopDong.Text = dgvNhanVienPhongBan.Rows[index].Cells[4].Value.ToString();
@@ -104,11 +118,17 @@ namespace Quan_li_nhan_su
                 dtpNgayHetHan.Value = (DateTime)dgvNhanVienPhongBan.Rows[index].Cells[6].Value;
                 txtThoiGian.Text = dgvNhanVienPhongBan.Rows[index].Cells[7].Value.ToString();
                 rtGhiChu.Text = dgvNhanVienPhongBan.Rows[index].Cells[8].Value.ToString();
+                cbHoTenNV.Enabled = false; 
             }
             else
             {
+                button1.Enabled = true;
+                btnSua.Enabled = false;
+                btnXoa.Enabled = false;
                 cbHoTenNV.Text = cbTenPhongBan.Text = txtLoaiHopDong.Text = txtThoiGian.Text = rtGhiChu.Text = "";
                 dtpNgayKy.Value = dtpNgayHetHan.Value = DateTime.Now;
+                cbHoTenNV.Enabled = true;
+                dgvNhanVienPhongBan.ClearSelection();
             }
         }
 
@@ -162,6 +182,52 @@ namespace Quan_li_nhan_su
                 MessageBox.Show("Sửa thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             GetData();
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (index < 0 || dgvNhanVienPhongBan.SelectedCells.Count == 0)
+            {
+                MessageBox.Show("Chưa chọn dòng nào", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var luachon = MessageBox.Show("Bạn chắc chắn muốn xoá ?", "Xác nhận xoá", MessageBoxButtons.YesNo,
+               MessageBoxIcon.Question);
+            if (luachon != DialogResult.Yes) return;
+            try
+            {
+                using (var connection = new SqlConnection(sqlconnectstring))
+                {
+                    connection.Open();
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText = "delete from NhanVienPhongBan where MaNV = @MaNV"
+                    })
+                    {
+                        command.Parameters.AddWithValue("@MaNV", cbHoTenNV.SelectedValue);
+                        var rows_affected = command.ExecuteNonQuery();
+                        MessageBox.Show(rows_affected == 1 ? "Xoá thành công" : "Xoá thất bại", rows_affected == 1 ? "Thông báo" : "Lỗi", MessageBoxButtons.OK, rows_affected == 1 ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Xoá thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvNhanVienPhongBan_SelectionChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvNhanVienPhongBan_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvNhanVienPhongBan.ClearSelection();
+            button1.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
         }
     }
 }

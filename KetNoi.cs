@@ -7,7 +7,7 @@ namespace Quan_li_nhan_su
 
     internal class KetNoi
     {
-        private const string ConnStr = "Server=localhost\\SQLEXPRESS,1433;Database=test2;UID=sa;PWD=12345";
+        const string ConnStr = "Server=localhost\\SQLEXPRESS,1433;Database=test2;UID=sa;PWD=12345";
 
         public DataTable GetData(string select)
         {

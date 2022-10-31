@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Quan_li_nhan_su
@@ -36,20 +39,48 @@ namespace Quan_li_nhan_su
 			dgvHoSoNhanVien.Columns[10].HeaderText = "Ghi chú";
 			cbGioiTinh.Text = "Nam";
 			dgvHoSoNhanVien.Columns[0].Visible = false;
-			dgvHoSoNhanVien.Refresh();
-		}
+			dgvHoSoNhanVien.Columns[11].Visible = false;
+            dgvHoSoNhanVien.Refresh();
 
-		private void QLHoSoNhanVien_Load(object sender, EventArgs e)
+            txtHoTen.Text = txtNoiSinh.Text = txtDiaChi.Text = txtSDT.Text = cbGioiTinh.Text = txtDanToc.Text = txtTonGiao.Text = txtHocVan.Text = rtGhiChu.Text = "";
+            dtpNgaySinh.Value = DateTime.Now;
+            pbAnhHoSo.Image = Properties.Resources.noimage;
+
+        }
+
+        private void QLHoSoNhanVien_Load(object sender, EventArgs e)
 		{
-			GetData();
+            dgvHoSoNhanVien.RowsDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dgvHoSoNhanVien.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            GetData();
 		}
 
-		private void dgvHoSoNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
+        Image BytesToImage(byte[] data)
+        {
+            using (MemoryStream ms = new MemoryStream(data))
+            {
+                return Image.FromStream(ms);
+            }
+        }
+
+        byte[] ImagetoBytes(Image img)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                img.Save(ms, ImageFormat.Png);
+                return ms.ToArray();
+            }
+        }
+
+        private void dgvHoSoNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
 		{
 			index = e.RowIndex;
 			if (index > -1 && dgvHoSoNhanVien.SelectedCells.Count != 0)
 			{
-				txtHoTen.Text = dgvHoSoNhanVien.Rows[index].Cells[1].Value.ToString();
+                btnThem.Enabled = false;
+                btnSua.Enabled = true;
+                btnXoa.Enabled = true;
+                txtHoTen.Text = dgvHoSoNhanVien.Rows[index].Cells[1].Value.ToString();
 				dtpNgaySinh.Value = (DateTime)dgvHoSoNhanVien.Rows[index].Cells[2].Value;
 				txtNoiSinh.Text = dgvHoSoNhanVien.Rows[index].Cells[3].Value.ToString();
 				txtDiaChi.Text = dgvHoSoNhanVien.Rows[index].Cells[4].Value.ToString();
@@ -59,13 +90,19 @@ namespace Quan_li_nhan_su
 				txtTonGiao.Text = dgvHoSoNhanVien.Rows[index].Cells[8].Value.ToString();
 				txtHocVan.Text = dgvHoSoNhanVien.Rows[index].Cells[9].Value.ToString();
 				rtGhiChu.Text = dgvHoSoNhanVien.Rows[index].Cells[10].Value.ToString();
-			}
+                pbAnhHoSo.Image = BytesToImage((byte[])dgvHoSoNhanVien.Rows[index].Cells[11].Value);
+            }
 			else
 			{
+                btnThem.Enabled = true;
+                btnSua.Enabled = false;
+                btnXoa.Enabled = false;
 				txtHoTen.Text = txtNoiSinh.Text = txtDiaChi.Text = txtSDT.Text = cbGioiTinh.Text = txtDanToc.Text = txtTonGiao.Text = txtHocVan.Text = rtGhiChu.Text = "";
 				dtpNgaySinh.Value = DateTime.Now;
-			}
-		}
+                pbAnhHoSo.Image = Properties.Resources.noimage;
+                dgvHoSoNhanVien.ClearSelection();
+            }
+        }
 
 		private void btnThem_Click(object sender, EventArgs e)
 		{
@@ -87,7 +124,8 @@ namespace Quan_li_nhan_su
 				txtDiaChi.Focus();
 				return;
 			}
-			if (!int.TryParse(txtSDT.Text, out int sdt) || txtSDT.Text.Length != 10)
+
+			if (!int.TryParse(txtSDT.Text, out _) || txtSDT.Text.Length != 10)
 			{
 				MessageBox.Show("Số điện thoại phải có 10 số", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				txtSDT.Focus();
@@ -119,8 +157,8 @@ namespace Quan_li_nhan_su
 					using (var command = new SqlCommand
 					{
 						Connection = connection,
-                        CommandText = "insert into HoSoNhanVien values(@HoTen, @NgaySinh, @NoiSinh, @DiaChi, @SDT, @GioiTinh, @DanToc, @TonGiao, @HocVan, @GhiChu)"
-					})
+                        CommandText = "insert into HoSoNhanVien values(@HoTen, @NgaySinh, @NoiSinh, @DiaChi, @SDT, @GioiTinh, @DanToc, @TonGiao, @HocVan, @GhiChu, @AnhHoSo)"
+                    })
 					{
                         command.Parameters.AddWithValue("@HoTen", txtHoTen.Text);
                         command.Parameters.AddWithValue("@NgaySinh", dtpNgaySinh.Value.Date);
@@ -132,6 +170,7 @@ namespace Quan_li_nhan_su
                         command.Parameters.AddWithValue("@TonGiao", txtTonGiao.Text);
                         command.Parameters.AddWithValue("@HocVan", txtHocVan.Text);
                         command.Parameters.AddWithValue("@GhiChu", rtGhiChu.Text);
+                        command.Parameters.AddWithValue("@AnhHoSo", ImagetoBytes(pbAnhHoSo.Image));
                         var rows_affected = command.ExecuteNonQuery();
                         MessageBox.Show(rows_affected == 1 ? "Thêm thành công" : "Thêm thất bại", rows_affected == 1 ? "Thông báo" : "Lỗi", MessageBoxButtons.OK, rows_affected == 1 ? MessageBoxIcon.Information : MessageBoxIcon.Error);
                     }
@@ -142,6 +181,7 @@ namespace Quan_li_nhan_su
 				MessageBox.Show("Thêm thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			GetData();
+            
 		}
 
 		private void btnSua_Click(object sender, EventArgs e)
@@ -169,7 +209,7 @@ namespace Quan_li_nhan_su
 				txtDiaChi.Focus();
 				return;
 			}
-			if (!int.TryParse(txtSDT.Text, out int sdt) || txtSDT.Text.Length != 10)
+			if (!int.TryParse(txtSDT.Text, out _) || txtSDT.Text.Length != 10)
 			{
 				MessageBox.Show("Số điện thoại phải có 10 số", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				txtSDT.Focus();
@@ -204,7 +244,7 @@ namespace Quan_li_nhan_su
 					using (var command = new SqlCommand
 					{
 						Connection = connection,
-                        CommandText = "update HoSoNhanVien set Hoten = @HoTen, NgaySinh = @NgaySinh, NoiSinh = @NoiSinh, DiaChi = @DiaChi, SDT = @SDT, GioiTinh = @GioiTinh, DanToc = @DanToc, TonGiao = @TonGiao, HocVan = @HocVan, GhiChu = @GhiChu where MaNV = @MaNV"
+                        CommandText = "update HoSoNhanVien set Hoten = @HoTen, NgaySinh = @NgaySinh, NoiSinh = @NoiSinh, DiaChi = @DiaChi, SDT = @SDT, GioiTinh = @GioiTinh, DanToc = @DanToc, TonGiao = @TonGiao, HocVan = @HocVan, GhiChu = @GhiChu, AnhHoSo = @AnhHoSo where MaNV = @MaNV"
 
 					})
 					{
@@ -218,6 +258,7 @@ namespace Quan_li_nhan_su
                         command.Parameters.AddWithValue("@TonGiao", txtTonGiao.Text);
                         command.Parameters.AddWithValue("@HocVan", txtHocVan.Text);
                         command.Parameters.AddWithValue("@GhiChu", rtGhiChu.Text);
+                        command.Parameters.AddWithValue("@AnhHoSo", ImagetoBytes(pbAnhHoSo.Image));
                         command.Parameters.AddWithValue("@MaNV", dgvHoSoNhanVien.Rows[index].Cells[0].Value);
                         var rows_affected = command.ExecuteNonQuery();
                         MessageBox.Show(rows_affected == 1 ? "Sửa thành công" : "Sửa thất bại", rows_affected == 1 ? "Thông báo" : "Lỗi", MessageBoxButtons.OK, rows_affected == 1 ? MessageBoxIcon.Information : MessageBoxIcon.Error);
@@ -229,7 +270,7 @@ namespace Quan_li_nhan_su
 				MessageBox.Show("Sửa thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			GetData();
-		}
+        }
 
 		private void btnXoa_Click(object sender, EventArgs e)
 		{
@@ -319,8 +360,44 @@ namespace Quan_li_nhan_su
             } catch (Exception)
 			{
                 MessageBox.Show("Tìm kiếm thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			GetData();
+				GetData();
             }
+        }
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+            using (var ofd = new OpenFileDialog() { Filter = "Ảnh(*.PNG;*.JPG;*.JPEG;*.BMP)|*.PNG;*.JPG;*.JPEG,*.BMP", Multiselect = false, Title = "Chọn ảnh hồ sơ nhân viên" })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+					{
+                        pbAnhHoSo.Image = Image.FromFile(ofd.FileName);
+                    } catch (Exception)
+					{
+                        MessageBox.Show("Không thể dùng ảnh này", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+		private void button1_Click_1(object sender, EventArgs e)
+		{
+			pbAnhHoSo.Image = Properties.Resources.noimage;
+		}
+
+		private void pbAnhHoSo_Click(object sender, EventArgs e)
+		{
+            pbAnhHoSo.Image.Save(Path.Combine(Path.GetTempPath(), "temp.png"));
+            System.Diagnostics.Process.Start("rundll32.exe", "\"C:\\Program Files (x86)\\Windows Photo Viewer\\PhotoViewer.dll\", ImageView_Fullscreen " + Path.Combine(Path.GetTempPath(), "temp.png"));
+        }
+
+		private void dgvHoSoNhanVien_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+		{
+            dgvHoSoNhanVien.ClearSelection();
+            btnThem.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
         }
 	}
 }
