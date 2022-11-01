@@ -16802,83 +16802,83 @@
       <ObjectId>265</ObjectId>
       <Type>windows-login</Type>
     </login>
-    <role id="5560" parent="5532" name="public">
-      <AuthType>none</AuthType>
-      <ObjectId>0</ObjectId>
-      <Type>database-role</Type>
-      <OwnerId>1</OwnerId>
-    </role>
-    <role id="5561" parent="5532" name="dbo">
-      <AuthType>instance</AuthType>
-      <DefaultSchema>dbo</DefaultSchema>
-      <ObjectId>1</ObjectId>
-    </role>
-    <role id="5562" parent="5532" name="guest">
-      <AuthType>none</AuthType>
-      <DefaultSchema>guest</DefaultSchema>
-      <ObjectId>2</ObjectId>
-    </role>
-    <role id="5563" parent="5532" name="INFORMATION_SCHEMA">
+    <role id="5560" parent="5532" name="INFORMATION_SCHEMA">
       <AuthType>none</AuthType>
       <ObjectId>3</ObjectId>
     </role>
-    <role id="5564" parent="5532" name="sys">
-      <AuthType>none</AuthType>
-      <ObjectId>4</ObjectId>
-    </role>
-    <role id="5565" parent="5532" name="db_owner">
-      <AuthType>none</AuthType>
-      <ObjectId>16384</ObjectId>
-      <Type>database-role</Type>
-      <OwnerId>1</OwnerId>
-    </role>
-    <role id="5566" parent="5532" name="db_accessadmin">
+    <role id="5561" parent="5532" name="db_accessadmin">
       <AuthType>none</AuthType>
       <ObjectId>16385</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
-    <role id="5567" parent="5532" name="db_securityadmin">
-      <AuthType>none</AuthType>
-      <ObjectId>16386</ObjectId>
-      <Type>database-role</Type>
-      <OwnerId>1</OwnerId>
-    </role>
-    <role id="5568" parent="5532" name="db_ddladmin">
-      <AuthType>none</AuthType>
-      <ObjectId>16387</ObjectId>
-      <Type>database-role</Type>
-      <OwnerId>1</OwnerId>
-    </role>
-    <role id="5569" parent="5532" name="db_backupoperator">
+    <role id="5562" parent="5532" name="db_backupoperator">
       <AuthType>none</AuthType>
       <ObjectId>16389</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
-    <role id="5570" parent="5532" name="db_datareader">
+    <role id="5563" parent="5532" name="db_datareader">
       <AuthType>none</AuthType>
       <ObjectId>16390</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
-    <role id="5571" parent="5532" name="db_datawriter">
+    <role id="5564" parent="5532" name="db_datawriter">
       <AuthType>none</AuthType>
       <ObjectId>16391</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
-    <role id="5572" parent="5532" name="db_denydatareader">
+    <role id="5565" parent="5532" name="db_ddladmin">
+      <AuthType>none</AuthType>
+      <ObjectId>16387</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5566" parent="5532" name="db_denydatareader">
       <AuthType>none</AuthType>
       <ObjectId>16392</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
-    <role id="5573" parent="5532" name="db_denydatawriter">
+    <role id="5567" parent="5532" name="db_denydatawriter">
       <AuthType>none</AuthType>
       <ObjectId>16393</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
+    </role>
+    <role id="5568" parent="5532" name="db_owner">
+      <AuthType>none</AuthType>
+      <ObjectId>16384</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5569" parent="5532" name="db_securityadmin">
+      <AuthType>none</AuthType>
+      <ObjectId>16386</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5570" parent="5532" name="dbo">
+      <AuthType>instance</AuthType>
+      <DefaultSchema>dbo</DefaultSchema>
+      <ObjectId>1</ObjectId>
+    </role>
+    <role id="5571" parent="5532" name="guest">
+      <AuthType>none</AuthType>
+      <DefaultSchema>guest</DefaultSchema>
+      <ObjectId>2</ObjectId>
+    </role>
+    <role id="5572" parent="5532" name="public">
+      <AuthType>none</AuthType>
+      <ObjectId>0</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5573" parent="5532" name="sys">
+      <AuthType>none</AuthType>
+      <ObjectId>4</ObjectId>
     </role>
     <schema id="5574" parent="5532" name="INFORMATION_SCHEMA">
       <ObjectId>3</ObjectId>
@@ -16927,7 +16927,7 @@
 725577623|||2|execute|D
 741577680|||0|execute|G
 741577680|||2|execute|D</Grants>
-      <IntrospectionTimestamp>2022-10-24.08:39:48.633</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2022-11-01.08:33:14.833</IntrospectionTimestamp>
       <ObjectId>1</ObjectId>
       <PermissionsCheckSum>11573558719</PermissionsCheckSum>
     </schema>
@@ -16939,9 +16939,6 @@
     </schema>
     <routine id="5587" parent="5584" name="fn_diagramobjects">
       <CreatedTimestamp>2022-10-13.06:32:16.063</CreatedTimestamp>
-      <ExtendedProperties>microsoft_database_tools_support
-1
-int</ExtendedProperties>
       <ModifiedTimestamp>2022-10-13.06:32:16.063</ModifiedTimestamp>
       <ObjectId>741577680</ObjectId>
       <RoutineType>scalar-fun</RoutineType>
@@ -16949,9 +16946,6 @@ int</ExtendedProperties>
     </routine>
     <routine id="5588" parent="5584" name="sp_alterdiagram">
       <CreatedTimestamp>2022-10-13.06:32:16.057</CreatedTimestamp>
-      <ExtendedProperties>microsoft_database_tools_support
-1
-int</ExtendedProperties>
       <ModifiedTimestamp>2022-10-13.06:32:16.057</ModifiedTimestamp>
       <ObjectId>709577566</ObjectId>
       <RoutineType>proc</RoutineType>
@@ -16959,9 +16953,6 @@ int</ExtendedProperties>
     </routine>
     <routine id="5589" parent="5584" name="sp_creatediagram">
       <CreatedTimestamp>2022-10-13.06:32:16.050</CreatedTimestamp>
-      <ExtendedProperties>microsoft_database_tools_support
-1
-int</ExtendedProperties>
       <ModifiedTimestamp>2022-10-13.06:32:16.050</ModifiedTimestamp>
       <ObjectId>677577452</ObjectId>
       <RoutineType>proc</RoutineType>
@@ -16969,9 +16960,6 @@ int</ExtendedProperties>
     </routine>
     <routine id="5590" parent="5584" name="sp_dropdiagram">
       <CreatedTimestamp>2022-10-13.06:32:16.060</CreatedTimestamp>
-      <ExtendedProperties>microsoft_database_tools_support
-1
-int</ExtendedProperties>
       <ModifiedTimestamp>2022-10-13.06:32:16.060</ModifiedTimestamp>
       <ObjectId>725577623</ObjectId>
       <RoutineType>proc</RoutineType>
@@ -16979,9 +16967,6 @@ int</ExtendedProperties>
     </routine>
     <routine id="5591" parent="5584" name="sp_helpdiagramdefinition">
       <CreatedTimestamp>2022-10-13.06:32:16.047</CreatedTimestamp>
-      <ExtendedProperties>microsoft_database_tools_support
-1
-int</ExtendedProperties>
       <ModifiedTimestamp>2022-10-13.06:32:16.047</ModifiedTimestamp>
       <ObjectId>661577395</ObjectId>
       <RoutineType>proc</RoutineType>
@@ -16989,9 +16974,6 @@ int</ExtendedProperties>
     </routine>
     <routine id="5592" parent="5584" name="sp_helpdiagrams">
       <CreatedTimestamp>2022-10-13.06:32:16.043</CreatedTimestamp>
-      <ExtendedProperties>microsoft_database_tools_support
-1
-int</ExtendedProperties>
       <ModifiedTimestamp>2022-10-13.06:32:16.043</ModifiedTimestamp>
       <ObjectId>645577338</ObjectId>
       <RoutineType>proc</RoutineType>
@@ -16999,9 +16981,6 @@ int</ExtendedProperties>
     </routine>
     <routine id="5593" parent="5584" name="sp_renamediagram">
       <CreatedTimestamp>2022-10-13.06:32:16.053</CreatedTimestamp>
-      <ExtendedProperties>microsoft_database_tools_support
-1
-int</ExtendedProperties>
       <ModifiedTimestamp>2022-10-13.06:32:16.053</ModifiedTimestamp>
       <ObjectId>693577509</ObjectId>
       <RoutineType>proc</RoutineType>
@@ -17009,487 +16988,521 @@ int</ExtendedProperties>
     </routine>
     <routine id="5594" parent="5584" name="sp_upgraddiagrams">
       <CreatedTimestamp>2022-10-13.06:32:16.037</CreatedTimestamp>
-      <ExtendedProperties>microsoft_database_tools_support
-1
-int</ExtendedProperties>
       <ModifiedTimestamp>2022-10-13.06:32:16.037</ModifiedTimestamp>
       <ObjectId>581577110</ObjectId>
       <RoutineType>proc</RoutineType>
       <SourceTextLength>1463</SourceTextLength>
     </routine>
     <table id="5595" parent="5584" name="BoPhan">
-      <CreatedTimestamp>2022-10-13.06:53:28.487</CreatedTimestamp>
-      <ModifiedTimestamp>2022-10-13.06:53:28.640</ModifiedTimestamp>
-      <ObjectId>789577851</ObjectId>
+      <CreatedTimestamp>2022-11-01.05:18:16.937</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-01.05:19:41.230</ModifiedTimestamp>
+      <ObjectId>1874105717</ObjectId>
     </table>
     <table id="5596" parent="5584" name="HoSoNhanVien">
-      <CreatedTimestamp>2022-10-24.05:49:08.673</CreatedTimestamp>
-      <ModifiedTimestamp>2022-10-24.05:49:08.837</ModifiedTimestamp>
-      <ObjectId>1461580245</ObjectId>
+      <CreatedTimestamp>2022-10-30.05:48:13.573</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-01.05:24:09.840</ModifiedTimestamp>
+      <ObjectId>1042102753</ObjectId>
     </table>
     <table id="5597" parent="5584" name="Luong">
-      <CreatedTimestamp>2022-10-13.06:53:28.283</CreatedTimestamp>
-      <ModifiedTimestamp>2022-10-24.05:49:08.800</ModifiedTimestamp>
-      <ObjectId>757577737</ObjectId>
+      <CreatedTimestamp>2022-11-01.05:16:10.813</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-01.05:20:31.033</ModifiedTimestamp>
+      <ObjectId>1730105204</ObjectId>
     </table>
     <table id="5598" parent="5584" name="NguoiDung">
-      <CreatedTimestamp>2022-10-13.06:53:28.787</CreatedTimestamp>
-      <ModifiedTimestamp>2022-10-24.05:49:08.773</ModifiedTimestamp>
-      <ObjectId>869578136</ObjectId>
+      <CreatedTimestamp>2022-11-01.05:15:59.043</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-01.05:24:09.847</ModifiedTimestamp>
+      <ObjectId>1682105033</ObjectId>
     </table>
     <table id="5599" parent="5584" name="NhanVienPhongBan">
-      <CreatedTimestamp>2022-10-24.05:26:35.873</CreatedTimestamp>
-      <ModifiedTimestamp>2022-10-24.05:49:08.840</ModifiedTimestamp>
-      <ObjectId>1205579333</ObjectId>
+      <CreatedTimestamp>2022-11-01.05:13:16.207</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-01.05:23:25.510</ModifiedTimestamp>
+      <ObjectId>1618104805</ObjectId>
     </table>
     <table id="5600" parent="5584" name="PhongBan">
-      <CreatedTimestamp>2022-10-13.06:53:28.633</CreatedTimestamp>
-      <ModifiedTimestamp>2022-10-24.05:26:56.923</ModifiedTimestamp>
-      <ObjectId>821577965</ObjectId>
+      <CreatedTimestamp>2022-11-01.05:19:41.197</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-01.05:23:25.503</ModifiedTimestamp>
+      <ObjectId>1954106002</ObjectId>
     </table>
     <table id="5601" parent="5584" name="sysdiagrams">
       <CreatedTimestamp>2022-10-13.06:32:16.040</CreatedTimestamp>
-      <ExtendedProperties>microsoft_database_tools_support
-1
-int</ExtendedProperties>
       <ModifiedTimestamp>2022-10-13.06:32:16.040</ModifiedTimestamp>
       <ObjectId>597577167</ObjectId>
     </table>
-    <argument id="5602" parent="5587">
+    <view id="5602" parent="5584" name="xemBoPhan">
+      <CreatedTimestamp>2022-11-01.08:33:10.583</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-01.08:33:10.583</ModifiedTimestamp>
+      <ObjectId>14623095</ObjectId>
+      <SourceTextLength>328</SourceTextLength>
+    </view>
+    <argument id="5603" parent="5587">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>int|0s</DataType>
     </argument>
-    <argument id="5603" parent="5588" name="@diagramname">
+    <argument id="5604" parent="5588" name="@diagramname">
       <DataType>sysname|0s</DataType>
       <Position>1</Position>
     </argument>
-    <argument id="5604" parent="5588" name="@owner_id">
+    <argument id="5605" parent="5588" name="@owner_id">
       <DataType>int|0s</DataType>
       <DefaultExpression>null</DefaultExpression>
       <Position>2</Position>
     </argument>
-    <argument id="5605" parent="5588" name="@version">
+    <argument id="5606" parent="5588" name="@version">
       <DataType>int|0s</DataType>
       <Position>3</Position>
     </argument>
-    <argument id="5606" parent="5588" name="@definition">
+    <argument id="5607" parent="5588" name="@definition">
       <DataType>varbinary(max)|0s</DataType>
       <Position>4</Position>
     </argument>
-    <argument id="5607" parent="5589" name="@diagramname">
+    <argument id="5608" parent="5589" name="@diagramname">
       <DataType>sysname|0s</DataType>
       <Position>1</Position>
     </argument>
-    <argument id="5608" parent="5589" name="@owner_id">
+    <argument id="5609" parent="5589" name="@owner_id">
       <DataType>int|0s</DataType>
       <DefaultExpression>null</DefaultExpression>
       <Position>2</Position>
     </argument>
-    <argument id="5609" parent="5589" name="@version">
+    <argument id="5610" parent="5589" name="@version">
       <DataType>int|0s</DataType>
       <Position>3</Position>
     </argument>
-    <argument id="5610" parent="5589" name="@definition">
+    <argument id="5611" parent="5589" name="@definition">
       <DataType>varbinary(max)|0s</DataType>
       <Position>4</Position>
     </argument>
-    <argument id="5611" parent="5590" name="@diagramname">
+    <argument id="5612" parent="5590" name="@diagramname">
       <DataType>sysname|0s</DataType>
       <Position>1</Position>
     </argument>
-    <argument id="5612" parent="5590" name="@owner_id">
+    <argument id="5613" parent="5590" name="@owner_id">
       <DataType>int|0s</DataType>
       <DefaultExpression>null</DefaultExpression>
       <Position>2</Position>
     </argument>
-    <argument id="5613" parent="5591" name="@diagramname">
+    <argument id="5614" parent="5591" name="@diagramname">
       <DataType>sysname|0s</DataType>
       <Position>1</Position>
     </argument>
-    <argument id="5614" parent="5591" name="@owner_id">
+    <argument id="5615" parent="5591" name="@owner_id">
       <DataType>int|0s</DataType>
       <DefaultExpression>null</DefaultExpression>
       <Position>2</Position>
     </argument>
-    <argument id="5615" parent="5592" name="@diagramname">
+    <argument id="5616" parent="5592" name="@diagramname">
       <DataType>sysname|0s</DataType>
       <DefaultExpression>NULL</DefaultExpression>
       <Position>1</Position>
     </argument>
-    <argument id="5616" parent="5592" name="@owner_id">
+    <argument id="5617" parent="5592" name="@owner_id">
       <DataType>int|0s</DataType>
       <DefaultExpression>NULL</DefaultExpression>
       <Position>2</Position>
     </argument>
-    <argument id="5617" parent="5593" name="@diagramname">
+    <argument id="5618" parent="5593" name="@diagramname">
       <DataType>sysname|0s</DataType>
       <Position>1</Position>
     </argument>
-    <argument id="5618" parent="5593" name="@owner_id">
+    <argument id="5619" parent="5593" name="@owner_id">
       <DataType>int|0s</DataType>
       <DefaultExpression>null</DefaultExpression>
       <Position>2</Position>
     </argument>
-    <argument id="5619" parent="5593" name="@new_diagramname">
+    <argument id="5620" parent="5593" name="@new_diagramname">
       <DataType>sysname|0s</DataType>
       <Position>3</Position>
     </argument>
-    <column id="5620" parent="5595" name="MaBoPhan">
+    <column id="5621" parent="5595" name="MaBoPhan">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1</SequenceIdentity>
+      <SequenceIdentity>1(6)</SequenceIdentity>
     </column>
-    <column id="5621" parent="5595" name="TenBoPhan">
+    <column id="5622" parent="5595" name="TenBoPhan">
       <DataType>nvarchar(50 char)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="5622" parent="5595" name="NgayThanhLap">
+    <column id="5623" parent="5595" name="NgayThanhLap">
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="5623" parent="5595" name="GhiChu">
-      <DataType>nvarchar(50 char)|0s</DataType>
+    <column id="5624" parent="5595" name="SDTBoPhan">
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <index id="5624" parent="5595" name="PK_BoPhan">
+    <column id="5625" parent="5595" name="GhiChu">
+      <DataType>nvarchar(50 char)|0s</DataType>
+      <Position>5</Position>
+    </column>
+    <index id="5626" parent="5595" name="PK_BoPhan">
       <Clustering>1</Clustering>
       <ColNames>MaBoPhan</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
     </index>
-    <key id="5625" parent="5595" name="PK_BoPhan">
-      <CreatedTimestamp>2022-10-13.06:53:28.490</CreatedTimestamp>
-      <ModifiedTimestamp>2022-10-13.06:53:28.490</ModifiedTimestamp>
-      <ObjectId>805577908</ObjectId>
+    <key id="5627" parent="5595" name="PK_BoPhan">
+      <CreatedTimestamp>2022-11-01.05:18:16.957</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-01.05:18:16.957</ModifiedTimestamp>
+      <ObjectId>1890105774</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK_BoPhan</UnderlyingIndexName>
     </key>
-    <column id="5626" parent="5596" name="MaNV">
+    <column id="5628" parent="5596" name="MaNV">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1(2)</SequenceIdentity>
+      <SequenceIdentity>1(32)</SequenceIdentity>
     </column>
-    <column id="5627" parent="5596" name="HoTen">
+    <column id="5629" parent="5596" name="HoTen">
       <DataType>nvarchar(50 char)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="5628" parent="5596" name="NgaySinh">
+    <column id="5630" parent="5596" name="NgaySinh">
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="5629" parent="5596" name="NoiSinh">
+    <column id="5631" parent="5596" name="NoiSinh">
       <DataType>nvarchar(50 char)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="5630" parent="5596" name="DiaChi">
+    <column id="5632" parent="5596" name="DiaChi">
       <DataType>nvarchar(50 char)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="5631" parent="5596" name="SDT">
-      <DataType>int|0s</DataType>
+    <column id="5633" parent="5596" name="SDT">
+      <DataType>nvarchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="5632" parent="5596" name="GioiTinh">
+    <column id="5634" parent="5596" name="GioiTinh">
       <DataType>nvarchar(3 char)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="5633" parent="5596" name="DanToc">
+    <column id="5635" parent="5596" name="DanToc">
       <DataType>nvarchar(50 char)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="5634" parent="5596" name="TonGiao">
+    <column id="5636" parent="5596" name="TonGiao">
       <DataType>nvarchar(50 char)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="5635" parent="5596" name="HocVan">
+    <column id="5637" parent="5596" name="HocVan">
       <DataType>nvarchar(50 char)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="5636" parent="5596" name="GhiChu">
+    <column id="5638" parent="5596" name="GhiChu">
       <DataType>nvarchar(50 char)|0s</DataType>
       <Position>11</Position>
     </column>
-    <index id="5637" parent="5596" name="PK_HoSoNhanVien">
+    <column id="5639" parent="5596" name="AnhHoSo">
+      <DataType>varbinary(max)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>12</Position>
+    </column>
+    <index id="5640" parent="5596" name="PK_HoSoNhanVien">
       <Clustering>1</Clustering>
       <ColNames>MaNV</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
     </index>
-    <key id="5638" parent="5596" name="PK_HoSoNhanVien">
-      <CreatedTimestamp>2022-10-24.05:49:08.700</CreatedTimestamp>
-      <ModifiedTimestamp>2022-10-24.05:49:08.700</ModifiedTimestamp>
-      <ObjectId>1477580302</ObjectId>
+    <key id="5641" parent="5596" name="PK_HoSoNhanVien">
+      <CreatedTimestamp>2022-10-30.05:48:14.647</CreatedTimestamp>
+      <ModifiedTimestamp>2022-10-30.05:48:14.647</ModifiedTimestamp>
+      <ObjectId>1058102810</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK_HoSoNhanVien</UnderlyingIndexName>
     </key>
-    <column id="5639" parent="5597" name="MaLuong">
+    <column id="5642" parent="5597" name="MaLuong">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="5640" parent="5597" name="MaNV">
+    <column id="5643" parent="5597" name="MaNV">
       <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="5641" parent="5597" name="LuongCoBan">
+    <column id="5644" parent="5597" name="LuongCoBan">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="5642" parent="5597" name="SoNgayCong">
+    <column id="5645" parent="5597" name="SoNgayCong">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="5643" parent="5597" name="SoGioLamThem">
+    <column id="5646" parent="5597" name="SoGioLamThem">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="5644" parent="5597" name="PhuCap">
+    <column id="5647" parent="5597" name="PhuCap">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="5645" parent="5597" name="Thuong">
+    <column id="5648" parent="5597" name="Thuong">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="5646" parent="5597" name="Phat">
+    <column id="5649" parent="5597" name="Phat">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="5647" parent="5597" name="HeSoLuong">
+    <column id="5650" parent="5597" name="HeSoLuong">
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="5648" parent="5597" name="GhiChu">
+    <column id="5651" parent="5597" name="GhiChu">
       <DataType>nvarchar(50 char)|0s</DataType>
       <Position>10</Position>
     </column>
-    <foreign-key id="5649" parent="5597" name="FK_Luong_HoSoNhanVien">
+    <foreign-key id="5652" parent="5597" name="FK_Luong_HoSoNhanVien">
       <ColNames>MaNV</ColNames>
-      <CreatedTimestamp>2022-10-24.05:49:08.797</CreatedTimestamp>
-      <ModifiedTimestamp>2022-10-24.05:49:08.797</ModifiedTimestamp>
-      <ObjectId>1509580416</ObjectId>
+      <CreatedTimestamp>2022-11-01.05:20:31.030</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-01.05:20:31.030</ModifiedTimestamp>
+      <ObjectId>2018106230</ObjectId>
+      <OnDelete>set-null</OnDelete>
       <RefColNames>MaNV</RefColNames>
-      <RefTableId>1461580245</RefTableId>
+      <RefTableId>1042102753</RefTableId>
       <RefTableName>HoSoNhanVien</RefTableName>
     </foreign-key>
-    <index id="5650" parent="5597" name="PK_Luong">
+    <index id="5653" parent="5597" name="PK_Luong">
       <Clustering>1</Clustering>
       <ColNames>MaLuong</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
     </index>
-    <key id="5651" parent="5597" name="PK_Luong">
-      <CreatedTimestamp>2022-10-13.06:53:28.297</CreatedTimestamp>
-      <ModifiedTimestamp>2022-10-13.06:53:28.297</ModifiedTimestamp>
-      <ObjectId>773577794</ObjectId>
+    <key id="5654" parent="5597" name="PK_Luong">
+      <CreatedTimestamp>2022-11-01.05:16:10.837</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-01.05:16:10.837</ModifiedTimestamp>
+      <ObjectId>1746105261</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK_Luong</UnderlyingIndexName>
     </key>
-    <column id="5652" parent="5598" name="TaiKhoan">
+    <column id="5655" parent="5598" name="TaiKhoan">
       <DataType>nvarchar(50 char)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="5653" parent="5598" name="MatKhau">
+    <column id="5656" parent="5598" name="MatKhau">
       <DataType>char(32 char)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="5654" parent="5598" name="ChucVu">
+    <column id="5657" parent="5598" name="ChucVu">
       <DataType>nvarchar(50 char)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="5655" parent="5598" name="MaNV">
+    <column id="5658" parent="5598" name="MaNV">
       <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="5656" parent="5598" name="GhiChu">
+    <column id="5659" parent="5598" name="GhiChu">
       <DataType>nvarchar(50 char)|0s</DataType>
       <Position>5</Position>
     </column>
-    <foreign-key id="5657" parent="5598" name="FK_NguoiDung_HoSoNhanVien">
+    <foreign-key id="5660" parent="5598" name="FK_NguoiDung_HoSoNhanVien">
       <ColNames>MaNV</ColNames>
-      <CreatedTimestamp>2022-10-24.05:49:08.770</CreatedTimestamp>
-      <ModifiedTimestamp>2022-10-24.05:49:08.770</ModifiedTimestamp>
-      <ObjectId>1493580359</ObjectId>
+      <CreatedTimestamp>2022-11-01.05:24:09.840</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-01.05:24:09.840</ModifiedTimestamp>
+      <ObjectId>2130106629</ObjectId>
+      <OnDelete>cascade</OnDelete>
       <RefColNames>MaNV</RefColNames>
-      <RefTableId>1461580245</RefTableId>
+      <RefTableId>1042102753</RefTableId>
       <RefTableName>HoSoNhanVien</RefTableName>
     </foreign-key>
-    <index id="5658" parent="5598" name="PK_NguoiDung">
+    <index id="5661" parent="5598" name="PK_NguoiDung">
       <Clustering>1</Clustering>
       <ColNames>TaiKhoan</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
     </index>
-    <key id="5659" parent="5598" name="PK_NguoiDung">
-      <CreatedTimestamp>2022-10-13.06:53:28.797</CreatedTimestamp>
-      <ModifiedTimestamp>2022-10-13.06:53:28.797</ModifiedTimestamp>
-      <ObjectId>885578193</ObjectId>
+    <key id="5662" parent="5598" name="PK_NguoiDung">
+      <CreatedTimestamp>2022-11-01.05:15:59.070</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-01.05:15:59.070</ModifiedTimestamp>
+      <ObjectId>1698105090</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK_NguoiDung</UnderlyingIndexName>
     </key>
-    <column id="5660" parent="5599" name="MaNV">
+    <column id="5663" parent="5599" name="MaNV">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="5661" parent="5599" name="MaPhongBan">
+    <column id="5664" parent="5599" name="MaPhongBan">
       <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="5662" parent="5599" name="LoaiHD">
+    <column id="5665" parent="5599" name="LoaiHD">
       <DataType>nvarchar(50 char)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="5663" parent="5599" name="NgayKy">
+    <column id="5666" parent="5599" name="NgayKy">
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="5664" parent="5599" name="NgayHetHan">
+    <column id="5667" parent="5599" name="NgayHetHan">
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="5665" parent="5599" name="ThoiGian">
+    <column id="5668" parent="5599" name="ThoiGian">
       <DataType>nvarchar(50 char)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="5666" parent="5599" name="GhiChu">
+    <column id="5669" parent="5599" name="GhiChu">
       <DataType>nvarchar(50 char)|0s</DataType>
       <Position>7</Position>
     </column>
-    <foreign-key id="5667" parent="5599" name="FK_NhanVienPhongBan_HoSoNhanVien">
+    <foreign-key id="5670" parent="5599" name="FK_NhanVienPhongBan_HoSoNhanVien">
       <ColNames>MaNV</ColNames>
-      <CreatedTimestamp>2022-10-24.05:49:08.837</CreatedTimestamp>
-      <ModifiedTimestamp>2022-10-24.05:49:08.837</ModifiedTimestamp>
-      <ObjectId>1525580473</ObjectId>
+      <CreatedTimestamp>2022-11-01.05:23:25.497</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-01.05:23:25.497</ModifiedTimestamp>
+      <ObjectId>2098106515</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
       <RefColNames>MaNV</RefColNames>
-      <RefTableId>1461580245</RefTableId>
+      <RefTableId>1042102753</RefTableId>
       <RefTableName>HoSoNhanVien</RefTableName>
     </foreign-key>
-    <foreign-key id="5668" parent="5599" name="FK_NhanVienPhongBan_PhongBan">
+    <foreign-key id="5671" parent="5599" name="FK_NhanVienPhongBan_PhongBan">
       <ColNames>MaPhongBan</ColNames>
-      <CreatedTimestamp>2022-10-24.05:26:56.920</CreatedTimestamp>
-      <ModifiedTimestamp>2022-10-24.05:26:56.920</ModifiedTimestamp>
-      <ObjectId>1221579390</ObjectId>
+      <CreatedTimestamp>2022-11-01.05:23:25.503</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-01.05:23:25.503</ModifiedTimestamp>
+      <ObjectId>2114106572</ObjectId>
+      <OnDelete>set-null</OnDelete>
       <RefColNames>MaPhongBan</RefColNames>
-      <RefTableId>821577965</RefTableId>
+      <RefTableId>1954106002</RefTableId>
       <RefTableName>PhongBan</RefTableName>
     </foreign-key>
-    <column id="5669" parent="5600" name="MaPhongBan">
+    <index id="5672" parent="5599" name="PK_NhanVienPhongBan">
+      <Clustering>1</Clustering>
+      <ColNames>MaNV</ColNames>
+      <Position>1</Position>
+      <Unique>1</Unique>
+    </index>
+    <key id="5673" parent="5599" name="PK_NhanVienPhongBan">
+      <CreatedTimestamp>2022-11-01.05:13:16.663</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-01.05:13:16.663</ModifiedTimestamp>
+      <ObjectId>1634104862</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK_NhanVienPhongBan</UnderlyingIndexName>
+    </key>
+    <column id="5674" parent="5600" name="MaPhongBan">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1</SequenceIdentity>
+      <SequenceIdentity>1(3)</SequenceIdentity>
     </column>
-    <column id="5670" parent="5600" name="TenPhongBan">
+    <column id="5675" parent="5600" name="TenPhongBan">
       <DataType>varchar(50 char)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="5671" parent="5600" name="MaBoPhan">
+    <column id="5676" parent="5600" name="MaBoPhan">
       <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="5672" parent="5600" name="NgayThanhLap">
+    <column id="5677" parent="5600" name="NgayThanhLap">
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="5673" parent="5600" name="GhiChu">
-      <DataType>varchar(50 char)|0s</DataType>
+    <column id="5678" parent="5600" name="TruongPhongBan">
+      <DataType>int|0s</DataType>
       <Position>5</Position>
     </column>
-    <foreign-key id="5674" parent="5600" name="FK_PhongBan_BoPhan">
+    <column id="5679" parent="5600" name="SDTPhong">
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="5680" parent="5600" name="GhiChu">
+      <DataType>varchar(50 char)|0s</DataType>
+      <Position>7</Position>
+    </column>
+    <foreign-key id="5681" parent="5600" name="FK_PhongBan_BoPhan">
       <ColNames>MaBoPhan</ColNames>
-      <CreatedTimestamp>2022-10-13.06:53:28.640</CreatedTimestamp>
-      <ModifiedTimestamp>2022-10-13.06:53:28.640</ModifiedTimestamp>
-      <ObjectId>853578079</ObjectId>
+      <CreatedTimestamp>2022-11-01.05:19:41.230</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-01.05:19:41.230</ModifiedTimestamp>
+      <ObjectId>1986106116</ObjectId>
+      <OnDelete>set-null</OnDelete>
       <RefColNames>MaBoPhan</RefColNames>
-      <RefTableId>789577851</RefTableId>
+      <RefTableId>1874105717</RefTableId>
       <RefTableName>BoPhan</RefTableName>
     </foreign-key>
-    <index id="5675" parent="5600" name="PK_PhongBan">
+    <index id="5682" parent="5600" name="PK_PhongBan">
       <Clustering>1</Clustering>
       <ColNames>MaPhongBan</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
     </index>
-    <key id="5676" parent="5600" name="PK_PhongBan">
-      <CreatedTimestamp>2022-10-13.06:53:28.637</CreatedTimestamp>
-      <ModifiedTimestamp>2022-10-13.06:53:28.637</ModifiedTimestamp>
-      <ObjectId>837578022</ObjectId>
+    <key id="5683" parent="5600" name="PK_PhongBan">
+      <CreatedTimestamp>2022-11-01.05:19:41.230</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-01.05:19:41.230</ModifiedTimestamp>
+      <ObjectId>1970106059</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK_PhongBan</UnderlyingIndexName>
     </key>
-    <column id="5677" parent="5601" name="name">
+    <column id="5684" parent="5601" name="name">
       <DataType>sysname|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="5678" parent="5601" name="principal_id">
+    <column id="5685" parent="5601" name="principal_id">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="5679" parent="5601" name="diagram_id">
+    <column id="5686" parent="5601" name="diagram_id">
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <SequenceIdentity>1(2)</SequenceIdentity>
+      <SequenceIdentity>1(3)</SequenceIdentity>
     </column>
-    <column id="5680" parent="5601" name="version">
+    <column id="5687" parent="5601" name="version">
       <DataType>int|0s</DataType>
       <Position>4</Position>
     </column>
-    <column id="5681" parent="5601" name="definition">
+    <column id="5688" parent="5601" name="definition">
       <DataType>varbinary(max)|0s</DataType>
       <Position>5</Position>
     </column>
-    <index id="5682" parent="5601" name="PK__sysdiagr__C2B05B61116D333C">
+    <index id="5689" parent="5601" name="PK__sysdiagr__C2B05B61116D333C">
       <Clustering>1</Clustering>
       <ColNames>diagram_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Position>1</Position>
       <Unique>1</Unique>
     </index>
-    <index id="5683" parent="5601" name="UK_principal_name">
+    <index id="5690" parent="5601" name="UK_principal_name">
       <ColNames>principal_id
 name</ColNames>
       <Position>2</Position>
       <Unique>1</Unique>
     </index>
-    <key id="5684" parent="5601" name="PK__sysdiagr__C2B05B61116D333C">
+    <key id="5691" parent="5601" name="PK__sysdiagr__C2B05B61116D333C">
       <CreatedTimestamp>2022-10-13.06:32:16.040</CreatedTimestamp>
       <ModifiedTimestamp>2022-10-13.06:32:16.040</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
@@ -17497,11 +17510,39 @@ name</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__sysdiagr__C2B05B61116D333C</UnderlyingIndexName>
     </key>
-    <key id="5685" parent="5601" name="UK_principal_name">
+    <key id="5692" parent="5601" name="UK_principal_name">
       <CreatedTimestamp>2022-10-13.06:32:16.040</CreatedTimestamp>
       <ModifiedTimestamp>2022-10-13.06:32:16.040</ModifiedTimestamp>
       <ObjectId>629577281</ObjectId>
       <UnderlyingIndexName>UK_principal_name</UnderlyingIndexName>
     </key>
+    <column id="5693" parent="5602" name="MaBoPhan">
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="5694" parent="5602" name="TenBoPhan">
+      <DataType>nvarchar(50 char)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="5695" parent="5602" name="NgayThanhLap">
+      <DataType>date|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="5696" parent="5602" name="SDTBoPhan">
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="5697" parent="5602" name="GhiChu">
+      <DataType>nvarchar(50 char)|0s</DataType>
+      <Position>5</Position>
+    </column>
+    <column id="5698" parent="5602" name="Số phòng ban hiện có">
+      <DataType>int|0s</DataType>
+      <Position>6</Position>
+    </column>
   </database-model>
 </dataSource>

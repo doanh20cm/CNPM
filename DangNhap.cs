@@ -13,31 +13,32 @@ namespace Quan_li_nhan_su
             InitializeComponent();
         }
 
-        private readonly KetNoi _kn = new KetNoi();
-
         public static string GetMd5(string pass)
         {
             using (var hash = MD5.Create())
+            {
                 return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(pass)).Select(x => x.ToString("x2")));
+            }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             var taikhoan = txtUsername.Text.Trim();
             var matkhau = txtPassword.Text.Trim();
-            if (taikhoan?.Length == 0)
+            if (taikhoan.Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập tài khoản!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (matkhau?.Length == 0)
+            if (matkhau.Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập mật khẩu!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            var quyen = _kn.GetData($"select ChucVu, TaiKhoan from NguoiDung where TaiKhoan = '{taikhoan}' and MatKhau = '{GetMd5(matkhau)}'");
+            var quyen = KetNoi.GetData(
+                $"select ChucVu, TaiKhoan from NguoiDung where TaiKhoan = '{taikhoan}' and MatKhau = '{GetMd5(matkhau)}'");
 
             if (quyen.Rows.Count != 1)
             {
@@ -50,7 +51,8 @@ namespace Quan_li_nhan_su
             GiaoDienChinh.Username = quyen.Rows[0][1].ToString().Trim();
 
             Close();
-            MessageBox.Show($"Chào {quyen.Rows[0][1]}, đăng nhập thành công với quyền {quyen.Rows[0][0]}!", "Thông báo", MessageBoxButtons.OK,
+            MessageBox.Show($"Chào {quyen.Rows[0][1]}, đăng nhập thành công với quyền {quyen.Rows[0][0]}!", "Thông báo",
+                MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
     }

@@ -4,12 +4,11 @@ using System.Data.SqlClient;
 
 namespace Quan_li_nhan_su
 {
-
-    internal class KetNoi
+    internal static class KetNoi
     {
-        const string ConnStr = "Server=localhost\\SQLEXPRESS,1433;Database=test2;UID=sa;PWD=12345";
+        private const string ConnStr = "Server=localhost\\SQLEXPRESS,1433;Database=test2;UID=sa;PWD=12345";
 
-        public DataTable GetData(string select)
+        public static DataTable GetData(string select)
         {
             try
             {
@@ -20,7 +19,6 @@ namespace Quan_li_nhan_su
                         sda.Fill(ds);
                         return ds.Tables[0];
                     }
-                   
                 }
             }
             catch (Exception)
@@ -29,7 +27,7 @@ namespace Quan_li_nhan_su
             }
         }
 
-        public bool Execute(string exec)
+        public static bool Execute(string exec)
         {
             try
             {

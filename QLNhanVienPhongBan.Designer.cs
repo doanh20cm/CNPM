@@ -45,6 +45,10 @@
             this.cbHoTenNV = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtTimTenHopDong = new System.Windows.Forms.TextBox();
+            this.chkTenHopDong = new System.Windows.Forms.CheckBox();
+            this.cbTimTenPhongBan = new System.Windows.Forms.ComboBox();
+            this.chkTheoTenPhongBan = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
@@ -52,6 +56,7 @@
             this.btnTimKiem = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVienPhongBan)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvNhanVienPhongBan
@@ -183,7 +188,8 @@
             // 
             // cbTenPhongBan
             // 
-            this.cbTenPhongBan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTenPhongBan.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbTenPhongBan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbTenPhongBan.FormattingEnabled = true;
             this.cbTenPhongBan.Location = new System.Drawing.Point(140, 92);
             this.cbTenPhongBan.Name = "cbTenPhongBan";
@@ -201,7 +207,8 @@
             // 
             // cbHoTenNV
             // 
-            this.cbHoTenNV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbHoTenNV.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbHoTenNV.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbHoTenNV.FormattingEnabled = true;
             this.cbHoTenNV.Location = new System.Drawing.Point(140, 45);
             this.cbHoTenNV.Name = "cbHoTenNV";
@@ -219,12 +226,53 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtTimTenHopDong);
+            this.groupBox2.Controls.Add(this.chkTenHopDong);
+            this.groupBox2.Controls.Add(this.cbTimTenPhongBan);
+            this.groupBox2.Controls.Add(this.chkTheoTenPhongBan);
             this.groupBox2.Location = new System.Drawing.Point(783, 22);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(247, 187);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tìm kiếm nhân viên phòng ban";
+            // 
+            // txtTimTenHopDong
+            // 
+            this.txtTimTenHopDong.Location = new System.Drawing.Point(24, 142);
+            this.txtTimTenHopDong.Name = "txtTimTenHopDong";
+            this.txtTimTenHopDong.Size = new System.Drawing.Size(184, 20);
+            this.txtTimTenHopDong.TabIndex = 3;
+            // 
+            // chkTenHopDong
+            // 
+            this.chkTenHopDong.AutoSize = true;
+            this.chkTenHopDong.Location = new System.Drawing.Point(24, 115);
+            this.chkTenHopDong.Name = "chkTenHopDong";
+            this.chkTenHopDong.Size = new System.Drawing.Size(107, 17);
+            this.chkTenHopDong.TabIndex = 2;
+            this.chkTenHopDong.Text = "Có loại hợp đồng";
+            this.chkTenHopDong.UseVisualStyleBackColor = true;
+            // 
+            // cbTimTenPhongBan
+            // 
+            this.cbTimTenPhongBan.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbTimTenPhongBan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbTimTenPhongBan.FormattingEnabled = true;
+            this.cbTimTenPhongBan.Location = new System.Drawing.Point(24, 75);
+            this.cbTimTenPhongBan.Name = "cbTimTenPhongBan";
+            this.cbTimTenPhongBan.Size = new System.Drawing.Size(183, 21);
+            this.cbTimTenPhongBan.TabIndex = 1;
+            // 
+            // chkTheoTenPhongBan
+            // 
+            this.chkTheoTenPhongBan.AutoSize = true;
+            this.chkTheoTenPhongBan.Location = new System.Drawing.Point(24, 44);
+            this.chkTheoTenPhongBan.Name = "chkTheoTenPhongBan";
+            this.chkTheoTenPhongBan.Size = new System.Drawing.Size(88, 17);
+            this.chkTheoTenPhongBan.TabIndex = 0;
+            this.chkTheoTenPhongBan.Text = "Ở phòng ban";
+            this.chkTheoTenPhongBan.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -266,15 +314,17 @@
             this.btnCapNhat.TabIndex = 6;
             this.btnCapNhat.Text = "Cập nhật";
             this.btnCapNhat.UseVisualStyleBackColor = true;
+            this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
             // 
             // btnTimKiem
             // 
-            this.btnTimKiem.Location = new System.Drawing.Point(887, 237);
+            this.btnTimKiem.Location = new System.Drawing.Point(873, 237);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(75, 23);
             this.btnTimKiem.TabIndex = 7;
             this.btnTimKiem.Text = "Tìm kiếm";
             this.btnTimKiem.UseVisualStyleBackColor = true;
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
             // QLNhanVienPhongBan
             // 
@@ -301,6 +351,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVienPhongBan)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -329,5 +381,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbHoTenNV;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chkTheoTenPhongBan;
+        private System.Windows.Forms.ComboBox cbTimTenPhongBan;
+        private System.Windows.Forms.CheckBox chkTenHopDong;
+        private System.Windows.Forms.TextBox txtTimTenHopDong;
     }
 }

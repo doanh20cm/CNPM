@@ -15,3 +15,4 @@ C:\Users\Administrator\source\repos\Quan li nhan su\obj\Debug\Quan li nhan su.cs
 C:\Users\Administrator\source\repos\Quan li nhan su\obj\Debug\Quan li nhan su.csproj.CopyComplete
 C:\Users\Administrator\source\repos\Quan li nhan su\obj\Debug\Quan li nhan su.exe
 C:\Users\Administrator\source\repos\Quan li nhan su\obj\Debug\Quan li nhan su.pdb
+C:\Users\Administrator\source\repos\Quan li nhan su\obj\Debug\Quan_li_nhan_su.QLBoPhan.resources

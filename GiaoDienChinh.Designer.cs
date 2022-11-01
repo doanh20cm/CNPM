@@ -46,6 +46,7 @@
             this.menuBCNhanVien = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,8 +75,9 @@
             // 
             // menuDangNhap
             // 
+            this.menuDangNhap.Image = global::Quan_li_nhan_su.Properties.Resources.icons8_login;
             this.menuDangNhap.Name = "menuDangNhap";
-            this.menuDangNhap.Size = new System.Drawing.Size(145, 22);
+            this.menuDangNhap.Size = new System.Drawing.Size(180, 22);
             this.menuDangNhap.Text = "Đăng nhập";
             this.menuDangNhap.Click += new System.EventHandler(this.menuDangNhap_Click);
             // 
@@ -83,7 +85,7 @@
             // 
             this.menuDoiMatKhau.Enabled = false;
             this.menuDoiMatKhau.Name = "menuDoiMatKhau";
-            this.menuDoiMatKhau.Size = new System.Drawing.Size(145, 22);
+            this.menuDoiMatKhau.Size = new System.Drawing.Size(180, 22);
             this.menuDoiMatKhau.Text = "Đổi mật khẩu";
             this.menuDoiMatKhau.Click += new System.EventHandler(this.menuDoiMatKhau_Click);
             // 
@@ -91,7 +93,7 @@
             // 
             this.menuDangXuat.Enabled = false;
             this.menuDangXuat.Name = "menuDangXuat";
-            this.menuDangXuat.Size = new System.Drawing.Size(145, 22);
+            this.menuDangXuat.Size = new System.Drawing.Size(180, 22);
             this.menuDangXuat.Text = "Đăng xuất";
             this.menuDangXuat.Click += new System.EventHandler(this.menuDangXuat_Click);
             // 
@@ -115,6 +117,7 @@
             this.menuQLBoPhan.Name = "menuQLBoPhan";
             this.menuQLBoPhan.Size = new System.Drawing.Size(189, 22);
             this.menuQLBoPhan.Text = "Bộ phận";
+            this.menuQLBoPhan.Click += new System.EventHandler(this.menuQLBoPhan_Click);
             // 
             // menuQLPhongBan
             // 
@@ -184,7 +187,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(426, 108);
+            this.label1.Location = new System.Drawing.Point(426, 80);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(204, 65);
             this.label1.TabIndex = 2;
@@ -199,6 +202,17 @@
             this.label2.Size = new System.Drawing.Size(0, 50);
             this.label2.TabIndex = 3;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(380, 160);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(0, 25);
+            this.label3.TabIndex = 5;
+            // 
             // GiaoDienChinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -206,6 +220,7 @@
             this.BackgroundImage = global::Quan_li_nhan_su.Properties.Resources.daniela_cuevas_t7YycgAoVSw_unsplash;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1064, 681);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
@@ -244,5 +259,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuDangNhap;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

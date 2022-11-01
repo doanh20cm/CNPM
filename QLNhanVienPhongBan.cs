@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -6,14 +7,14 @@ namespace Quan_li_nhan_su
 {
     public partial class QLNhanVienPhongBan : Form
     {
+        private const string Sqlconnectstring = "Server=localhost\\SQLEXPRESS,1433;Database=test2;UID=sa;PWD=12345";
+
+        private int _index = -1;
+
         public QLNhanVienPhongBan()
         {
             InitializeComponent();
         }
-
-        readonly KetNoi _kn = new KetNoi();
-        int index = -1;
-        const string sqlconnectstring = "Server=localhost\\SQLEXPRESS,1433;Database=test2;UID=sa;PWD=12345";
 
 
         private void QLNhanVienPhongBan_Load(object sender, EventArgs e)
@@ -25,8 +26,9 @@ namespace Quan_li_nhan_su
 
         private void GetData()
         {
-            dgvNhanVienPhongBan.DataSource = _kn.GetData("select NhanVienPhongBan.MaNV, HoTen, NhanVienPhongBan.MaPhongBan, TenPhongBan, LoaiHD, NgayKy, NgayHetHan, ThoiGian, NhanVienPhongBan.GhiChu from NhanVienPhongBan, HoSoNhanVien, PhongBan where NhanVienPhongBan.MaNV = HoSoNhanVien.MaNV and PhongBan.MaPhongBan = NhanVienPhongBan.MaPhongBan");
-            for (int i = 0; i < dgvNhanVienPhongBan.Columns.Count; i++)
+            dgvNhanVienPhongBan.DataSource = KetNoi.GetData(
+                "select NhanVienPhongBan.MaNV, HoTen, NhanVienPhongBan.MaPhongBan, TenPhongBan, LoaiHD, NgayKy, NgayHetHan, ThoiGian, NhanVienPhongBan.GhiChu from NhanVienPhongBan, HoSoNhanVien, PhongBan where NhanVienPhongBan.MaNV = HoSoNhanVien.MaNV and PhongBan.MaPhongBan = NhanVienPhongBan.MaPhongBan");
+            for (var i = 0; i < dgvNhanVienPhongBan.Columns.Count; i++)
                 dgvNhanVienPhongBan.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgvNhanVienPhongBan.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvNhanVienPhongBan.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -41,16 +43,20 @@ namespace Quan_li_nhan_su
             dgvNhanVienPhongBan.Columns[8].HeaderText = "Ghi chú";
             dgvNhanVienPhongBan.Refresh();
 
-            cbHoTenNV.DataSource = _kn.GetData("select MaNV, HoTen from HoSoNhanVien");
+            cbHoTenNV.DataSource = KetNoi.GetData("select MaNV, HoTen from HoSoNhanVien");
             cbHoTenNV.DisplayMember = "HoTen";
             cbHoTenNV.ValueMember = "MaNV";
 
-            cbTenPhongBan.DataSource = _kn.GetData("select MaPhongBan, TenPhongBan from PhongBan");
+            cbTenPhongBan.DataSource = KetNoi.GetData("select MaPhongBan, TenPhongBan from PhongBan");
             cbTenPhongBan.DisplayMember = "TenPhongBan";
             cbTenPhongBan.ValueMember = "MaPhongBan";
 
+            cbTimTenPhongBan.DataSource = cbTenPhongBan.DataSource;
+            cbTimTenPhongBan.DisplayMember = "TenPhongBan";
+            cbTimTenPhongBan.ValueMember = "MaPhongBan";
+
             dgvNhanVienPhongBan.Columns[0].Visible = false;
-            dgvNhanVienPhongBan.Columns[2].Visible = false;     
+            dgvNhanVienPhongBan.Columns[2].Visible = false;
             cbHoTenNV.Enabled = true;
 
             cbHoTenNV.Text = cbTenPhongBan.Text = txtLoaiHopDong.Text = txtThoiGian.Text = rtGhiChu.Text = "";
@@ -60,27 +66,31 @@ namespace Quan_li_nhan_su
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (txtLoaiHopDong.Text.Trim()?.Length == 0)
+            if (txtLoaiHopDong.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Bạn chưa nhập loại hợp đồng", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Bạn chưa nhập loại hợp đồng", "Cảnh báo", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 txtLoaiHopDong.Focus();
                 return;
             }
-            if (txtThoiGian.Text.Trim()?.Length == 0)
+
+            if (txtThoiGian.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập thời gian", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtThoiGian.Focus();
                 return;
             }
+
             try
             {
-                using (var connection = new SqlConnection(sqlconnectstring))
+                using (var connection = new SqlConnection(Sqlconnectstring))
                 {
                     connection.Open();
                     using (var command = new SqlCommand
                     {
                         Connection = connection,
-                        CommandText = "insert into NhanVienPhongBan values(@MaNV, @MaPhongBan, @LoaiHD, @NgayKy, @NgayHetHan, @ThoiGian, @GhiChu)"
+                        CommandText =
+                                   "insert into NhanVienPhongBan values(@MaNV, @MaPhongBan, @LoaiHD, @NgayKy, @NgayHetHan, @ThoiGian, @GhiChu)"
                     })
                     {
                         command.Parameters.AddWithValue("@MaNV", cbHoTenNV.SelectedValue);
@@ -90,35 +100,39 @@ namespace Quan_li_nhan_su
                         command.Parameters.AddWithValue("@NgayHetHan", dtpNgayHetHan.Value.Date);
                         command.Parameters.AddWithValue("@ThoiGian", txtThoiGian.Text);
                         command.Parameters.AddWithValue("@GhiChu", rtGhiChu.Text);
-                        var rows_affected = command.ExecuteNonQuery();
-                        MessageBox.Show(rows_affected == 1 ? "Thêm thành công" : "Thêm thất bại", rows_affected == 1 ? "Thông báo" : "Lỗi", MessageBoxButtons.OK, rows_affected == 1 ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+                        var rowsAffected = command.ExecuteNonQuery();
+                        MessageBox.Show(rowsAffected == 1 ? "Thêm thành công" : "Thêm thất bại",
+                            rowsAffected == 1 ? "Thông báo" : "Lỗi", MessageBoxButtons.OK,
+                            rowsAffected == 1 ? MessageBoxIcon.Information : MessageBoxIcon.Error);
                     }
                 }
             }
             catch (Exception ex)
             {
-                var IsDuplicated = ex.Message.Contains("Cannot insert duplicate key in object");
-                MessageBox.Show(IsDuplicated ? "Nhân viên đó đã ở trong phòng ban" : "Thêm thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var isDuplicated = ex.Message.Contains("Cannot insert duplicate key in object");
+                MessageBox.Show(isDuplicated ? "Nhân viên đó đã ở trong phòng ban" : "Thêm thất bại", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
             GetData();
         }
 
         private void dgvNhanVienPhongBan_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            index = e.RowIndex;
-            if (index > -1 && dgvNhanVienPhongBan.SelectedCells.Count != 0)
+            _index = e.RowIndex;
+            if (_index > -1 && dgvNhanVienPhongBan.SelectedCells.Count != 0)
             {
                 button1.Enabled = false;
                 btnSua.Enabled = true;
                 btnXoa.Enabled = true;
-                cbHoTenNV.Text = dgvNhanVienPhongBan.Rows[index].Cells[1].Value.ToString();
-                cbTenPhongBan.Text = dgvNhanVienPhongBan.Rows[index].Cells[3].Value.ToString();
-                txtLoaiHopDong.Text = dgvNhanVienPhongBan.Rows[index].Cells[4].Value.ToString();
-                dtpNgayKy.Value = (DateTime)dgvNhanVienPhongBan.Rows[index].Cells[5].Value;
-                dtpNgayHetHan.Value = (DateTime)dgvNhanVienPhongBan.Rows[index].Cells[6].Value;
-                txtThoiGian.Text = dgvNhanVienPhongBan.Rows[index].Cells[7].Value.ToString();
-                rtGhiChu.Text = dgvNhanVienPhongBan.Rows[index].Cells[8].Value.ToString();
-                cbHoTenNV.Enabled = false; 
+                cbHoTenNV.Text = dgvNhanVienPhongBan.Rows[_index].Cells[1].Value.ToString();
+                cbTenPhongBan.Text = dgvNhanVienPhongBan.Rows[_index].Cells[3].Value.ToString();
+                txtLoaiHopDong.Text = dgvNhanVienPhongBan.Rows[_index].Cells[4].Value.ToString();
+                dtpNgayKy.Value = (DateTime)dgvNhanVienPhongBan.Rows[_index].Cells[5].Value;
+                dtpNgayHetHan.Value = (DateTime)dgvNhanVienPhongBan.Rows[_index].Cells[6].Value;
+                txtThoiGian.Text = dgvNhanVienPhongBan.Rows[_index].Cells[7].Value.ToString();
+                rtGhiChu.Text = dgvNhanVienPhongBan.Rows[_index].Cells[8].Value.ToString();
+                cbHoTenNV.Enabled = false;
             }
             else
             {
@@ -134,35 +148,40 @@ namespace Quan_li_nhan_su
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (index < 0 || dgvNhanVienPhongBan.SelectedCells.Count == 0)
+            if (_index < 0 || dgvNhanVienPhongBan.SelectedCells.Count == 0)
             {
                 MessageBox.Show("Chưa chọn dòng nào", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (txtLoaiHopDong.Text.Trim()?.Length == 0)
+
+            if (txtLoaiHopDong.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Bạn chưa nhập loại hợp đồng", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Bạn chưa nhập loại hợp đồng", "Cảnh báo", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 txtLoaiHopDong.Focus();
                 return;
             }
-            if (txtThoiGian.Text.Trim()?.Length == 0)
+
+            if (txtThoiGian.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập thời gian", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtThoiGian.Focus();
                 return;
             }
+
             var luachon = MessageBox.Show("Bạn chắc chắn muốn sửa ?", "Xác nhận sửa", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
             if (luachon != DialogResult.Yes) return;
             try
             {
-                using (var connection = new SqlConnection(sqlconnectstring))
+                using (var connection = new SqlConnection(Sqlconnectstring))
                 {
                     connection.Open();
                     using (var command = new SqlCommand
                     {
                         Connection = connection,
-                        CommandText = "update NhanVienPhongBan set MaPhongBan = @MaPhongBan, LoaiHD = @LoaiHD, NgayKy = @NgayKy, NgayHetHan = @NgayHetHan, ThoiGian = @ThoiGian, GhiChu = @GhiChu where MaNV = @MaNV"
+                        CommandText =
+                                   "update NhanVienPhongBan set MaPhongBan = @MaPhongBan, LoaiHD = @LoaiHD, NgayKy = @NgayKy, NgayHetHan = @NgayHetHan, ThoiGian = @ThoiGian, GhiChu = @GhiChu where MaNV = @MaNV"
                     })
                     {
                         command.Parameters.AddWithValue("@MaPhongBan", cbTenPhongBan.SelectedValue);
@@ -172,8 +191,10 @@ namespace Quan_li_nhan_su
                         command.Parameters.AddWithValue("@ThoiGian", txtThoiGian.Text);
                         command.Parameters.AddWithValue("@GhiChu", rtGhiChu.Text);
                         command.Parameters.AddWithValue("@MaNV", cbHoTenNV.SelectedValue);
-                        var rows_affected = command.ExecuteNonQuery();
-                        MessageBox.Show(rows_affected == 1 ? "Sửa thành công" : "Sửa thất bại", rows_affected == 1 ? "Thông báo" : "Lỗi", MessageBoxButtons.OK, rows_affected == 1 ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+                        var rowsAffected = command.ExecuteNonQuery();
+                        MessageBox.Show(rowsAffected == 1 ? "Sửa thành công" : "Sửa thất bại",
+                            rowsAffected == 1 ? "Thông báo" : "Lỗi", MessageBoxButtons.OK,
+                            rowsAffected == 1 ? MessageBoxIcon.Information : MessageBoxIcon.Error);
                     }
                 }
             }
@@ -181,22 +202,24 @@ namespace Quan_li_nhan_su
             {
                 MessageBox.Show("Sửa thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
             GetData();
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (index < 0 || dgvNhanVienPhongBan.SelectedCells.Count == 0)
+            if (_index < 0 || dgvNhanVienPhongBan.SelectedCells.Count == 0)
             {
                 MessageBox.Show("Chưa chọn dòng nào", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             var luachon = MessageBox.Show("Bạn chắc chắn muốn xoá ?", "Xác nhận xoá", MessageBoxButtons.YesNo,
-               MessageBoxIcon.Question);
+                MessageBoxIcon.Question);
             if (luachon != DialogResult.Yes) return;
             try
             {
-                using (var connection = new SqlConnection(sqlconnectstring))
+                using (var connection = new SqlConnection(Sqlconnectstring))
                 {
                     connection.Open();
                     using (var command = new SqlCommand
@@ -206,10 +229,13 @@ namespace Quan_li_nhan_su
                     })
                     {
                         command.Parameters.AddWithValue("@MaNV", cbHoTenNV.SelectedValue);
-                        var rows_affected = command.ExecuteNonQuery();
-                        MessageBox.Show(rows_affected == 1 ? "Xoá thành công" : "Xoá thất bại", rows_affected == 1 ? "Thông báo" : "Lỗi", MessageBoxButtons.OK, rows_affected == 1 ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+                        var rowsAffected = command.ExecuteNonQuery();
+                        MessageBox.Show(rowsAffected == 1 ? "Xoá thành công" : "Xoá thất bại",
+                            rowsAffected == 1 ? "Thông báo" : "Lỗi", MessageBoxButtons.OK,
+                            rowsAffected == 1 ? MessageBoxIcon.Information : MessageBoxIcon.Error);
                     }
                 }
+                GetData();
             }
             catch (Exception)
             {
@@ -219,7 +245,6 @@ namespace Quan_li_nhan_su
 
         private void dgvNhanVienPhongBan_SelectionChanged(object sender, EventArgs e)
         {
-
         }
 
         private void dgvNhanVienPhongBan_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -228,6 +253,66 @@ namespace Quan_li_nhan_su
             button1.Enabled = true;
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            if (!chkTenHopDong.Checked && !chkTheoTenPhongBan.Checked)
+            {
+                MessageBox.Show("Bạn chưa chọn cách nào để tìm kiếm", "Cảnh báo", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (chkTenHopDong.Checked && txtTimTenHopDong.Text?.Length == 0)
+            {
+                MessageBox.Show("Bạn chưa nhập loại hợp đồng để tìm kiếm", "Cảnh báo", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                using (var connection = new SqlConnection(Sqlconnectstring))
+                {
+                    connection.Open();
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText =
+                                   "select NhanVienPhongBan.MaNV, HoTen, NhanVienPhongBan.MaPhongBan, TenPhongBan, LoaiHD, NgayKy, NgayHetHan, ThoiGian, NhanVienPhongBan.GhiChu from NhanVienPhongBan, HoSoNhanVien, PhongBan where NhanVienPhongBan.MaNV = HoSoNhanVien.MaNV and PhongBan.MaPhongBan = NhanVienPhongBan.MaPhongBan " +
+                                   (chkTenHopDong.Checked && chkTheoTenPhongBan.Checked
+                                       ? "and NhanVienPhongBan.MaPhongBan = @MaPhongBan and LoaiHD like @LoaiHD"
+                                       : chkTheoTenPhongBan.Checked
+                                           ? "and NhanVienPhongBan.MaPhongBan = @MaPhongBan"
+                                           : chkTenHopDong.Checked
+                                               ? "and LoaiHD like @LoaiHD"
+                                               : "")
+                    })
+                    {
+                        command.Parameters.AddWithValue("@MaPhongBan", cbTimTenPhongBan.SelectedValue);
+                        command.Parameters.AddWithValue("@LoaiHD", $"%{txtTimTenHopDong.Text}%");
+                        using (var reader = command.ExecuteReader())
+                        {
+                            using (var dt = new DataTable())
+                            {
+                                dt.Load(reader);
+                                dgvNhanVienPhongBan.DataSource = dt;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Tìm kiếm thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                GetData();
+            }
+        }
+
+        private void btnCapNhat_Click(object sender, EventArgs e)
+        {
+            GetData();
         }
     }
 }
