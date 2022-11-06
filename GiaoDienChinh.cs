@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Quan_li_nhan_su
@@ -8,19 +12,69 @@ namespace Quan_li_nhan_su
 	{
 		public static string Chucvu = "";
 		public static string Username = "";
+		public static string ConnStr = "";
+		private static readonly byte[] Key = Encoding.ASCII.GetBytes("VTFlZUlncTgrZz09");
+		private static readonly byte[] Iv = Encoding.ASCII.GetBytes("HR$2pIjHR$2pIj12");
+
 		private readonly Timer _time = new Timer();
+
 
 		public GiaoDienChinh()
 		{
 			InitializeComponent();
+			try
+			{
+				DecryptString_Aes(Key, Iv);
+			}
+			catch (FileNotFoundException)
+			{
+				MessageBox.Show("Không tìm thấy cấu hình kết nối, vui lòng liên hệ bộ phận  IT của công ty", "Cảnh báo",
+					MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("Đã có lỗi xảy ra khi tải cấu hình kết nối, vui lòng liên hệ bộ phận IT của công ty!",
+					"Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+
 			_time.Interval = 1000;
 			_time.Tick += time_Tick;
 			_time.Start();
 		}
 
+		private static void DecryptString_Aes(byte[] key, byte[] iv)
+		{
+			var cipherText = File.ReadAllBytes("config.bin");
+			string plaintext;
+			using (var aesAlg = Aes.Create())
+			{
+				aesAlg.Key = key;
+				aesAlg.IV = iv;
+				var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+				using (var msDecrypt = new MemoryStream(cipherText))
+				{
+					using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+					{
+						using (var srDecrypt = new StreamReader(csDecrypt))
+						{
+							plaintext = srDecrypt.ReadToEnd();
+						}
+					}
+				}
+			}
+
+			ConnStr = plaintext;
+		}
+
 		private void DongForm()
 		{
-			foreach (var t in MdiChildren) t.Close();
+			foreach (var form in MdiChildren)
+			{
+				form.Close();
+				form.Dispose();
+			}
+
+			GC.Collect();
 			label1.Visible = true;
 			label2.Visible = true;
 			label3.Visible = true;
@@ -90,13 +144,6 @@ namespace Quan_li_nhan_su
 			}
 		}
 
-		protected override void OnFormClosing(FormClosingEventArgs e)
-		{
-			var luachon = MessageBox.Show("Bạn chắc chắn muốn thoát ?", "Xác nhận thoát", MessageBoxButtons.YesNo,
-				MessageBoxIcon.Question);
-			if (luachon == DialogResult.No) e.Cancel = true;
-		}
-
 		private void mstThongKe_Click(object sender, EventArgs e)
 		{
 		}
@@ -129,9 +176,37 @@ namespace Quan_li_nhan_su
 				return;
 			}
 
-			if (KetNoi.GetData(
-						$"select TaiKhoan from NguoiDung where TaiKhoan = '{Username}' and  MatKhau = '{DangNhap.GetMd5(oldPass)}'")
-					.Rows.Count != 1)
+			bool isOldPassCorrect;
+			//       if (KetNoi.GetData(
+			//	$"")
+			//.Rows.Count != 1)
+			try
+			{
+				using (var connection = new SqlConnection(ConnStr))
+				{
+					connection.Open();
+					using (var command = new SqlCommand
+					{
+						Connection = connection,
+						CommandText =
+								   "select TaiKhoan from NguoiDung where TaiKhoan = @TaiKhoan and MatKhau = @MatKhau"
+					})
+					{
+						command.Parameters.AddWithValue("@TaiKhoan", Username);
+						command.Parameters.AddWithValue("@MatKhau", DangNhap.GetMd5(oldPass));
+						using (var reader = command.ExecuteReader())
+						{
+							isOldPassCorrect = reader.Read() && !reader.Read();
+						}
+					}
+				}
+			}
+			catch (Exception)
+			{
+				isOldPassCorrect = false;
+			}
+
+			if (!isOldPassCorrect)
 			{
 				MessageBox.Show("Mật khẩu cũ không đúng", "Lỗi", MessageBoxButtons.OK,
 					MessageBoxIcon.Error);
@@ -147,10 +222,33 @@ namespace Quan_li_nhan_su
 				return;
 			}
 
-			var kq = KetNoi.Execute(
-				$"update NguoiDung set MatKhau = '{DangNhap.GetMd5(newPass)}' where TaiKhoan = '{Username}'");
-			MessageBox.Show(kq ? "Đổi mật khẩu thành công!" : "Đổi mật khẩu thất bại!", kq ? "Thông báo" : "Lỗi",
-				MessageBoxButtons.OK, kq ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+			bool ableToChangePass;
+			try
+			{
+				using (var connection = new SqlConnection(ConnStr))
+				{
+					connection.Open();
+					using (var command = new SqlCommand
+					{
+						Connection = connection,
+						CommandText =
+								   "update NguoiDung set MatKhau = @MatKhau where TaiKhoan = @TaiKhoan"
+					})
+					{
+						command.Parameters.AddWithValue("@TaiKhoan", Username);
+						command.Parameters.AddWithValue("@MatKhau", DangNhap.GetMd5(newPass));
+						ableToChangePass = command.ExecuteNonQuery() == 1;
+					}
+				}
+			}
+			catch (Exception)
+			{
+				ableToChangePass = false;
+			}
+
+			MessageBox.Show(ableToChangePass ? "Đổi mật khẩu thành công!" : "Đổi mật khẩu thất bại!",
+				ableToChangePass ? "Thông báo" : "Lỗi",
+				MessageBoxButtons.OK, ableToChangePass ? MessageBoxIcon.Information : MessageBoxIcon.Error);
 		}
 
 		private static DialogResult InputBox(string title, string promptText, ref string value)
@@ -197,14 +295,14 @@ namespace Quan_li_nhan_su
 		private void menuQLHoSo_Click(object sender, EventArgs e)
 		{
 			foreach (var f in MdiChildren)
-			{
 				if (f is QLHoSoNhanVien)
 				{
-					f.Activate();
 					f.WindowState = FormWindowState.Maximized;
+
+					f.Activate();
 					return;
 				}
-			}
+
 			label1.Visible = false;
 			label2.Visible = false;
 			label3.Visible = false;
@@ -218,13 +316,13 @@ namespace Quan_li_nhan_su
 		private void menuQLNhanVienPhongBan_Click(object sender, EventArgs e)
 		{
 			foreach (var f in MdiChildren)
-			{
 				if (f is QLNhanVienPhongBan)
 				{
+					f.WindowState = FormWindowState.Maximized;
+
 					f.Activate();
 					return;
 				}
-			}
 
 			label1.Visible = false;
 			label2.Visible = false;
@@ -263,6 +361,7 @@ namespace Quan_li_nhan_su
 					thuCuaTuan = "Chủ nhật";
 					break;
 			}
+
 			label3.Text = $"{thuCuaTuan}, ngày {DateTime.Now.Day} tháng {DateTime.Now.Month} năm {DateTime.Now.Year}";
 			var hh = DateTime.Now.Hour;
 			var mm = DateTime.Now.Minute;
@@ -324,13 +423,13 @@ namespace Quan_li_nhan_su
 		private void menuQLBoPhan_Click(object sender, EventArgs e)
 		{
 			foreach (var f in MdiChildren)
-			{
 				if (f is QLBoPhan)
 				{
+					f.WindowState = FormWindowState.Maximized;
+
 					f.Activate();
 					return;
 				}
-			}
 
 			label1.Visible = false;
 			label1.Visible = false;
@@ -341,6 +440,18 @@ namespace Quan_li_nhan_su
 				MdiParent = this
 			};
 			qlbp.Show();
+		}
+
+		private void mstCaiDat_Click(object sender, EventArgs e)
+		{
+			new CaiDat().ShowDialog();
+		}
+
+		private void GiaoDienChinh_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			var luachon = MessageBox.Show("Bạn chắc chắn muốn thoát ?", "Xác nhận thoát", MessageBoxButtons.YesNo,
+				MessageBoxIcon.Question);
+			if (luachon == DialogResult.No) e.Cancel = true;
 		}
 	}
 }

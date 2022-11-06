@@ -1,11 +1,14 @@
-﻿namespace Quan_li_nhan_su
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace Quan_li_nhan_su
 {
     partial class GiaoDienChinh
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -44,6 +47,7 @@
             this.mstThongKe = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBCLuong = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBCNhanVien = new System.Windows.Forms.ToolStripMenuItem();
+            this.mstCaiDat = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -55,7 +59,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mstTaiKhoan,
             this.mstQuanLy,
-            this.mstThongKe});
+            this.mstThongKe,
+            this.mstCaiDat});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1064, 24);
@@ -77,7 +82,7 @@
             // 
             this.menuDangNhap.Image = global::Quan_li_nhan_su.Properties.Resources.icons8_login;
             this.menuDangNhap.Name = "menuDangNhap";
-            this.menuDangNhap.Size = new System.Drawing.Size(180, 22);
+            this.menuDangNhap.Size = new System.Drawing.Size(145, 22);
             this.menuDangNhap.Text = "Đăng nhập";
             this.menuDangNhap.Click += new System.EventHandler(this.menuDangNhap_Click);
             // 
@@ -85,7 +90,7 @@
             // 
             this.menuDoiMatKhau.Enabled = false;
             this.menuDoiMatKhau.Name = "menuDoiMatKhau";
-            this.menuDoiMatKhau.Size = new System.Drawing.Size(180, 22);
+            this.menuDoiMatKhau.Size = new System.Drawing.Size(145, 22);
             this.menuDoiMatKhau.Text = "Đổi mật khẩu";
             this.menuDoiMatKhau.Click += new System.EventHandler(this.menuDoiMatKhau_Click);
             // 
@@ -93,7 +98,7 @@
             // 
             this.menuDangXuat.Enabled = false;
             this.menuDangXuat.Name = "menuDangXuat";
-            this.menuDangXuat.Size = new System.Drawing.Size(180, 22);
+            this.menuDangXuat.Size = new System.Drawing.Size(145, 22);
             this.menuDangXuat.Text = "Đăng xuất";
             this.menuDangXuat.Click += new System.EventHandler(this.menuDangXuat_Click);
             // 
@@ -181,6 +186,13 @@
             this.menuBCNhanVien.Size = new System.Drawing.Size(171, 22);
             this.menuBCNhanVien.Text = "Báo cáo nhân viên";
             // 
+            // mstCaiDat
+            // 
+            this.mstCaiDat.Name = "mstCaiDat";
+            this.mstCaiDat.Size = new System.Drawing.Size(56, 20);
+            this.mstCaiDat.Text = "Cài đặt";
+            this.mstCaiDat.Click += new System.EventHandler(this.mstCaiDat_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -233,6 +245,7 @@
             this.Name = "GiaoDienChinh";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Phần mềm quản lý nhân sự AnPhatComputer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GiaoDienChinh_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -242,23 +255,24 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem mstTaiKhoan;
-        private System.Windows.Forms.ToolStripMenuItem menuDoiMatKhau;
-        private System.Windows.Forms.ToolStripMenuItem menuDangXuat;
-        private System.Windows.Forms.ToolStripMenuItem mstQuanLy;
-        private System.Windows.Forms.ToolStripMenuItem menuQLBoPhan;
-        private System.Windows.Forms.ToolStripMenuItem menuQLPhongBan;
-        private System.Windows.Forms.ToolStripMenuItem menuQLNhanVienPhongBan;
-        private System.Windows.Forms.ToolStripMenuItem menuQLLuong;
-        private System.Windows.Forms.ToolStripMenuItem menuQLTaiKhoan;
-        private System.Windows.Forms.ToolStripMenuItem mstThongKe;
-        private System.Windows.Forms.ToolStripMenuItem menuBCLuong;
-        private System.Windows.Forms.ToolStripMenuItem menuBCNhanVien;
-        private System.Windows.Forms.ToolStripMenuItem menuQLHoSo;
-        private System.Windows.Forms.ToolStripMenuItem menuDangNhap;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem mstTaiKhoan;
+        private ToolStripMenuItem menuDoiMatKhau;
+        private ToolStripMenuItem menuDangXuat;
+        private ToolStripMenuItem mstQuanLy;
+        private ToolStripMenuItem menuQLBoPhan;
+        private ToolStripMenuItem menuQLPhongBan;
+        private ToolStripMenuItem menuQLNhanVienPhongBan;
+        private ToolStripMenuItem menuQLLuong;
+        private ToolStripMenuItem menuQLTaiKhoan;
+        private ToolStripMenuItem mstThongKe;
+        private ToolStripMenuItem menuBCLuong;
+        private ToolStripMenuItem menuBCNhanVien;
+        private ToolStripMenuItem menuQLHoSo;
+        private ToolStripMenuItem menuDangNhap;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private ToolStripMenuItem mstCaiDat;
     }
 }

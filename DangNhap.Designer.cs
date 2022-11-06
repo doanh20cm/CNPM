@@ -1,11 +1,14 @@
-﻿namespace Quan_li_nhan_su
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace Quan_li_nhan_su
 {
     partial class DangNhap
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -108,18 +111,18 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Đăng nhập";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DangNhap_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.Button btnLogin;
+        private Label label1;
+        private TextBox txtUsername;
+        private Label label2;
+        private TextBox txtPassword;
+        private Button btnLogin;
     }
 }
 

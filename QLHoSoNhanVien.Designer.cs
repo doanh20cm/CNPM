@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Quan_li_nhan_su
 {
@@ -31,8 +32,11 @@ namespace Quan_li_nhan_su
 		/// </summary>
 		private void InitializeComponent()
 		{
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvHoSoNhanVien = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -68,6 +72,8 @@ namespace Quan_li_nhan_su
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnCapNhat = new System.Windows.Forms.Button();
             this.btnTimKiem = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoSoNhanVien)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAnhHoSo)).BeginInit();
@@ -85,7 +91,15 @@ namespace Quan_li_nhan_su
             this.dgvHoSoNhanVien.MultiSelect = false;
             this.dgvHoSoNhanVien.Name = "dgvHoSoNhanVien";
             this.dgvHoSoNhanVien.ReadOnly = true;
-            this.dgvHoSoNhanVien.RowHeadersVisible = false;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvHoSoNhanVien.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.dgvHoSoNhanVien.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvHoSoNhanVien.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvHoSoNhanVien.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvHoSoNhanVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -96,6 +110,8 @@ namespace Quan_li_nhan_su
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
@@ -126,6 +142,25 @@ namespace Quan_li_nhan_su
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(695, 38);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(76, 13);
+            this.label13.TabIndex = 27;
+            this.label13.Text = "Ảnh nhân viên";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(709, 99);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(50, 23);
+            this.button3.TabIndex = 26;
+            this.button3.Text = "Chụp";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label11
             // 
@@ -443,6 +478,27 @@ namespace Quan_li_nhan_su
             this.btnTimKiem.UseVisualStyleBackColor = true;
             this.btnTimKiem.Click += new System.EventHandler(this.button1_Click);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(428, 300);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(200, 50);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar1.TabIndex = 8;
+            this.progressBar1.Visible = false;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(474, 315);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(107, 21);
+            this.label14.TabIndex = 9;
+            this.label14.Text = "Vui lòng chờ...";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label14.Visible = false;
+            // 
             // QLHoSoNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -451,6 +507,8 @@ namespace Quan_li_nhan_su
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1074, 691);
             this.ControlBox = false;
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnTimKiem);
             this.Controls.Add(this.btnCapNhat);
             this.Controls.Add(this.btnXoa);
@@ -460,6 +518,7 @@ namespace Quan_li_nhan_su
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvHoSoNhanVien);
             this.DoubleBuffered = true;
+            this.Enabled = false;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -468,6 +527,7 @@ namespace Quan_li_nhan_su
             this.Text = "Quản lý hồ sơ nhân viên";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.QLHoSoNhanVien_Load);
+            this.Shown += new System.EventHandler(this.QLHoSoNhanVien_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoSoNhanVien)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -475,6 +535,7 @@ namespace Quan_li_nhan_su
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 
@@ -482,41 +543,45 @@ namespace Quan_li_nhan_su
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtHoTen;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtDiaChi;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtNoiSinh;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dtpNgaySinh;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RichTextBox rtGhiChu;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtHocVan;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtTonGiao;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtDanToc;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtSDT;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ComboBox cbGioiTinh;
-        private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.Button btnSua;
-        private System.Windows.Forms.Button btnXoa;
-        private System.Windows.Forms.Button btnCapNhat;
-        private System.Windows.Forms.TextBox txtTimTheoHocVan;
-        private System.Windows.Forms.CheckBox chkTimTheoHocVan;
-        private System.Windows.Forms.CheckBox chkTimTheoTen;
-        private System.Windows.Forms.TextBox txtTimTheoTen;
-        private System.Windows.Forms.Button btnTimKiem;
-        private System.Windows.Forms.PictureBox pbAnhHoSo;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
+        private GroupBox groupBox1;
+        private TextBox txtHoTen;
+        private Label label1;
+        private TextBox txtDiaChi;
+        private Label label4;
+        private TextBox txtNoiSinh;
+        private Label label3;
+        private DateTimePicker dtpNgaySinh;
+        private Label label2;
+        private RichTextBox rtGhiChu;
+        private Label label10;
+        private TextBox txtHocVan;
+        private Label label9;
+        private TextBox txtTonGiao;
+        private Label label5;
+        private TextBox txtDanToc;
+        private Label label6;
+        private Label label7;
+        private TextBox txtSDT;
+        private Label label8;
+        private GroupBox groupBox2;
+        private ComboBox cbGioiTinh;
+        private Button btnThem;
+        private Button btnSua;
+        private Button btnXoa;
+        private Button btnCapNhat;
+        private TextBox txtTimTheoHocVan;
+        private CheckBox chkTimTheoHocVan;
+        private CheckBox chkTimTheoTen;
+        private TextBox txtTimTheoTen;
+        private Button btnTimKiem;
+        private PictureBox pbAnhHoSo;
+        private Button button2;
+        private Button button1;
+        private Label label11;
+        private Label label12;
+        private Label label13;
+        private Button button3;
+        private ProgressBar progressBar1;
+        private Label label14;
     }
 }

@@ -14,14 +14,15 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>0</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,11 +33,21 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ewew|AnyCPU'">
+    <OutputPath>bin\ewew\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
+    <Reference Include="AForge.Imaging">
+      <HintPath>..\..\..\Downloads\Compressed\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video">
+      <HintPath>..\..\..\Downloads\Compressed\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow">
+      <HintPath>..\..\..\Downloads\Compressed\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,6 +60,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CaiDat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CaiDat.Designer.cs">
+      <DependentUpon>CaiDat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Camera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Camera.Designer.cs">
+      <DependentUpon>Camera.cs</DependentUpon>
+    </Compile>
     <Compile Include="DangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,11 +110,12 @@
     <Compile Include="QLNhanVienPhongBan.Designer.cs">
       <DependentUpon>QLNhanVienPhongBan.cs</DependentUpon>
     </Compile>
-    <Compile Include="test2DataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>test2DataSet.xsd</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="CaiDat.resx">
+      <DependentUpon>CaiDat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Camera.resx">
+      <DependentUpon>Camera.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DangNhap.resx">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,7 +136,6 @@
     <EmbeddedResource Include="QLNhanVienPhongBan.resx">
       <DependentUpon>QLNhanVienPhongBan.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -122,17 +145,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="test2DataSet.xsc">
-      <DependentUpon>test2DataSet.xsd</DependentUpon>
-    </None>
-    <None Include="test2DataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>test2DataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="test2DataSet.xss">
-      <DependentUpon>test2DataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -144,6 +156,7 @@
     <None Include="Resources\space blue sky pastel background.jpg" />
     <None Include="Resources\noimage1.png" />
     <None Include="Resources\icons8-login.gif" />
+    <None Include="Resources\istockphoto-1327530057-612x612 %283%29.jpg" />
     <Content Include="Resources\_360_F_122719641_V0yw2cAOrfxsON3HeWi2Sf4iVxhv27QO.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
