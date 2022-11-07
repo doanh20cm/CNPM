@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Resources;
 using System.Windows.Forms;
 using AForge.Imaging.Filters;
 using AForge.Video;
@@ -71,16 +69,17 @@ namespace Quan_li_nhan_su
 		private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
 		{
 			comboBox1.Enabled = false;
-            if (_videoSource != null)
-            {
-                _videoSource.SignalToStop();
-                _videoSource.NewFrame -= videoSource_NewFrame;
-                _videoSource = null;
-            }
-            _videoSource = new VideoCaptureDevice(_videoDevices[comboBox1.SelectedIndex].MonikerString);
-            _videoSource.NewFrame += videoSource_NewFrame;
+			if (_videoSource != null)
+			{
+				_videoSource.SignalToStop();
+				_videoSource.NewFrame -= videoSource_NewFrame;
+				_videoSource = null;
+			}
+
+			_videoSource = new VideoCaptureDevice(_videoDevices[comboBox1.SelectedIndex].MonikerString);
+			_videoSource.NewFrame += videoSource_NewFrame;
 			_videoSource.Start();
-            comboBox1.Enabled = true;
+			comboBox1.Enabled = true;
 		}
 
 		private void videoSource_NewFrame(object sender, NewFrameEventArgs eventArgs)

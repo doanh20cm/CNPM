@@ -1,5 +1,4 @@
-﻿using Quan_li_nhan_su.Properties;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
@@ -7,8 +6,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Quan_li_nhan_su.Properties;
 
 namespace Quan_li_nhan_su
 {
@@ -201,11 +200,11 @@ namespace Quan_li_nhan_su
 				{
 					connection.Open();
 					using (var command = new SqlCommand
-					{
-						Connection = connection,
-						CommandText =
-								   "insert into HoSoNhanVien values(@HoTen, @NgaySinh, @NoiSinh, @DiaChi, @SDT, @GioiTinh, @DanToc, @TonGiao, @HocVan, @GhiChu, @AnhHoSo)"
-					})
+					       {
+						       Connection = connection,
+						       CommandText =
+							       "insert into HoSoNhanVien values(@HoTen, @NgaySinh, @NoiSinh, @DiaChi, @SDT, @GioiTinh, @DanToc, @TonGiao, @HocVan, @GhiChu, @AnhHoSo)"
+					       })
 					{
 						command.Parameters.AddWithValue("@HoTen", txtHoTen.Text);
 						command.Parameters.AddWithValue("@NgaySinh", dtpNgaySinh.Value.Date);
@@ -294,11 +293,11 @@ namespace Quan_li_nhan_su
 				{
 					connection.Open();
 					using (var command = new SqlCommand
-					{
-						Connection = connection,
-						CommandText =
-								   "update HoSoNhanVien set Hoten = @HoTen, NgaySinh = @NgaySinh, NoiSinh = @NoiSinh, DiaChi = @DiaChi, SDT = @SDT, GioiTinh = @GioiTinh, DanToc = @DanToc, TonGiao = @TonGiao, HocVan = @HocVan, GhiChu = @GhiChu, AnhHoSo = @AnhHoSo where MaNV = @MaNV"
-					})
+					       {
+						       Connection = connection,
+						       CommandText =
+							       "update HoSoNhanVien set Hoten = @HoTen, NgaySinh = @NgaySinh, NoiSinh = @NoiSinh, DiaChi = @DiaChi, SDT = @SDT, GioiTinh = @GioiTinh, DanToc = @DanToc, TonGiao = @TonGiao, HocVan = @HocVan, GhiChu = @GhiChu, AnhHoSo = @AnhHoSo where MaNV = @MaNV"
+					       })
 					{
 						command.Parameters.AddWithValue("@HoTen", txtHoTen.Text);
 						command.Parameters.AddWithValue("@NgaySinh", dtpNgaySinh.Value.Date);
@@ -338,10 +337,10 @@ namespace Quan_li_nhan_su
 				{
 					connection.Open();
 					using (var command = new SqlCommand
-					{
-						Connection = connection,
-						CommandText = "delete from HoSoNhanVien where MaNV = @MaNV"
-					})
+					       {
+						       Connection = connection,
+						       CommandText = "delete from HoSoNhanVien where MaNV = @MaNV"
+					       })
 					{
 						command.Parameters.AddWithValue("@MaNV", dgvHoSoNhanVien.Rows[_index].Cells[0].Value);
 						var rowsAffected = command.ExecuteNonQuery();
@@ -410,17 +409,17 @@ namespace Quan_li_nhan_su
 				{
 					connection.Open();
 					using (var command = new SqlCommand
-					{
-						Connection = connection,
-						CommandText = "select * from HoSoNhanVien" +
-											 (chkTimTheoTen.Checked && chkTimTheoHocVan.Checked
-												 ? " where HoTen like @HoTen and HocVan like @HocVan"
-												 : chkTimTheoTen.Checked
-													 ? " where HoTen like @HoTen"
-													 : chkTimTheoHocVan.Checked
-														 ? " where HocVan like @HocVan"
-														 : "")
-					})
+					       {
+						       Connection = connection,
+						       CommandText = "select * from HoSoNhanVien" +
+						                     (chkTimTheoTen.Checked && chkTimTheoHocVan.Checked
+							                     ? " where HoTen like @HoTen and HocVan like @HocVan"
+							                     : chkTimTheoTen.Checked
+								                     ? " where HoTen like @HoTen"
+								                     : chkTimTheoHocVan.Checked
+									                     ? " where HocVan like @HocVan"
+									                     : "")
+					       })
 					{
 						command.Parameters.AddWithValue("@HoTen", $"%{txtTimTheoTen.Text}%");
 						command.Parameters.AddWithValue("@HocVan", $"%{txtTimTheoHocVan.Text}%");
@@ -443,32 +442,27 @@ namespace Quan_li_nhan_su
 
 
 				if (e2.Error != null)
-				{
 					MessageBox.Show("Có lỗi khi tải dữ liệu", "Thông báo", MessageBoxButtons.OK,
 						MessageBoxIcon.Error);
-				}
 				else
-				{
 					dgvHoSoNhanVien.DataSource = e2.Result as DataTable;
-                }
 
 				dgvHoSoNhanVien.Visible = true;
 				Enabled = true;
 			};
 
 			bw.RunWorkerAsync();
-
 		}
 
 
 		private void button2_Click(object sender, EventArgs e)
 		{
 			using (var ofd = new OpenFileDialog
-			{
-				Filter = "Ảnh(*.PNG;*.JPG;*.JPEG;*.BMP)|*.PNG;*.JPG;*.JPEG,*.BMP",
-				Multiselect = false,
-				Title = "Chọn ảnh hồ sơ nhân viên"
-			})
+			       {
+				       Filter = "Ảnh(*.PNG;*.JPG;*.JPEG;*.BMP)|*.PNG;*.JPG;*.JPEG,*.BMP",
+				       Multiselect = false,
+				       Title = "Chọn ảnh hồ sơ nhân viên"
+			       })
 			{
 				if (ofd.ShowDialog() == DialogResult.OK)
 					try

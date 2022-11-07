@@ -186,11 +186,11 @@ namespace Quan_li_nhan_su
 				{
 					connection.Open();
 					using (var command = new SqlCommand
-					{
-						Connection = connection,
-						CommandText =
-								   "select TaiKhoan from NguoiDung where TaiKhoan = @TaiKhoan and MatKhau = @MatKhau"
-					})
+					       {
+						       Connection = connection,
+						       CommandText =
+							       "select TaiKhoan from NguoiDung where TaiKhoan = @TaiKhoan and MatKhau = @MatKhau"
+					       })
 					{
 						command.Parameters.AddWithValue("@TaiKhoan", Username);
 						command.Parameters.AddWithValue("@MatKhau", DangNhap.GetMd5(oldPass));
@@ -229,11 +229,11 @@ namespace Quan_li_nhan_su
 				{
 					connection.Open();
 					using (var command = new SqlCommand
-					{
-						Connection = connection,
-						CommandText =
-								   "update NguoiDung set MatKhau = @MatKhau where TaiKhoan = @TaiKhoan"
-					})
+					       {
+						       Connection = connection,
+						       CommandText =
+							       "update NguoiDung set MatKhau = @MatKhau where TaiKhoan = @TaiKhoan"
+					       })
 					{
 						command.Parameters.AddWithValue("@TaiKhoan", Username);
 						command.Parameters.AddWithValue("@MatKhau", DangNhap.GetMd5(newPass));

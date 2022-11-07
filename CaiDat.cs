@@ -105,8 +105,8 @@ namespace Quan_li_nhan_su
 				}
 
 				label7.Text = "Chờ kiểm tra...";
-                progressBar1.Value = 0;
-            };
+				progressBar1.Value = 0;
+			};
 			bw.RunWorkerAsync();
 			workerTimer.DoWork += (sender2, e2) =>
 			{
@@ -117,9 +117,11 @@ namespace Quan_li_nhan_su
 						e2.Cancel = true;
 						return;
 					}
+
 					bw.ReportProgress(i * 100 / 15);
 					Thread.Sleep(1000);
 				}
+
 				bw.ReportProgress(100);
 			};
 			workerTimer.RunWorkerAsync();

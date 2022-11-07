@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -18,22 +19,65 @@ namespace Quan_li_nhan_su
 		{
 			dgvBoPhan.RowsDefaultCellStyle.WrapMode = DataGridViewTriState.True;
 			dgvBoPhan.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-			GetData();
+			dgvBoPhan.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+			//GetData();
 		}
 
 		private void GetData()
 		{
-			dgvBoPhan.DataSource = KetNoi.GetData("select * from xemBoPhan");
-			for (var i = 0; i < dgvBoPhan.Columns.Count; i++)
-				dgvBoPhan.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-			dgvBoPhan.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-			dgvBoPhan.Columns[0].HeaderText = "Mã bộ phận";
-			dgvBoPhan.Columns[1].HeaderText = "Tên bộ phận";
-			dgvBoPhan.Columns[2].HeaderText = "Ngày thành lập";
-			dgvBoPhan.Columns[3].HeaderText = "Số điện thoại";
-			dgvBoPhan.Columns[4].HeaderText = "Ghi chú";
-			dgvBoPhan.Columns[0].Visible = false;
-			dgvBoPhan.Refresh();
+			Enabled = false;
+			WindowState = FormWindowState.Maximized;
+			Activate();
+			progressBar1.Visible = true;
+			label14.Visible = true;
+			label14.BringToFront();
+			dgvBoPhan.Visible = false;
+
+			txtSDT.Text = rtGhiChu.Text = txtTenBoPhan.Text = "";
+			dtpNgayThanhLap.Value = DateTime.Now;
+
+			var bw = new BackgroundWorker
+			{
+				WorkerSupportsCancellation = true
+			};
+
+			bw.DoWork += (s1, e1) =>
+			{
+				var table = KetNoi.GetData("select * from xemBoPhan");
+				e1.Result = table;
+			};
+
+			bw.RunWorkerCompleted += (s2, e2) =>
+			{
+				progressBar1.Visible = false;
+				label14.Visible = false;
+
+				if (e2.Error != null)
+				{
+					MessageBox.Show("Có lỗi khi tải dữ liệu", "Thông báo", MessageBoxButtons.OK,
+						MessageBoxIcon.Error);
+				}
+				else
+				{
+					dgvBoPhan.DataSource = e2.Result as DataTable;
+
+					for (var i = 0; i < dgvBoPhan.Columns.Count; i++)
+						dgvBoPhan.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+
+					dgvBoPhan.Columns[0].HeaderText = "Mã bộ phận";
+					dgvBoPhan.Columns[1].HeaderText = "Tên bộ phận";
+					dgvBoPhan.Columns[2].HeaderText = "Ngày thành lập";
+					dgvBoPhan.Columns[3].HeaderText = "Số điện thoại";
+					dgvBoPhan.Columns[4].HeaderText = "Ghi chú";
+					dgvBoPhan.Columns[0].Visible = false;
+					dgvBoPhan.Refresh();
+				}
+
+				dgvBoPhan.Visible = true;
+				Enabled = true;
+			};
+
+			bw.RunWorkerAsync();
 		}
 
 		private void dgvBoPhan_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -57,7 +101,6 @@ namespace Quan_li_nhan_su
 				btnXoa.Enabled = false;
 				txtSDT.Text = rtGhiChu.Text = txtTenBoPhan.Text = "";
 				dtpNgayThanhLap.Value = DateTime.Now;
-				dgvBoPhan.ClearSelection();
 			}
 		}
 
@@ -233,7 +276,20 @@ namespace Quan_li_nhan_su
 				return;
 			}
 
-			try
+			Enabled = false;
+			WindowState = FormWindowState.Maximized;
+			Activate();
+			progressBar1.Visible = true;
+			label14.Visible = true;
+			label14.BringToFront();
+			dgvBoPhan.Visible = false;
+
+			var bw = new BackgroundWorker
+			{
+				WorkerSupportsCancellation = true
+			};
+
+			bw.DoWork += (s1, e1) =>
 			{
 				using (var connection = new SqlConnection(GiaoDienChinh.ConnStr))
 				{
@@ -268,17 +324,35 @@ namespace Quan_li_nhan_su
 							using (var dt = new DataTable())
 							{
 								dt.Load(reader);
-								dgvBoPhan.DataSource = dt;
+								e1.Result = dt;
 							}
 						}
 					}
 				}
-			}
-			catch (Exception)
+			};
+
+			bw.RunWorkerCompleted += (s2, e2) =>
 			{
-				MessageBox.Show("Tìm kiếm thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				GetData();
-			}
+				progressBar1.Visible = false;
+				label14.Visible = false;
+
+
+				if (e2.Error != null)
+					MessageBox.Show("Có lỗi khi tải dữ liệu", "Thông báo", MessageBoxButtons.OK,
+						MessageBoxIcon.Error);
+				else
+					dgvBoPhan.DataSource = e2.Result as DataTable;
+
+				dgvBoPhan.Visible = true;
+				Enabled = true;
+			};
+
+			bw.RunWorkerAsync();
+		}
+
+		private void QLBoPhan_Shown(object sender, EventArgs e)
+		{
+			GetData();
 		}
 	}
 }
