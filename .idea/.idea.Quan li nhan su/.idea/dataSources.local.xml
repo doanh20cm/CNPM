@@ -17,5 +17,24 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
+    <data-source name="test@doanh20cm.database.windows.net" uuid="0a7d3d27-5688-4911-9adb-bf1a214fe27e">
+      <database-info product="Microsoft SQL Server" version="12.00.816" jdbc-version="4.2" driver-name="Microsoft JDBC Driver 11.2 for SQL Server" driver-version="11.2.0.0" dbms="AZURE" exact-version="12.0.816" exact-driver-version="11.2">
+        <extra-name-characters>$#@</extra-name-characters>
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>doanh20cm</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node negative="1">
+            <node kind="database" qname="@">
+              <node kind="schema" qname="@" />
+            </node>
+            <node kind="database" qname="test" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
   </component>
 </project>

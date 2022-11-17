@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
@@ -19,6 +20,28 @@ namespace Quan_li_nhan_su
 		private readonly Timer _time = new Timer();
 
 
+		protected override void WndProc(ref Message m)
+		{
+			if (m.Msg == 0x216)
+			{ // Trap WM_MOVING
+				RECT rc = (RECT)Marshal.PtrToStructure(m.LParam, typeof(RECT));
+				Screen scr = Screen.FromRectangle(Rectangle.FromLTRB(rc.left, rc.top, rc.right, rc.bottom));
+				if (rc.left < scr.WorkingArea.Left) { rc.left = scr.WorkingArea.Left; rc.right = rc.left + this.Width; }
+				if (rc.top < scr.WorkingArea.Top) { rc.top = scr.WorkingArea.Top; rc.bottom = rc.top + this.Height; }
+				if (rc.right > scr.WorkingArea.Right) { rc.right = scr.WorkingArea.Right; rc.left = rc.right - this.Width; }
+				if (rc.bottom > scr.WorkingArea.Bottom) { rc.bottom = scr.WorkingArea.Bottom; rc.top = rc.bottom - this.Height; }
+				Marshal.StructureToPtr(rc, m.LParam, false);
+			}
+			base.WndProc(ref m);
+		}
+		private struct RECT
+		{
+			public int left;
+			public int top;
+			public int right;
+			public int bottom;
+		}
+
 		public GiaoDienChinh()
 		{
 			InitializeComponent();
@@ -28,7 +51,7 @@ namespace Quan_li_nhan_su
 			}
 			catch (FileNotFoundException)
 			{
-				MessageBox.Show("Không tìm thấy cấu hình kết nối, vui lòng liên hệ bộ phận  IT của công ty", "Cảnh báo",
+				MessageBox.Show("Không tìm thấy cấu hình kết nối, vui lòng liên hệ bộ phận IT của công ty", "Cảnh báo",
 					MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 			catch (Exception)
@@ -74,7 +97,6 @@ namespace Quan_li_nhan_su
 				form.Dispose();
 			}
 
-			GC.Collect();
 			label1.Visible = true;
 			label2.Visible = true;
 			label3.Visible = true;
@@ -164,6 +186,8 @@ namespace Quan_li_nhan_su
 			DongForm();
 			SetQuyen();
 			MessageBox.Show("Đăng xuất thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			GC.Collect();
+
 		}
 
 		private void menuDoiMatKhau_Click(object sender, EventArgs e)
@@ -177,20 +201,17 @@ namespace Quan_li_nhan_su
 			}
 
 			bool isOldPassCorrect;
-			//       if (KetNoi.GetData(
-			//	$"")
-			//.Rows.Count != 1)
 			try
 			{
 				using (var connection = new SqlConnection(ConnStr))
 				{
 					connection.Open();
 					using (var command = new SqlCommand
-					       {
-						       Connection = connection,
-						       CommandText =
-							       "select TaiKhoan from NguoiDung where TaiKhoan = @TaiKhoan and MatKhau = @MatKhau"
-					       })
+					{
+						Connection = connection,
+						CommandText =
+								   "select TaiKhoan from NguoiDung where TaiKhoan = @TaiKhoan and MatKhau = @MatKhau"
+					})
 					{
 						command.Parameters.AddWithValue("@TaiKhoan", Username);
 						command.Parameters.AddWithValue("@MatKhau", DangNhap.GetMd5(oldPass));
@@ -229,11 +250,11 @@ namespace Quan_li_nhan_su
 				{
 					connection.Open();
 					using (var command = new SqlCommand
-					       {
-						       Connection = connection,
-						       CommandText =
-							       "update NguoiDung set MatKhau = @MatKhau where TaiKhoan = @TaiKhoan"
-					       })
+					{
+						Connection = connection,
+						CommandText =
+								   "update NguoiDung set MatKhau = @MatKhau where TaiKhoan = @TaiKhoan"
+					})
 					{
 						command.Parameters.AddWithValue("@TaiKhoan", Username);
 						command.Parameters.AddWithValue("@MatKhau", DangNhap.GetMd5(newPass));
@@ -251,9 +272,11 @@ namespace Quan_li_nhan_su
 				MessageBoxButtons.OK, ableToChangePass ? MessageBoxIcon.Information : MessageBoxIcon.Error);
 		}
 
-		private static DialogResult InputBox(string title, string promptText, ref string value)
+		private DialogResult InputBox(string title, string promptText, ref string value)
 		{
 			var form = new Form();
+			// make the from unmoveable
+			form.FormBorderStyle = FormBorderStyle.FixedDialog;
 			var label = new Label();
 			var textBox = new TextBox();
 			var buttonOk = new Button();
@@ -290,6 +313,9 @@ namespace Quan_li_nhan_su
 			if (dialogResult == DialogResult.OK) value = textBox.Text;
 			return dialogResult;
 		}
+
+
+
 
 
 		private void menuQLHoSo_Click(object sender, EventArgs e)

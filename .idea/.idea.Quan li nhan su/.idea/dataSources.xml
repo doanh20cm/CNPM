@@ -8,5 +8,12 @@
       <jdbc-url>Server=localhost\SQLEXPRESS;Database=test2</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="test@doanh20cm.database.windows.net" uuid="0a7d3d27-5688-4911-9adb-bf1a214fe27e">
+      <driver-ref>azure.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://doanh20cm.database.windows.net:1433;database=test</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

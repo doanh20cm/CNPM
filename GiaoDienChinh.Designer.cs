@@ -207,12 +207,12 @@ namespace Quan_li_nhan_su
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(385, 196);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 50);
+            this.label2.Size = new System.Drawing.Size(288, 50);
             this.label2.TabIndex = 3;
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
