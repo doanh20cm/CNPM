@@ -5,8 +5,6 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quan li nhan su", "Quan li nhan su.csproj", "{63E6D3EF-B9EE-482E-A903-0A91C6AE9ED4}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "QLNS", "..\QLNS\QLNS.vdproj", "{5FC01821-21F9-4D35-9DB0-4F86E9C6B597}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,10 +18,6 @@ Global
 		{63E6D3EF-B9EE-482E-A903-0A91C6AE9ED4}.ewew|Any CPU.Build.0 = Debug|Any CPU
 		{63E6D3EF-B9EE-482E-A903-0A91C6AE9ED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63E6D3EF-B9EE-482E-A903-0A91C6AE9ED4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5FC01821-21F9-4D35-9DB0-4F86E9C6B597}.Debug|Any CPU.ActiveCfg = Debug
-		{5FC01821-21F9-4D35-9DB0-4F86E9C6B597}.ewew|Any CPU.ActiveCfg = Debug
-		{5FC01821-21F9-4D35-9DB0-4F86E9C6B597}.ewew|Any CPU.Build.0 = Debug
-		{5FC01821-21F9-4D35-9DB0-4F86E9C6B597}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

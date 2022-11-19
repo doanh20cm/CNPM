@@ -130,6 +130,7 @@ namespace Quan_li_nhan_su
             this.menuQLPhongBan.Name = "menuQLPhongBan";
             this.menuQLPhongBan.Size = new System.Drawing.Size(189, 22);
             this.menuQLPhongBan.Text = "Phòng ban";
+            this.menuQLPhongBan.Click += new System.EventHandler(this.menuQLPhongBan_Click);
             // 
             // menuQLNhanVienPhongBan
             // 
@@ -160,6 +161,7 @@ namespace Quan_li_nhan_su
             this.menuQLTaiKhoan.Name = "menuQLTaiKhoan";
             this.menuQLTaiKhoan.Size = new System.Drawing.Size(189, 22);
             this.menuQLTaiKhoan.Text = "Tài khoản nhân viên";
+            this.menuQLTaiKhoan.Click += new System.EventHandler(this.menuQLTaiKhoan_Click);
             // 
             // mstThongKe
             // 

@@ -113,6 +113,18 @@
     <Compile Include="QLNhanVienPhongBan.Designer.cs">
       <DependentUpon>QLNhanVienPhongBan.cs</DependentUpon>
     </Compile>
+    <Compile Include="QLPhongBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QLPhongBan.Designer.cs">
+      <DependentUpon>QLPhongBan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QLTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QLTaiKhoan.Designer.cs">
+      <DependentUpon>QLTaiKhoan.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CaiDat.resx">
       <DependentUpon>CaiDat.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,6 +150,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QLNhanVienPhongBan.resx">
       <DependentUpon>QLNhanVienPhongBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QLPhongBan.resx">
+      <DependentUpon>QLPhongBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QLTaiKhoan.resx">
+      <DependentUpon>QLTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

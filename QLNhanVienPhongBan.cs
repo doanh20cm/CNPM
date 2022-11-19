@@ -238,12 +238,12 @@ namespace Quan_li_nhan_su
                             rowsAffected == 1 ? MessageBoxIcon.Information : MessageBoxIcon.Error);
                     }
                 }
-                GetData();
             }
             catch (Exception)
             {
                 MessageBox.Show("Xoá thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            GetData();
         }
         private void dgvNhanVienPhongBan_SelectionChanged(object sender, EventArgs e)
         {

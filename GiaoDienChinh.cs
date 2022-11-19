@@ -320,6 +320,10 @@ namespace Quan_li_nhan_su
 
 		private void menuQLHoSo_Click(object sender, EventArgs e)
 		{
+			label1.Visible = false;
+			label2.Visible = false;
+			label3.Visible = false;
+
 			foreach (var f in MdiChildren)
 				if (f is QLHoSoNhanVien)
 				{
@@ -329,9 +333,7 @@ namespace Quan_li_nhan_su
 					return;
 				}
 
-			label1.Visible = false;
-			label2.Visible = false;
-			label3.Visible = false;
+
 			var qlhsnv = new QLHoSoNhanVien
 			{
 				MdiParent = this
@@ -341,6 +343,10 @@ namespace Quan_li_nhan_su
 
 		private void menuQLNhanVienPhongBan_Click(object sender, EventArgs e)
 		{
+			label1.Visible = false;
+			label2.Visible = false;
+			label3.Visible = false;
+
 			foreach (var f in MdiChildren)
 				if (f is QLNhanVienPhongBan)
 				{
@@ -350,9 +356,6 @@ namespace Quan_li_nhan_su
 					return;
 				}
 
-			label1.Visible = false;
-			label2.Visible = false;
-			label3.Visible = false;
 			var qlnvpb = new QLNhanVienPhongBan
 			{
 				MdiParent = this
@@ -448,6 +451,11 @@ namespace Quan_li_nhan_su
 
 		private void menuQLBoPhan_Click(object sender, EventArgs e)
 		{
+			label1.Visible = false;
+			label1.Visible = false;
+			label3.Visible = false;
+			label2.Visible = false;
+
 			foreach (var f in MdiChildren)
 				if (f is QLBoPhan)
 				{
@@ -457,10 +465,7 @@ namespace Quan_li_nhan_su
 					return;
 				}
 
-			label1.Visible = false;
-			label1.Visible = false;
-			label3.Visible = false;
-			label2.Visible = false;
+
 			var qlbp = new QLBoPhan
 			{
 				MdiParent = this
@@ -479,5 +484,52 @@ namespace Quan_li_nhan_su
 				MessageBoxIcon.Question);
 			if (luachon == DialogResult.No) e.Cancel = true;
 		}
-	}
+
+		private void menuQLPhongBan_Click(object sender, EventArgs e)
+		{
+			label1.Visible = false;
+			label1.Visible = false;
+			label3.Visible = false;
+			label2.Visible = false;
+
+			foreach (var f in MdiChildren)
+				if (f is QLPhongBan)
+				{
+					f.WindowState = FormWindowState.Maximized;
+
+					f.Activate();
+					return;
+				}
+
+
+			var qlpb = new QLPhongBan
+			{
+				MdiParent = this
+			};
+			qlpb.Show();
+		}
+
+        private void menuQLTaiKhoan_Click(object sender, EventArgs e)
+        {
+            label1.Visible = false;
+            label1.Visible = false;
+            label3.Visible = false;
+            label2.Visible = false;
+
+            foreach (var f in MdiChildren)
+                if (f is QLTaiKhoan)
+                {
+                    f.WindowState = FormWindowState.Maximized;
+
+                    f.Activate();
+                    return;
+                }
+
+            var qltk = new QLTaiKhoan
+            {
+                MdiParent = this
+            };
+            qltk.Show();
+        }
+    }
 }

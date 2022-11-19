@@ -33,7 +33,7 @@ namespace Quan_li_nhan_su
             label14.BringToFront();
             dgvBoPhan.Visible = false;
 
-            txtSDT.Text = rtGhiChu.Text = txtTenBoPhan.Text = "";
+            txtSDT.Text = rtGhiChu.Text = txtTenBoPhan.Text = rtGhiChu.Text = "";
             dtpNgayThanhLap.Value = DateTime.Now;
 
             var bw = new BackgroundWorker
