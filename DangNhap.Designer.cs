@@ -40,6 +40,7 @@ namespace Quan_li_nhan_su
             this.btnRemoveSaved = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -125,6 +126,20 @@ namespace Quan_li_nhan_su
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.BackgroundImage = global::Quan_li_nhan_su.Properties.Resources.hide;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(270, 95);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(20, 20);
+            this.button2.TabIndex = 24;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // DangNhap
             // 
             this.AcceptButton = this.btnLogin;
@@ -133,6 +148,7 @@ namespace Quan_li_nhan_su
             this.BackgroundImage = global::Quan_li_nhan_su.Properties.Resources._360_F_122719641_V0yw2cAOrfxsON3HeWi2Sf4iVxhv27QO;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(341, 225);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnRemoveSaved);
@@ -167,6 +183,7 @@ namespace Quan_li_nhan_su
         private Button btnRemoveSaved;
         private ComboBox comboBox1;
         private Button button1;
+        private Button button2;
     }
 }
 

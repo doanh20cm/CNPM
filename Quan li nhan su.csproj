@@ -178,6 +178,8 @@
     <None Include="Resources\noimage1.png" />
     <None Include="Resources\icons8-login.gif" />
     <None Include="Resources\istockphoto-1327530057-612x612 %283%29.jpg" />
+    <None Include="Resources\hide.png" />
+    <None Include="Resources\show.png" />
     <Content Include="Resources\_360_F_122719641_V0yw2cAOrfxsON3HeWi2Sf4iVxhv27QO.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

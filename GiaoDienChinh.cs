@@ -95,6 +95,7 @@ namespace Quan_li_nhan_su
 			{
 				form.Close();
 				form.Dispose();
+				GC.Collect();
 			}
 
 			label1.Visible = true;

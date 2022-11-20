@@ -69,14 +69,19 @@ namespace Quan_li_nhan_su
                 }
                 else
                 {
-                    dgvTaiKhoan.DataSource = e2.Result as DataTable;
-
+                    var table_arr = e2.Result as DataTable[];
+                    dgvTaiKhoan.DataSource = table_arr[0];
                     for (var i = 0; i < dgvTaiKhoan.Columns.Count; i++)
                         dgvTaiKhoan.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+                    cbTenNV.DataSource = table_arr[1];
+                    cbTenNV.DisplayMember = "HoTen";
+                    cbTenNV.ValueMember = "MaNV";
+                    cbTimTheoTenNV.DataSource = table_arr[1];
+                    cbTimTheoTenNV.DisplayMember = "HoTen";
+                    cbTimTheoTenNV.ValueMember = "MaNV";
                     dgvTaiKhoan.Columns[1].Visible = false;
                     dgvTaiKhoan.Refresh();
                 }
-
                 dgvTaiKhoan.Visible = true;
                 Enabled = true;
             };
@@ -93,6 +98,7 @@ namespace Quan_li_nhan_su
             btnThem.Enabled = true;
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
+            cbTenNV.Enabled = true;
         }
 
         private void btnCapNhat_Click(object sender, EventArgs e)
@@ -123,8 +129,10 @@ namespace Quan_li_nhan_su
                 txtTenTK.Enabled = false;
                 chkDoiMK.Checked = false;
                 chkDoiMK.Visible = true;
+                cbTenNV.Enabled = false;
                 txtTenTK.Text = dgvTaiKhoan.Rows[_index].Cells[0].Value.ToString();
                 cbChucVu.Text = dgvTaiKhoan.Rows[_index].Cells[2].Value.ToString();
+                cbTenNV.Text = dgvTaiKhoan.Rows[_index].Cells[3].Value.ToString();
                 txtEmail.Text = dgvTaiKhoan.Rows[_index].Cells[4].Value.ToString();
                 rtGhiChu.Text = dgvTaiKhoan.Rows[_index].Cells[5].Value.ToString();
             }
@@ -137,6 +145,8 @@ namespace Quan_li_nhan_su
                 txtTenTK.Enabled = true;
                 chkDoiMK.Checked = true;
                 chkDoiMK.Visible = false;
+                cbTenNV.Enabled = true;
+                cbTenNV.Text = "";
             }
         }
 
@@ -152,15 +162,27 @@ namespace Quan_li_nhan_su
 
             if (!Regex.IsMatch(txtTenTK.Text, @"^[A-Za-z][A-Za-z0-9_]{7,49}$"))
             {
-                MessageBox.Show("Tên tài khoản không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Tên tài khoản phải bắt đầu bằng chữ cái latin, từ 8 - 50 kí tự, có thể bao gồm chữ cái latin, dấu gạch nối, gạch dưới và số tự nhiên", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (chkDoiMK.Checked && txtTenTK.Text.Trim().Length == 0)
+            if (txtMatKhau.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Bạn chưa nhập mật khẩu mới", "Cảnh báo", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                MessageBox.Show("Bạn chưa nhập mật khẩu", "Cảnh báo", MessageBoxButtons.OK,
+                 MessageBoxIcon.Warning);
                 txtMatKhau.Focus();
+                return;
+            }
+
+            if (!Regex.IsMatch(txtMatKhau.Text, @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,50}$"))
+            {
+                MessageBox.Show("Mật khẩu phải có ít nhất 8 kí tự, bao gồm chữ hoa, chữ thường, số và kí tự đặc biệt", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (cbTenNV.SelectedItem == null || cbTenNV.GetItemText(cbTenNV.SelectedItem) != cbTenNV.Text)
+            {
+                MessageBox.Show("Bạn phải chọn hoặc chọn 1 nhân viên sau khi nhập từ danh sách", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -180,7 +202,6 @@ namespace Quan_li_nhan_su
                 return;
             }
 
-            // check vaild email using regex
             if (!Regex.IsMatch(txtEmail.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"))
             {
                 MessageBox.Show("Địa chỉ email không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -195,16 +216,16 @@ namespace Quan_li_nhan_su
                     using (var command = new SqlCommand
                     {
                         Connection = connection,
-                        CommandText = "insert into NguoiDung values(@TenBoPhan, @NgayThanhLap, @SDTBoPhan, @GhiChu)"
+                        CommandText = "insert into NguoiDung values(@TaiKhoan, @MatKhau, @ChucVu, @MaNV, @Email, @OTP, @LastOTPRequestTime, @GhiChu)"
                     })
                     {
                         command.Parameters.AddWithValue("@TaiKhoan", txtTenTK.Text);
-                        command.Parameters.AddWithValue("@MatKhau", txtMatKhau.Text);
+                        command.Parameters.AddWithValue("@MatKhau", DangNhap.GetMd5(txtMatKhau.Text));
                         command.Parameters.AddWithValue("@ChucVu", cbChucVu.Text);
-                        command.Parameters.AddWithValue("@MaNV", rtGhiChu.Text);
-                        command.Parameters.AddWithValue("@Email", rtGhiChu.Text);
-                        command.Parameters.AddWithValue("@OTP", rtGhiChu.Text);
-                        command.Parameters.AddWithValue("@LastOTPRequestTime", rtGhiChu.Text);
+                        command.Parameters.AddWithValue("@MaNV", cbTenNV.SelectedValue);
+                        command.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        command.Parameters.AddWithValue("@OTP", DBNull.Value);
+                        command.Parameters.AddWithValue("@LastOTPRequestTime", DBNull.Value);
                         command.Parameters.AddWithValue("@GhiChu", rtGhiChu.Text);
                         var rowsAffected = command.ExecuteNonQuery();
                         MessageBox.Show(rowsAffected == 1 ? "Thêm thành công" : "Thêm thất bại",
@@ -219,6 +240,208 @@ namespace Quan_li_nhan_su
             }
 
             GetData();
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (txtTenTK.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Bạn chưa nhập tên tài khoản", "Cảnh báo", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                txtTenTK.Focus();
+                return;
+            }
+
+            if (!Regex.IsMatch(txtTenTK.Text, @"^[A-Za-z][A-Za-z0-9_]{7,49}$"))
+            {
+                MessageBox.Show("Tên tài khoản phải bắt đầu bằng chữ cái latin, từ 8 - 50 kí tự, có thể bao gồm chữ cái latin, dấu gạch nối, gạch dưới và số tự nhiên", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (chkDoiMK.Checked)
+            {
+                if (txtMatKhau.Text.Trim().Length == 0)
+                {
+                    MessageBox.Show("Bạn chưa nhập mật khẩu", "Cảnh báo", MessageBoxButtons.OK,
+                     MessageBoxIcon.Warning);
+                    txtMatKhau.Focus();
+                    return;
+                }
+
+                if (!Regex.IsMatch(txtMatKhau.Text, @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,50}$"))
+                {
+                    MessageBox.Show("Mật khẩu phải có ít nhất 8 kí tự, bao gồm chữ hoa, chữ thường, số và kí tự đặc biệt", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+            if (cbChucVu.SelectedItem == null)
+            {
+                MessageBox.Show("Bạn chưa chọn chức vụ", "Cảnh báo", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                cbChucVu.Focus();
+                return;
+            }
+
+            if (txtEmail.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Bạn chưa nhập địa chỉ email", "Cảnh báo", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                txtTenTK.Focus();
+                return;
+            }
+
+            if (!Regex.IsMatch(txtEmail.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"))
+            {
+                MessageBox.Show("Địa chỉ email không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var luachon = MessageBox.Show("Bạn chắc chắn muốn sửa ?", "Xác nhận sửa", MessageBoxButtons.YesNo,
+               MessageBoxIcon.Question);
+            if (luachon != DialogResult.Yes) return;
+            try
+            {
+                using (var connection = new SqlConnection(GiaoDienChinh.ConnStr))
+                {
+                    connection.Open();
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText = chkDoiMK.Checked ? "update NguoiDung set MatKhau = @MatKhau, ChucVu = @ChucVu, Email = @Email, GhiChu = @GhiChu where TaiKhoan = @TaiKhoan" : "update NguoiDung set ChucVu = @ChucVu, Email = @Email, GhiChu = @GhiChu where TaiKhoan = @TaiKhoan"
+                    })
+                    {
+                        command.Parameters.AddWithValue("@MatKhau", DangNhap.GetMd5(txtMatKhau.Text));
+                        command.Parameters.AddWithValue("@ChucVu", cbChucVu.Text);
+                        command.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        command.Parameters.AddWithValue("@GhiChu", rtGhiChu.Text);
+                        command.Parameters.AddWithValue("@TaiKhoan", txtTenTK.Text);
+                        var rowsAffected = command.ExecuteNonQuery();
+                        MessageBox.Show(rowsAffected == 1 ? "Sửa thành công" : "Sửa thất bại",
+                            rowsAffected == 1 ? "Thông báo" : "Lỗi", MessageBoxButtons.OK,
+                            rowsAffected == 1 ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Sửa thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            GetData();
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            var luachon = MessageBox.Show("Bạn chắc chắn muốn xoá ?", "Xác nhận xoá", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+            if (luachon != DialogResult.Yes) return;
+            try
+            {
+                using (var connection = new SqlConnection(GiaoDienChinh.ConnStr))
+                {
+                    connection.Open();
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText = "delete from NguoiDung where TaiKhoan = @TaiKhoan"
+                    })
+                    {
+                        command.Parameters.AddWithValue("@TaiKhoan", dgvTaiKhoan.Rows[_index].Cells[0].Value);
+                        var rowsAffected = command.ExecuteNonQuery();
+                        MessageBox.Show(rowsAffected == 1 ? "Xoá thành công" : "Xoá thất bại",
+                            rowsAffected == 1 ? "Thông báo" : "Lỗi", MessageBoxButtons.OK,
+                            rowsAffected == 1 ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Xoá thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            GetData();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            txtMatKhau.UseSystemPasswordChar = !txtMatKhau.UseSystemPasswordChar;
+            button1.BackgroundImage = txtMatKhau.UseSystemPasswordChar ? Properties.Resources.hide : Properties.Resources.show;
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            if (!chkTenNV.Checked && !chkChucVu.Checked)
+            {
+                MessageBox.Show("Bạn chưa chọn cách nào để tìm kiếm", "Cảnh báo", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+            if (chkTenNV.Checked && (cbTimTheoTenNV.SelectedItem == null || cbTimTheoTenNV.GetItemText(cbTimTheoTenNV.SelectedItem) != cbTimTheoTenNV.Text))
+            {
+                MessageBox.Show("Bạn phải chọn hoặc chọn 1 nhân viên sau khi nhập từ danh sách", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (chkChucVu.Checked && cbTimTheoChucVu.SelectedItem == null)
+            {
+                MessageBox.Show("Bạn chưa chọn chức vụ để tìm", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            Enabled = false;
+            WindowState = FormWindowState.Maximized;
+            Activate();
+            progressBar1.Visible = true;
+            label14.Visible = true;
+            label14.BringToFront();
+            dgvTaiKhoan.Visible = false;
+            var x = cbTimTheoTenNV.SelectedValue;
+            var y = cbTimTheoChucVu.Text;
+            var bw = new BackgroundWorker
+            {
+                WorkerSupportsCancellation = true
+            };
+            bw.DoWork += (s1, e1) =>
+            {
+                using (var connection = new SqlConnection(GiaoDienChinh.ConnStr))
+                {
+                    connection.Open();
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText =
+                                   "select * from xemtk " +
+                                   (chkTenNV.Checked && chkChucVu.Checked
+                                       ? "where MaNV = @MaNV and [Chức vụ] = @ChucVu"
+                                       : chkTenNV.Checked
+                                           ? "where MaNV = @MaNV"
+                                           : chkChucVu.Checked
+                                               ? "where [Chức vụ] = @ChucVu"
+                                               : "")
+                    })
+                    {
+                        command.Parameters.AddWithValue("@MaNV", x);
+                        command.Parameters.AddWithValue("@ChucVu", y);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            using (var dt = new DataTable())
+                            {
+                                dt.Load(reader);
+                                e1.Result = dt;
+                            }
+                        }
+                    }
+                }
+            };
+            bw.RunWorkerCompleted += (s2, e2) =>
+            {
+                progressBar1.Visible = false;
+                label14.Visible = false;
+                if (e2.Error != null)
+                    MessageBox.Show("Có lỗi khi tải dữ liệu", "Thông báo", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                else
+                    dgvTaiKhoan.DataSource = e2.Result as DataTable;
+                dgvTaiKhoan.Visible = true;
+                Enabled = true;
+            };
+            bw.RunWorkerAsync();
         }
     }
 }

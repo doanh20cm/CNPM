@@ -41,6 +41,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.cbTenNV = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.rtGhiChu = new System.Windows.Forms.RichTextBox();
@@ -55,6 +56,10 @@
             this.txtTenTK = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvTaiKhoan = new System.Windows.Forms.DataGridView();
+            this.cbTimTheoChucVu = new System.Windows.Forms.ComboBox();
+            this.chkChucVu = new System.Windows.Forms.CheckBox();
+            this.chkTenNV = new System.Windows.Forms.CheckBox();
+            this.cbTimTheoTenNV = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTaiKhoan)).BeginInit();
@@ -89,6 +94,7 @@
             this.btnTimKiem.TabIndex = 22;
             this.btnTimKiem.Text = "Tìm kiếm";
             this.btnTimKiem.UseVisualStyleBackColor = true;
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
             // btnCapNhat
             // 
@@ -109,6 +115,7 @@
             this.btnXoa.TabIndex = 20;
             this.btnXoa.Text = "Xoá";
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnSua
             // 
@@ -119,6 +126,7 @@
             this.btnSua.TabIndex = 19;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnThem
             // 
@@ -132,7 +140,11 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbTimTheoTenNV);
+            this.groupBox2.Controls.Add(this.cbTimTheoChucVu);
             this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.chkChucVu);
+            this.groupBox2.Controls.Add(this.chkTenNV);
             this.groupBox2.Location = new System.Drawing.Point(715, 22);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(314, 187);
@@ -159,6 +171,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.cbTenNV);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.rtGhiChu);
@@ -178,6 +191,20 @@
             this.groupBox1.Size = new System.Drawing.Size(654, 187);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::Quan_li_nhan_su.Properties.Resources.hide;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(268, 82);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(18, 18);
+            this.button1.TabIndex = 23;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // cbTenNV
             // 
@@ -340,6 +367,60 @@
             this.dgvTaiKhoan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTaiKhoan_CellClick);
             this.dgvTaiKhoan.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvTaiKhoan_DataBindingComplete);
             // 
+            // cbTimTheoChucVu
+            // 
+            this.cbTimTheoChucVu.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbTimTheoChucVu.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbTimTheoChucVu.FormattingEnabled = true;
+            this.cbTimTheoChucVu.Items.AddRange(new object[] {
+            "Giám đốc",
+            "Quản trị bộ phận",
+            "Quản trị phòng ban",
+            "Kế toán",
+            "Quản trị nhân lực"});
+            this.cbTimTheoChucVu.Location = new System.Drawing.Point(60, 141);
+            this.cbTimTheoChucVu.MaxLength = 50;
+            this.cbTimTheoChucVu.Name = "cbTimTheoChucVu";
+            this.cbTimTheoChucVu.Size = new System.Drawing.Size(208, 21);
+            this.cbTimTheoChucVu.TabIndex = 27;
+            // 
+            // chkChucVu
+            // 
+            this.chkChucVu.AutoSize = true;
+            this.chkChucVu.Location = new System.Drawing.Point(60, 107);
+            this.chkChucVu.Name = "chkChucVu";
+            this.chkChucVu.Size = new System.Drawing.Size(81, 17);
+            this.chkChucVu.TabIndex = 26;
+            this.chkChucVu.Text = "Có chức vụ";
+            this.chkChucVu.UseVisualStyleBackColor = true;
+            // 
+            // chkTenNV
+            // 
+            this.chkTenNV.AutoSize = true;
+            this.chkTenNV.Location = new System.Drawing.Point(60, 37);
+            this.chkTenNV.Name = "chkTenNV";
+            this.chkTenNV.Size = new System.Drawing.Size(95, 17);
+            this.chkTenNV.TabIndex = 24;
+            this.chkTenNV.Text = "Của nhân viên";
+            this.chkTenNV.UseVisualStyleBackColor = true;
+            // 
+            // cbTimTheoTenNV
+            // 
+            this.cbTimTheoTenNV.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbTimTheoTenNV.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbTimTheoTenNV.FormattingEnabled = true;
+            this.cbTimTheoTenNV.Items.AddRange(new object[] {
+            "Giám đốc",
+            "Quản trị bộ phận",
+            "Quản trị phòng ban",
+            "Kế toán",
+            "Quản trị nhân lực"});
+            this.cbTimTheoTenNV.Location = new System.Drawing.Point(60, 74);
+            this.cbTimTheoTenNV.MaxLength = 50;
+            this.cbTimTheoTenNV.Name = "cbTimTheoTenNV";
+            this.cbTimTheoTenNV.Size = new System.Drawing.Size(208, 21);
+            this.cbTimTheoTenNV.TabIndex = 28;
+            // 
             // QLTaiKhoan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -403,5 +484,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbTenNV;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox cbTimTheoChucVu;
+        private System.Windows.Forms.CheckBox chkChucVu;
+        private System.Windows.Forms.CheckBox chkTenNV;
+        private System.Windows.Forms.ComboBox cbTimTheoTenNV;
     }
 }

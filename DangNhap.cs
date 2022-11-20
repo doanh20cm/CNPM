@@ -263,5 +263,11 @@ namespace Quan_li_nhan_su
                     MessageBoxIcon.Error);
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = !txtPassword.UseSystemPasswordChar;
+            button2.BackgroundImage = txtPassword.UseSystemPasswordChar ? Properties.Resources.hide : Properties.Resources.show;
+        }
     }
 }
