@@ -41,6 +41,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbTenNV = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.rtGhiChu = new System.Windows.Forms.RichTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -53,8 +55,6 @@
             this.txtTenTK = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvTaiKhoan = new System.Windows.Forms.DataGridView();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cbTenNV = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTaiKhoan)).BeginInit();
@@ -179,9 +179,28 @@
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             // 
+            // cbTenNV
+            // 
+            this.cbTenNV.FormattingEnabled = true;
+            this.cbTenNV.Location = new System.Drawing.Point(151, 141);
+            this.cbTenNV.MaxLength = 50;
+            this.cbTenNV.Name = "cbTenNV";
+            this.cbTenNV.Size = new System.Drawing.Size(137, 21);
+            this.cbTenNV.TabIndex = 22;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(53, 144);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(56, 13);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Nhân viên";
+            // 
             // rtGhiChu
             // 
             this.rtGhiChu.Location = new System.Drawing.Point(413, 117);
+            this.rtGhiChu.MaxLength = 50;
             this.rtGhiChu.Name = "rtGhiChu";
             this.rtGhiChu.Size = new System.Drawing.Size(183, 50);
             this.rtGhiChu.TabIndex = 20;
@@ -199,6 +218,7 @@
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(413, 75);
+            this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(183, 20);
             this.txtEmail.TabIndex = 18;
@@ -253,6 +273,7 @@
             // 
             this.txtMatKhau.Enabled = false;
             this.txtMatKhau.Location = new System.Drawing.Point(151, 81);
+            this.txtMatKhau.MaxLength = 50;
             this.txtMatKhau.Name = "txtMatKhau";
             this.txtMatKhau.Size = new System.Drawing.Size(137, 20);
             this.txtMatKhau.TabIndex = 13;
@@ -270,6 +291,7 @@
             // txtTenTK
             // 
             this.txtTenTK.Location = new System.Drawing.Point(151, 36);
+            this.txtTenTK.MaxLength = 50;
             this.txtTenTK.Name = "txtTenTK";
             this.txtTenTK.Size = new System.Drawing.Size(137, 20);
             this.txtTenTK.TabIndex = 11;
@@ -317,23 +339,6 @@
             this.dgvTaiKhoan.TabIndex = 15;
             this.dgvTaiKhoan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTaiKhoan_CellClick);
             this.dgvTaiKhoan.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvTaiKhoan_DataBindingComplete);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(53, 144);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(56, 13);
-            this.label8.TabIndex = 21;
-            this.label8.Text = "Nhân viên";
-            // 
-            // cbTenNV
-            // 
-            this.cbTenNV.FormattingEnabled = true;
-            this.cbTenNV.Location = new System.Drawing.Point(151, 141);
-            this.cbTenNV.Name = "cbTenNV";
-            this.cbTenNV.Size = new System.Drawing.Size(137, 21);
-            this.cbTenNV.TabIndex = 22;
             // 
             // QLTaiKhoan
             // 

@@ -465,6 +465,13 @@ namespace Quan_li_nhan_su
             })
             {
                 if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    if (new FileInfo(ofd.FileName).Length > 8 * 1024 * 1024)
+                    {
+                        MessageBox.Show("Kích cỡ ảnh quá lớn, hãy dùng ảnh nhỏ hơn 8MB", "Cảnh báo", MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                        return;
+                    }
                     try
                     {
                         pbAnhHoSo.Image = Image.FromFile(ofd.FileName);
@@ -473,6 +480,7 @@ namespace Quan_li_nhan_su
                     {
                         MessageBox.Show("Không thể dùng ảnh này", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                }
             }
         }
 
@@ -484,9 +492,16 @@ namespace Quan_li_nhan_su
         private void pbAnhHoSo_Click(object sender, EventArgs e)
         {
             pbAnhHoSo.Image.Save(Path.Combine(Path.GetTempPath(), "temp.png"));
-            Process.Start("rundll32.exe",
-                "\"C:\\Program Files (x86)\\Windows Photo Viewer\\PhotoViewer.dll\", ImageView_Fullscreen " +
-                Path.Combine(Path.GetTempPath(), "temp.png"));
+            using (var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "rundll32.exe",
+                    Arguments = "\"C:\\Program Files (x86)\\Windows Photo Viewer\\PhotoViewer.dll\", ImageView_Fullscreen " +
+                                Path.Combine(Path.GetTempPath(), "temp.png"),
+                    UseShellExecute = false
+                }
+            }) process.Start();
         }
 
         private void dgvHoSoNhanVien_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -502,7 +517,10 @@ namespace Quan_li_nhan_su
 
         private void button3_Click(object sender, EventArgs e)
         {
-            new Camera().ShowDialog();
+            var c = new Camera();
+            c.ShowDialog();
+            c.Dispose();
+            GC.Collect();
             if (AnhChup.Image == null) return;
             pbAnhHoSo.Image = AnhChup.Image;
             AnhChup.Image = null;

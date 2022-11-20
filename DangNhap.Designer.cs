@@ -66,6 +66,7 @@ namespace Quan_li_nhan_su
             // 
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(142, 93);
+            this.txtPassword.MaxLength = 50;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(151, 23);
             this.txtPassword.TabIndex = 3;
@@ -109,6 +110,7 @@ namespace Quan_li_nhan_su
             this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(142, 36);
+            this.comboBox1.MaxLength = 50;
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(151, 21);
             this.comboBox1.TabIndex = 8;

@@ -509,27 +509,27 @@ namespace Quan_li_nhan_su
 			qlpb.Show();
 		}
 
-        private void menuQLTaiKhoan_Click(object sender, EventArgs e)
-        {
-            label1.Visible = false;
-            label1.Visible = false;
-            label3.Visible = false;
-            label2.Visible = false;
+		private void menuQLTaiKhoan_Click(object sender, EventArgs e)
+		{
+			label1.Visible = false;
+			label1.Visible = false;
+			label3.Visible = false;
+			label2.Visible = false;
 
-            foreach (var f in MdiChildren)
-                if (f is QLTaiKhoan)
-                {
-                    f.WindowState = FormWindowState.Maximized;
+			foreach (var f in MdiChildren)
+				if (f is QLTaiKhoan)
+				{
+					f.WindowState = FormWindowState.Maximized;
 
-                    f.Activate();
-                    return;
-                }
+					f.Activate();
+					return;
+				}
 
-            var qltk = new QLTaiKhoan
-            {
-                MdiParent = this
-            };
-            qltk.Show();
-        }
-    }
+			var qltk = new QLTaiKhoan
+			{
+				MdiParent = this
+			};
+			qltk.Show();
+		}
+	}
 }

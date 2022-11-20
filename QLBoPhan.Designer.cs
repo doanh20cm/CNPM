@@ -31,8 +31,8 @@ namespace Quan_li_nhan_su
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvBoPhan = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -70,27 +70,27 @@ namespace Quan_li_nhan_su
             this.dgvBoPhan.AllowUserToDeleteRows = false;
             this.dgvBoPhan.AllowUserToResizeColumns = false;
             this.dgvBoPhan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBoPhan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBoPhan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvBoPhan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBoPhan.Location = new System.Drawing.Point(32, 285);
             this.dgvBoPhan.MultiSelect = false;
             this.dgvBoPhan.Name = "dgvBoPhan";
             this.dgvBoPhan.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBoPhan.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBoPhan.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvBoPhan.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvBoPhan.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvBoPhan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -128,6 +128,7 @@ namespace Quan_li_nhan_su
             // txtTenBoPhan
             // 
             this.txtTenBoPhan.Location = new System.Drawing.Point(145, 40);
+            this.txtTenBoPhan.MaxLength = 50;
             this.txtTenBoPhan.Name = "txtTenBoPhan";
             this.txtTenBoPhan.Size = new System.Drawing.Size(130, 20);
             this.txtTenBoPhan.TabIndex = 8;
@@ -135,6 +136,7 @@ namespace Quan_li_nhan_su
             // rtGhiChu
             // 
             this.rtGhiChu.Location = new System.Drawing.Point(474, 107);
+            this.rtGhiChu.MaxLength = 50;
             this.rtGhiChu.Name = "rtGhiChu";
             this.rtGhiChu.Size = new System.Drawing.Size(130, 51);
             this.rtGhiChu.TabIndex = 7;
@@ -152,6 +154,7 @@ namespace Quan_li_nhan_su
             // txtSDT
             // 
             this.txtSDT.Location = new System.Drawing.Point(474, 40);
+            this.txtSDT.MaxLength = 10;
             this.txtSDT.Name = "txtSDT";
             this.txtSDT.Size = new System.Drawing.Size(130, 20);
             this.txtSDT.TabIndex = 5;
@@ -245,6 +248,7 @@ namespace Quan_li_nhan_su
             // txtTimTen
             // 
             this.txtTimTen.Location = new System.Drawing.Point(162, 37);
+            this.txtTimTen.MaxLength = 50;
             this.txtTimTen.Name = "txtTimTen";
             this.txtTimTen.Size = new System.Drawing.Size(130, 20);
             this.txtTimTen.TabIndex = 2;

@@ -80,7 +80,14 @@ namespace Quan_li_nhan_su
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     pictureBox2.Image.Save(saveFileDialog1.FileName);
-                    Process.Start("explorer.exe", "/select," + saveFileDialog1.FileName);
+                    using (var process = new Process
+                    {
+                        StartInfo = new ProcessStartInfo
+                        {
+                            FileName = saveFileDialog1.FileName,
+                            UseShellExecute = true
+                        }
+                    }) process.Start();
                 }
             }
             catch (Exception)
@@ -150,9 +157,16 @@ namespace Quan_li_nhan_su
                 try
                 {
                     pictureBox2.Image.Save(Path.Combine(Path.GetTempPath(), "temp.png"));
-                    Process.Start("rundll32.exe",
-                        "\"C:\\Program Files (x86)\\Windows Photo Viewer\\PhotoViewer.dll\", ImageView_Fullscreen " +
-                        Path.Combine(Path.GetTempPath(), "temp.png"));
+                    using (var process = new Process
+                    {
+                        StartInfo = new ProcessStartInfo
+                        {
+                            FileName = "rundll32.exe",
+                            Arguments = "\"C:\\Program Files (x86)\\Windows Photo Viewer\\PhotoViewer.dll\", ImageView_Fullscreen " +
+                                Path.Combine(Path.GetTempPath(), "temp.png"),
+                            UseShellExecute = false
+                        }
+                    }) process.Start();
                 }
                 catch (Exception)
                 {
@@ -166,8 +180,6 @@ namespace Quan_li_nhan_su
         {
             QLHoSoNhanVien.AnhChup.Image = pictureBox2.Image;
             Close();
-            Dispose();
-            GC.Collect();
         }
     }
 }

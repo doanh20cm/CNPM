@@ -52,6 +52,7 @@ namespace Quan_li_nhan_su
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(121, 253);
+            this.txtPassword.MaxLength = 50;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(119, 20);
             this.txtPassword.TabIndex = 20;
@@ -69,6 +70,7 @@ namespace Quan_li_nhan_su
             // txtUsername
             // 
             this.txtUsername.Location = new System.Drawing.Point(121, 217);
+            this.txtUsername.MaxLength = 50;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(119, 20);
             this.txtUsername.TabIndex = 18;
@@ -85,6 +87,7 @@ namespace Quan_li_nhan_su
             // txtDatabase
             // 
             this.txtDatabase.Location = new System.Drawing.Point(121, 180);
+            this.txtDatabase.MaxLength = 50;
             this.txtDatabase.Name = "txtDatabase";
             this.txtDatabase.Size = new System.Drawing.Size(119, 20);
             this.txtDatabase.TabIndex = 16;
@@ -119,6 +122,7 @@ namespace Quan_li_nhan_su
             // txtIP
             // 
             this.txtIP.Location = new System.Drawing.Point(121, 103);
+            this.txtIP.MaxLength = 50;
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(119, 20);
             this.txtIP.TabIndex = 12;

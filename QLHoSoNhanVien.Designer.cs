@@ -32,7 +32,7 @@ namespace Quan_li_nhan_su
 		/// </summary>
 		private void InitializeComponent()
 		{
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvHoSoNhanVien = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -91,14 +91,14 @@ namespace Quan_li_nhan_su
             this.dgvHoSoNhanVien.MultiSelect = false;
             this.dgvHoSoNhanVien.Name = "dgvHoSoNhanVien";
             this.dgvHoSoNhanVien.ReadOnly = true;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvHoSoNhanVien.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvHoSoNhanVien.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvHoSoNhanVien.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvHoSoNhanVien.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvHoSoNhanVien.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -218,6 +218,7 @@ namespace Quan_li_nhan_su
             // rtGhiChu
             // 
             this.rtGhiChu.Location = new System.Drawing.Point(444, 143);
+            this.rtGhiChu.MaxLength = 50;
             this.rtGhiChu.Name = "rtGhiChu";
             this.rtGhiChu.Size = new System.Drawing.Size(120, 20);
             this.rtGhiChu.TabIndex = 20;
@@ -235,6 +236,7 @@ namespace Quan_li_nhan_su
             // txtHocVan
             // 
             this.txtHocVan.Location = new System.Drawing.Point(444, 70);
+            this.txtHocVan.MaxLength = 50;
             this.txtHocVan.Name = "txtHocVan";
             this.txtHocVan.Size = new System.Drawing.Size(120, 20);
             this.txtHocVan.TabIndex = 18;
@@ -251,6 +253,7 @@ namespace Quan_li_nhan_su
             // txtTonGiao
             // 
             this.txtTonGiao.Location = new System.Drawing.Point(296, 143);
+            this.txtTonGiao.MaxLength = 50;
             this.txtTonGiao.Name = "txtTonGiao";
             this.txtTonGiao.Size = new System.Drawing.Size(120, 20);
             this.txtTonGiao.TabIndex = 15;
@@ -267,6 +270,7 @@ namespace Quan_li_nhan_su
             // txtDanToc
             // 
             this.txtDanToc.Location = new System.Drawing.Point(296, 106);
+            this.txtDanToc.MaxLength = 50;
             this.txtDanToc.Name = "txtDanToc";
             this.txtDanToc.Size = new System.Drawing.Size(120, 20);
             this.txtDanToc.TabIndex = 13;
@@ -292,6 +296,7 @@ namespace Quan_li_nhan_su
             // txtSDT
             // 
             this.txtSDT.Location = new System.Drawing.Point(296, 33);
+            this.txtSDT.MaxLength = 50;
             this.txtSDT.Name = "txtSDT";
             this.txtSDT.Size = new System.Drawing.Size(120, 20);
             this.txtSDT.TabIndex = 9;
@@ -308,6 +313,7 @@ namespace Quan_li_nhan_su
             // txtDiaChi
             // 
             this.txtDiaChi.Location = new System.Drawing.Point(78, 143);
+            this.txtDiaChi.MaxLength = 50;
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.Size = new System.Drawing.Size(120, 20);
             this.txtDiaChi.TabIndex = 7;
@@ -324,6 +330,7 @@ namespace Quan_li_nhan_su
             // txtNoiSinh
             // 
             this.txtNoiSinh.Location = new System.Drawing.Point(78, 109);
+            this.txtNoiSinh.MaxLength = 50;
             this.txtNoiSinh.Name = "txtNoiSinh";
             this.txtNoiSinh.Size = new System.Drawing.Size(120, 20);
             this.txtNoiSinh.TabIndex = 5;
@@ -357,6 +364,7 @@ namespace Quan_li_nhan_su
             // txtHoTen
             // 
             this.txtHoTen.Location = new System.Drawing.Point(78, 33);
+            this.txtHoTen.MaxLength = 50;
             this.txtHoTen.Name = "txtHoTen";
             this.txtHoTen.Size = new System.Drawing.Size(120, 20);
             this.txtHoTen.TabIndex = 1;
@@ -395,6 +403,7 @@ namespace Quan_li_nhan_su
             // txtTimTheoHocVan
             // 
             this.txtTimTheoHocVan.Location = new System.Drawing.Point(29, 133);
+            this.txtTimTheoHocVan.MaxLength = 50;
             this.txtTimTheoHocVan.Name = "txtTimTheoHocVan";
             this.txtTimTheoHocVan.Size = new System.Drawing.Size(120, 20);
             this.txtTimTheoHocVan.TabIndex = 4;
@@ -422,6 +431,7 @@ namespace Quan_li_nhan_su
             // txtTimTheoTen
             // 
             this.txtTimTheoTen.Location = new System.Drawing.Point(29, 66);
+            this.txtTimTheoTen.MaxLength = 50;
             this.txtTimTheoTen.Name = "txtTimTheoTen";
             this.txtTimTheoTen.Size = new System.Drawing.Size(120, 20);
             this.txtTimTheoTen.TabIndex = 1;

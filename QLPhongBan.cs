@@ -156,15 +156,13 @@ namespace Quan_li_nhan_su
                 txtTenPhongBan.Focus();
                 return;
             }
-            if (cbTenBoPhan.SelectedValue == null)
+
+            if (cbTenBoPhan.SelectedItem == null || cbTenBoPhan.GetItemText(cbTenBoPhan.SelectedItem) != cbTenBoPhan.Text)
             {
-                {
-                    MessageBox.Show("Bạn chưa chọn tên bộ phận", "Cảnh báo", MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    cbTenBoPhan.Focus();
-                    return;
-                }
+                MessageBox.Show("Bạn phải chọn hoặc chọn 1 bộ phận sau khi nhập từ danh sách", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
             if (txtTruongPhong.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập tên trưởng phòng", "Cảnh báo", MessageBoxButtons.OK,
@@ -227,14 +225,10 @@ namespace Quan_li_nhan_su
                 txtTenPhongBan.Focus();
                 return;
             }
-            if (cbTenBoPhan.SelectedValue == null)
+            if (cbTenBoPhan.SelectedItem == null || cbTenBoPhan.GetItemText(cbTenBoPhan.SelectedItem) != cbTenBoPhan.Text)
             {
-                {
-                    MessageBox.Show("Bạn chưa chọn tên bộ phận", "Cảnh báo", MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    cbTenBoPhan.Focus();
-                    return;
-                }
+                MessageBox.Show("Bạn phải chọn hoặc chọn 1 bộ phận sau khi nhập từ danh sách", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             if (txtTruongPhong.Text.Trim().Length == 0)
             {
@@ -338,10 +332,9 @@ namespace Quan_li_nhan_su
                     MessageBoxIcon.Warning);
                 return;
             }
-            if (chkTenBoPhan.Checked && cbTimTheoTenBoPhan.SelectedValue == null)
+            if (chkTenBoPhan.Checked && (cbTimTheoTenBoPhan.SelectedItem == null || cbTimTheoTenBoPhan.GetItemText(cbTimTheoTenBoPhan.SelectedItem) != cbTimTheoTenBoPhan.Text))
             {
-                MessageBox.Show("Bạn chưa chọn loại tên bộ phận để tìm kiếm", "Cảnh báo", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                MessageBox.Show("Bạn phải chọn hoặc chọn 1 nhân viên sau khi nhập từ danh sách", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             Enabled = false;

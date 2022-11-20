@@ -120,6 +120,7 @@ namespace Quan_li_nhan_su
             // rtGhiChu
             // 
             this.rtGhiChu.Location = new System.Drawing.Point(620, 75);
+            this.rtGhiChu.MaxLength = 50;
             this.rtGhiChu.Name = "rtGhiChu";
             this.rtGhiChu.Size = new System.Drawing.Size(82, 87);
             this.rtGhiChu.TabIndex = 13;
@@ -137,6 +138,7 @@ namespace Quan_li_nhan_su
             // txtThoiGian
             // 
             this.txtThoiGian.Location = new System.Drawing.Point(443, 142);
+            this.txtThoiGian.MaxLength = 50;
             this.txtThoiGian.Name = "txtThoiGian";
             this.txtThoiGian.Size = new System.Drawing.Size(149, 20);
             this.txtThoiGian.TabIndex = 11;
@@ -187,6 +189,7 @@ namespace Quan_li_nhan_su
             // txtLoaiHopDong
             // 
             this.txtLoaiHopDong.Location = new System.Drawing.Point(140, 142);
+            this.txtLoaiHopDong.MaxLength = 50;
             this.txtLoaiHopDong.Name = "txtLoaiHopDong";
             this.txtLoaiHopDong.Size = new System.Drawing.Size(161, 20);
             this.txtLoaiHopDong.TabIndex = 5;
@@ -206,6 +209,7 @@ namespace Quan_li_nhan_su
             this.cbTenPhongBan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbTenPhongBan.FormattingEnabled = true;
             this.cbTenPhongBan.Location = new System.Drawing.Point(140, 92);
+            this.cbTenPhongBan.MaxLength = 50;
             this.cbTenPhongBan.Name = "cbTenPhongBan";
             this.cbTenPhongBan.Size = new System.Drawing.Size(161, 21);
             this.cbTenPhongBan.TabIndex = 3;
@@ -225,9 +229,11 @@ namespace Quan_li_nhan_su
             this.cbHoTenNV.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbHoTenNV.FormattingEnabled = true;
             this.cbHoTenNV.Location = new System.Drawing.Point(140, 45);
+            this.cbHoTenNV.MaxLength = 50;
             this.cbHoTenNV.Name = "cbHoTenNV";
             this.cbHoTenNV.Size = new System.Drawing.Size(161, 21);
             this.cbHoTenNV.TabIndex = 1;
+            this.cbHoTenNV.SelectedIndexChanged += new System.EventHandler(this.cbHoTenNV_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -254,6 +260,7 @@ namespace Quan_li_nhan_su
             // txtTimTenHopDong
             // 
             this.txtTimTenHopDong.Location = new System.Drawing.Point(24, 142);
+            this.txtTimTenHopDong.MaxLength = 50;
             this.txtTimTenHopDong.Name = "txtTimTenHopDong";
             this.txtTimTenHopDong.Size = new System.Drawing.Size(184, 20);
             this.txtTimTenHopDong.TabIndex = 3;
@@ -274,9 +281,11 @@ namespace Quan_li_nhan_su
             this.cbTimTenPhongBan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbTimTenPhongBan.FormattingEnabled = true;
             this.cbTimTenPhongBan.Location = new System.Drawing.Point(24, 75);
+            this.cbTimTenPhongBan.MaxLength = 50;
             this.cbTimTenPhongBan.Name = "cbTimTenPhongBan";
             this.cbTimTenPhongBan.Size = new System.Drawing.Size(183, 21);
             this.cbTimTenPhongBan.TabIndex = 1;
+            this.cbTimTenPhongBan.SelectedIndexChanged += new System.EventHandler(this.cbTimTenPhongBan_SelectedIndexChanged);
             // 
             // chkTheoTenPhongBan
             // 

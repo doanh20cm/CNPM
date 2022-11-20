@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvPhongBan = new System.Windows.Forms.DataGridView();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.btnCapNhat = new System.Windows.Forms.Button();
@@ -37,6 +37,10 @@
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbTimTheoTenBoPhan = new System.Windows.Forms.ComboBox();
+            this.chkTenBoPhan = new System.Windows.Forms.CheckBox();
+            this.txtTimTheoTenPhongBan = new System.Windows.Forms.TextBox();
+            this.chkTenPhongBan = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rtGhiChu = new System.Windows.Forms.RichTextBox();
@@ -54,10 +58,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.chkTenPhongBan = new System.Windows.Forms.CheckBox();
-            this.txtTimTheoTenPhongBan = new System.Windows.Forms.TextBox();
-            this.chkTenBoPhan = new System.Windows.Forms.CheckBox();
-            this.cbTimTheoTenBoPhan = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhongBan)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -68,27 +68,27 @@
             this.dgvPhongBan.AllowUserToAddRows = false;
             this.dgvPhongBan.AllowUserToDeleteRows = false;
             this.dgvPhongBan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPhongBan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPhongBan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPhongBan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPhongBan.Location = new System.Drawing.Point(32, 285);
             this.dgvPhongBan.MultiSelect = false;
             this.dgvPhongBan.Name = "dgvPhongBan";
             this.dgvPhongBan.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPhongBan.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPhongBan.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPhongBan.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvPhongBan.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgvPhongBan.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -164,6 +164,45 @@
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             // 
+            // cbTimTheoTenBoPhan
+            // 
+            this.cbTimTheoTenBoPhan.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbTimTheoTenBoPhan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbTimTheoTenBoPhan.FormattingEnabled = true;
+            this.cbTimTheoTenBoPhan.Location = new System.Drawing.Point(48, 149);
+            this.cbTimTheoTenBoPhan.MaxLength = 50;
+            this.cbTimTheoTenBoPhan.Name = "cbTimTheoTenBoPhan";
+            this.cbTimTheoTenBoPhan.Size = new System.Drawing.Size(208, 21);
+            this.cbTimTheoTenBoPhan.TabIndex = 4;
+            // 
+            // chkTenBoPhan
+            // 
+            this.chkTenBoPhan.AutoSize = true;
+            this.chkTenBoPhan.Location = new System.Drawing.Point(48, 113);
+            this.chkTenBoPhan.Name = "chkTenBoPhan";
+            this.chkTenBoPhan.Size = new System.Drawing.Size(99, 17);
+            this.chkTenBoPhan.TabIndex = 3;
+            this.chkTenBoPhan.Text = "Thuộc bộ phận";
+            this.chkTenBoPhan.UseVisualStyleBackColor = true;
+            // 
+            // txtTimTheoTenPhongBan
+            // 
+            this.txtTimTheoTenPhongBan.Location = new System.Drawing.Point(48, 72);
+            this.txtTimTheoTenPhongBan.MaxLength = 50;
+            this.txtTimTheoTenPhongBan.Name = "txtTimTheoTenPhongBan";
+            this.txtTimTheoTenPhongBan.Size = new System.Drawing.Size(208, 20);
+            this.txtTimTheoTenPhongBan.TabIndex = 2;
+            // 
+            // chkTenPhongBan
+            // 
+            this.chkTenPhongBan.AutoSize = true;
+            this.chkTenPhongBan.Location = new System.Drawing.Point(48, 35);
+            this.chkTenPhongBan.Name = "chkTenPhongBan";
+            this.chkTenPhongBan.Size = new System.Drawing.Size(111, 17);
+            this.chkTenPhongBan.TabIndex = 1;
+            this.chkTenPhongBan.Text = "Có tên phòng ban";
+            this.chkTenPhongBan.UseVisualStyleBackColor = true;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -197,6 +236,7 @@
             // rtGhiChu
             // 
             this.rtGhiChu.Location = new System.Drawing.Point(468, 130);
+            this.rtGhiChu.MaxLength = 50;
             this.rtGhiChu.Name = "rtGhiChu";
             this.rtGhiChu.Size = new System.Drawing.Size(140, 40);
             this.rtGhiChu.TabIndex = 21;
@@ -214,6 +254,7 @@
             // txtSDT
             // 
             this.txtSDT.Location = new System.Drawing.Point(468, 90);
+            this.txtSDT.MaxLength = 50;
             this.txtSDT.Name = "txtSDT";
             this.txtSDT.Size = new System.Drawing.Size(140, 20);
             this.txtSDT.TabIndex = 19;
@@ -230,6 +271,7 @@
             // txtTruongPhong
             // 
             this.txtTruongPhong.Location = new System.Drawing.Point(468, 48);
+            this.txtTruongPhong.MaxLength = 50;
             this.txtTruongPhong.Name = "txtTruongPhong";
             this.txtTruongPhong.Size = new System.Drawing.Size(140, 20);
             this.txtTruongPhong.TabIndex = 17;
@@ -266,6 +308,7 @@
             this.cbTenBoPhan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbTenBoPhan.FormattingEnabled = true;
             this.cbTenBoPhan.Location = new System.Drawing.Point(154, 94);
+            this.cbTenBoPhan.MaxLength = 50;
             this.cbTenBoPhan.Name = "cbTenBoPhan";
             this.cbTenBoPhan.Size = new System.Drawing.Size(140, 21);
             this.cbTenBoPhan.TabIndex = 13;
@@ -282,6 +325,7 @@
             // txtTenPhongBan
             // 
             this.txtTenPhongBan.Location = new System.Drawing.Point(154, 48);
+            this.txtTenPhongBan.MaxLength = 50;
             this.txtTenPhongBan.Name = "txtTenPhongBan";
             this.txtTenPhongBan.Size = new System.Drawing.Size(140, 20);
             this.txtTenPhongBan.TabIndex = 11;
@@ -324,43 +368,6 @@
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 20;
             this.progressBar1.Visible = false;
-            // 
-            // chkTenPhongBan
-            // 
-            this.chkTenPhongBan.AutoSize = true;
-            this.chkTenPhongBan.Location = new System.Drawing.Point(48, 35);
-            this.chkTenPhongBan.Name = "chkTenPhongBan";
-            this.chkTenPhongBan.Size = new System.Drawing.Size(111, 17);
-            this.chkTenPhongBan.TabIndex = 1;
-            this.chkTenPhongBan.Text = "Có tên phòng ban";
-            this.chkTenPhongBan.UseVisualStyleBackColor = true;
-            // 
-            // txtTimTheoTenPhongBan
-            // 
-            this.txtTimTheoTenPhongBan.Location = new System.Drawing.Point(48, 72);
-            this.txtTimTheoTenPhongBan.Name = "txtTimTheoTenPhongBan";
-            this.txtTimTheoTenPhongBan.Size = new System.Drawing.Size(208, 20);
-            this.txtTimTheoTenPhongBan.TabIndex = 2;
-            // 
-            // chkTenBoPhan
-            // 
-            this.chkTenBoPhan.AutoSize = true;
-            this.chkTenBoPhan.Location = new System.Drawing.Point(48, 113);
-            this.chkTenBoPhan.Name = "chkTenBoPhan";
-            this.chkTenBoPhan.Size = new System.Drawing.Size(99, 17);
-            this.chkTenBoPhan.TabIndex = 3;
-            this.chkTenBoPhan.Text = "Thuộc bộ phận";
-            this.chkTenBoPhan.UseVisualStyleBackColor = true;
-            // 
-            // cbTimTheoTenBoPhan
-            // 
-            this.cbTimTheoTenBoPhan.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbTimTheoTenBoPhan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbTimTheoTenBoPhan.FormattingEnabled = true;
-            this.cbTimTheoTenBoPhan.Location = new System.Drawing.Point(48, 149);
-            this.cbTimTheoTenBoPhan.Name = "cbTimTheoTenBoPhan";
-            this.cbTimTheoTenBoPhan.Size = new System.Drawing.Size(208, 21);
-            this.cbTimTheoTenBoPhan.TabIndex = 4;
             // 
             // QLPhongBan
             // 
