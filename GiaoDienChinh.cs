@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Quan_li_nhan_su
@@ -44,25 +45,25 @@ namespace Quan_li_nhan_su
 
 		public GiaoDienChinh()
 		{
-			InitializeComponent();
+			InitializeComponent();			
+            _time.Interval = 1000;
+            _time.Tick += time_Tick;
+            _time.Start();
+            if (!File.Exists("config.bin"))
+			{
+                MessageBox.Show("Không tìm thấy cấu hình kết nối, vui lòng liên hệ bộ phận IT của công ty", "Cảnh báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+            }
 			try
 			{
 				DecryptString_Aes(Key, Iv);
-			}
-			catch (FileNotFoundException)
-			{
-				MessageBox.Show("Không tìm thấy cấu hình kết nối, vui lòng liên hệ bộ phận IT của công ty", "Cảnh báo",
-					MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 			catch (Exception)
 			{
 				MessageBox.Show("Đã có lỗi xảy ra khi tải cấu hình kết nối, vui lòng liên hệ bộ phận IT của công ty!",
 					"Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
-
-			_time.Interval = 1000;
-			_time.Tick += time_Tick;
-			_time.Start();
 		}
 
 		private static void DecryptString_Aes(byte[] key, byte[] iv)
@@ -105,12 +106,13 @@ namespace Quan_li_nhan_su
 
 		private void SetQuyen()
 		{
-			switch (Chucvu)
+            menuDangNhap.Enabled = false;
+            menuDoiMatKhau.Enabled = true;
+            menuDangXuat.Enabled = true;
+			mstCaiDat.Enabled = false;
+            switch (Chucvu)
 			{
-				case "Giám đốc":
-					menuDangNhap.Enabled = false;
-					menuDoiMatKhau.Enabled = true;
-					menuDangXuat.Enabled = true;
+				case "Giám đốc":			
 					mstQuanLy.Enabled = true;
 					menuQLBoPhan.Enabled = true;
 					menuQLPhongBan.Enabled = true;
@@ -122,48 +124,49 @@ namespace Quan_li_nhan_su
 					menuBCNhanVien.Enabled = true;
 					mstThongKe.Enabled = true;
 					break;
-				case "Quản trị bộ phận":
-					menuDangNhap.Enabled = false;
-					menuDoiMatKhau.Enabled = true;
-					menuDangXuat.Enabled = true;
+                case "Phó giám đốc":
+                    mstQuanLy.Enabled = true;
+                    menuQLBoPhan.Enabled = true;
+                    menuQLPhongBan.Enabled = true;
+                    menuQLNhanVienPhongBan.Enabled = true;
+                    menuQLHoSo.Enabled = true;
+                    menuQLLuong.Enabled = true;
+                    menuBCLuong.Enabled = true;
+                    menuBCNhanVien.Enabled = true;
+                    mstThongKe.Enabled = true;
+                    break;
+                case "Quản trị bộ phận":
 					menuQLPhongBan.Enabled = true;
 					mstQuanLy.Enabled = true;
 					break;
 				case "Quản trị phòng ban":
-					menuDangNhap.Enabled = false;
-					menuDoiMatKhau.Enabled = true;
-					menuDangXuat.Enabled = true;
 					menuQLNhanVienPhongBan.Enabled = true;
 					mstQuanLy.Enabled = true;
 					break;
 				case "Kế toán":
-					menuDangNhap.Enabled = false;
-					menuDoiMatKhau.Enabled = true;
-					menuDangXuat.Enabled = true;
 					mstQuanLy.Enabled = true;
 					menuQLLuong.Enabled = true;
 					break;
 				case "Quản trị nhân lực":
-					menuDangNhap.Enabled = false;
-					menuDoiMatKhau.Enabled = true;
-					menuDangXuat.Enabled = true;
 					mstQuanLy.Enabled = true;
 					menuQLHoSo.Enabled = true;
 					break;
 				default:
-					menuDangNhap.Enabled = true;
-					menuDangXuat.Enabled = false;
-					menuDoiMatKhau.Enabled = false;
-					mstQuanLy.Enabled = false;
-					mstThongKe.Enabled = false;
-					menuQLBoPhan.Enabled = false;
-					menuQLPhongBan.Enabled = false;
-					menuQLHoSo.Enabled = false;
-					menuQLLuong.Enabled = false;
-					menuQLTaiKhoan.Enabled = false;
-					menuBCLuong.Enabled = false;
-					menuBCNhanVien.Enabled = false;
-					break;
+                    menuDangNhap.Enabled = true;
+                    menuDoiMatKhau.Enabled = false;
+                    menuDangXuat.Enabled = false;
+                    mstCaiDat.Enabled = true;
+                    mstQuanLy.Enabled = false;
+                    menuQLBoPhan.Enabled = false;
+                    menuQLPhongBan.Enabled = false;
+                    menuQLNhanVienPhongBan.Enabled = false;
+                    menuQLHoSo.Enabled = false;
+                    menuQLLuong.Enabled = false;
+                    menuQLTaiKhoan.Enabled = false;
+                    menuBCLuong.Enabled = false;
+                    menuBCNhanVien.Enabled = false;
+                    mstThongKe.Enabled = false;
+                    break;
 			}
 		}
 
@@ -187,7 +190,7 @@ namespace Quan_li_nhan_su
 			DongForm();
 			SetQuyen();
 			MessageBox.Show("Đăng xuất thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-			GC.Collect();
+            GC.Collect();
 
 		}
 
@@ -244,7 +247,13 @@ namespace Quan_li_nhan_su
 				return;
 			}
 
-			bool ableToChangePass;
+            if (!Regex.IsMatch(newPass, @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,50}$"))
+            {
+                MessageBox.Show("Mật khẩu phải có ít nhất 8 kí tự, bao gồm chữ hoa, chữ thường, số và kí tự đặc biệt", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            bool ableToChangePass;
 			try
 			{
 				using (var connection = new SqlConnection(ConnStr))
@@ -328,13 +337,12 @@ namespace Quan_li_nhan_su
 			foreach (var f in MdiChildren)
 				if (f is QLHoSoNhanVien)
 				{
-					f.WindowState = FormWindowState.Maximized;
-
+					f.Visible = false;
 					f.Activate();
+                    f.WindowState = FormWindowState.Maximized;
+					f.Visible = true;
 					return;
 				}
-
-
 			var qlhsnv = new QLHoSoNhanVien
 			{
 				MdiParent = this
@@ -351,11 +359,12 @@ namespace Quan_li_nhan_su
 			foreach (var f in MdiChildren)
 				if (f is QLNhanVienPhongBan)
 				{
-					f.WindowState = FormWindowState.Maximized;
-
-					f.Activate();
-					return;
-				}
+                    f.Visible = false;
+                    f.Activate();
+                    f.WindowState = FormWindowState.Maximized;
+                    f.Visible = true;
+                    return;
+                }
 
 			var qlnvpb = new QLNhanVienPhongBan
 			{
@@ -460,11 +469,12 @@ namespace Quan_li_nhan_su
 			foreach (var f in MdiChildren)
 				if (f is QLBoPhan)
 				{
-					f.WindowState = FormWindowState.Maximized;
-
-					f.Activate();
-					return;
-				}
+                    f.Visible = false;
+                    f.Activate();
+                    f.WindowState = FormWindowState.Maximized;
+                    f.Visible = true;
+                    return;
+                }
 
 
 			var qlbp = new QLBoPhan
@@ -496,11 +506,12 @@ namespace Quan_li_nhan_su
 			foreach (var f in MdiChildren)
 				if (f is QLPhongBan)
 				{
-					f.WindowState = FormWindowState.Maximized;
-
-					f.Activate();
-					return;
-				}
+                    f.Visible = false;
+                    f.Activate();
+                    f.WindowState = FormWindowState.Maximized;
+                    f.Visible = true;
+                    return;
+                }
 
 
 			var qlpb = new QLPhongBan
@@ -520,11 +531,12 @@ namespace Quan_li_nhan_su
 			foreach (var f in MdiChildren)
 				if (f is QLTaiKhoan)
 				{
-					f.WindowState = FormWindowState.Maximized;
-
-					f.Activate();
-					return;
-				}
+                    f.Visible = false;
+                    f.Activate();
+                    f.WindowState = FormWindowState.Maximized;
+                    f.Visible = true;
+                    return;
+                }
 
 			var qltk = new QLTaiKhoan
 			{
@@ -532,5 +544,58 @@ namespace Quan_li_nhan_su
 			};
 			qltk.Show();
 		}
-	}
+
+        private void menuQLLuong_Click(object sender, EventArgs e)
+        {
+            label1.Visible = false;
+            label1.Visible = false;
+            label3.Visible = false;
+            label2.Visible = false;
+
+            foreach (var f in MdiChildren)
+                if (f is QLLuong)
+                {
+                    f.Visible = false;
+                    f.Activate();
+                    f.WindowState = FormWindowState.Maximized;
+                    f.Visible = true;
+                    return;
+                }
+
+            var qll = new QLLuong
+            {
+                MdiParent = this
+            };
+            qll.Show();
+        }
+
+        private void GiaoDienChinh_Load(object sender, EventArgs e)
+        {
+            label1.Parent = label2.Parent = label3.Parent = this;
+            label1.BackColor = label2.BackColor = label3.BackColor = Color.Transparent;
+        }
+
+        private void GiaoDienChinh_Resize(object sender, EventArgs e)
+        {
+			if(WindowState == FormWindowState.Minimized)
+			{
+                Hide();
+				if (notifyIcon1.Visible) return;
+                notifyIcon1.Visible = true;
+                notifyIcon1.ShowBalloonTip(3000);
+            }
+        }
+
+        private void notifyIcon1_Click(object sender, EventArgs e)
+        {
+			notifyIcon1.Visible = false;
+			Show();
+            WindowState = FormWindowState.Normal;
+        }
+
+        private void notifyIcon1_BalloonTipClicked(object sender, EventArgs e)
+        {
+			notifyIcon1.Visible = true;
+        }
+    }
 }

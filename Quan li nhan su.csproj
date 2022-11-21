@@ -107,6 +107,12 @@
     <Compile Include="QLHoSoNhanVien.Designer.cs">
       <DependentUpon>QLHoSoNhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="QLLuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QLLuong.Designer.cs">
+      <DependentUpon>QLLuong.cs</DependentUpon>
+    </Compile>
     <Compile Include="QLNhanVienPhongBan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QLHoSoNhanVien.resx">
       <DependentUpon>QLHoSoNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QLLuong.resx">
+      <DependentUpon>QLLuong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QLNhanVienPhongBan.resx">
       <DependentUpon>QLNhanVienPhongBan.cs</DependentUpon>

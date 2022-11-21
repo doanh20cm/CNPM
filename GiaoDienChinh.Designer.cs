@@ -31,6 +31,7 @@ namespace Quan_li_nhan_su
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GiaoDienChinh));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mstTaiKhoan = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +52,7 @@ namespace Quan_li_nhan_su
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,6 +156,7 @@ namespace Quan_li_nhan_su
             this.menuQLLuong.Name = "menuQLLuong";
             this.menuQLLuong.Size = new System.Drawing.Size(189, 22);
             this.menuQLLuong.Text = "Lương nhân viên";
+            this.menuQLLuong.Click += new System.EventHandler(this.menuQLLuong_Click);
             // 
             // menuQLTaiKhoan
             // 
@@ -198,10 +201,10 @@ namespace Quan_li_nhan_su
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BackColor = System.Drawing.SystemColors.Control;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(426, 80);
+            this.label1.Location = new System.Drawing.Point(430, 80);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(204, 65);
             this.label1.TabIndex = 2;
@@ -222,10 +225,20 @@ namespace Quan_li_nhan_su
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(380, 160);
+            this.label3.Location = new System.Drawing.Point(375, 160);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 25);
             this.label3.TabIndex = 5;
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.notifyIcon1.BalloonTipText = "Chương trình sẽ tiếp tục chạy nền khi ẩn. Bạn có thể tìm nó ở System Tray";
+            this.notifyIcon1.BalloonTipTitle = "Nhắc nhở";
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "Quản lý nhân sự AnPhatComputer";
+            this.notifyIcon1.BalloonTipClicked += new System.EventHandler(this.notifyIcon1_BalloonTipClicked);
+            this.notifyIcon1.Click += new System.EventHandler(this.notifyIcon1_Click);
             // 
             // GiaoDienChinh
             // 
@@ -248,6 +261,8 @@ namespace Quan_li_nhan_su
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Phần mềm quản lý nhân sự AnPhatComputer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GiaoDienChinh_FormClosing);
+            this.Load += new System.EventHandler(this.GiaoDienChinh_Load);
+            this.Resize += new System.EventHandler(this.GiaoDienChinh_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -276,5 +291,6 @@ namespace Quan_li_nhan_su
         private Label label2;
         private Label label3;
         private ToolStripMenuItem mstCaiDat;
+        private NotifyIcon notifyIcon1;
     }
 }

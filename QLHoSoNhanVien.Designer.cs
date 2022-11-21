@@ -538,6 +538,7 @@ namespace Quan_li_nhan_su
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.QLHoSoNhanVien_Load);
             this.Shown += new System.EventHandler(this.QLHoSoNhanVien_Shown);
+            this.Enter += new System.EventHandler(this.QLHoSoNhanVien_Enter);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoSoNhanVien)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

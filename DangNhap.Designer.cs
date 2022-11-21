@@ -70,7 +70,7 @@ namespace Quan_li_nhan_su
             this.txtPassword.MaxLength = 50;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(151, 23);
-            this.txtPassword.TabIndex = 3;
+            this.txtPassword.TabIndex = 2;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // btnLogin
@@ -92,7 +92,7 @@ namespace Quan_li_nhan_su
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(97, 33);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar1.TabIndex = 5;
+            this.progressBar1.TabIndex = 3;
             this.progressBar1.Visible = false;
             // 
             // btnRemoveSaved
@@ -100,7 +100,7 @@ namespace Quan_li_nhan_su
             this.btnRemoveSaved.Location = new System.Drawing.Point(43, 140);
             this.btnRemoveSaved.Name = "btnRemoveSaved";
             this.btnRemoveSaved.Size = new System.Drawing.Size(75, 23);
-            this.btnRemoveSaved.TabIndex = 7;
+            this.btnRemoveSaved.TabIndex = 4;
             this.btnRemoveSaved.Text = "Bỏ lưu";
             this.btnRemoveSaved.UseVisualStyleBackColor = true;
             this.btnRemoveSaved.Click += new System.EventHandler(this.btnRemoveSaved_Click);
@@ -114,14 +114,14 @@ namespace Quan_li_nhan_su
             this.comboBox1.MaxLength = 50;
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(151, 21);
-            this.comboBox1.TabIndex = 8;
+            this.comboBox1.TabIndex = 1;
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(218, 140);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 9;
+            this.button1.TabIndex = 5;
             this.button1.Text = "Bỏ lưu tất cả";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);

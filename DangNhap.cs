@@ -84,18 +84,21 @@ namespace Quan_li_nhan_su
             if (taikhoan.Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập tài khoản!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                comboBox1.Focus();
                 return;
             }
 
             if (matkhau.Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập mật khẩu!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPassword.Focus();
                 return;
             }
 
             if (!Regex.IsMatch(taikhoan, @"^[A-Za-z][A-Za-z0-9_]{7,49}$"))
             {
                 MessageBox.Show("Tài khoản không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                comboBox1.Focus();
                 return;
             }
 
@@ -191,6 +194,7 @@ namespace Quan_li_nhan_su
 
         private void DangNhap_Load(object sender, EventArgs e)
         {
+            if (!File.Exists("save.bin")) return;
             try
             {
                 var saved = ByteArrayToObject(File.ReadAllBytes("save.bin"));

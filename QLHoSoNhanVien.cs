@@ -530,5 +530,11 @@ namespace Quan_li_nhan_su
         {
             GetData();
         }
+
+        private void QLHoSoNhanVien_Enter(object sender, EventArgs e)
+        {
+  
+
+        }
     }
 }

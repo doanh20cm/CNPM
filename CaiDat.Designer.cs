@@ -160,7 +160,7 @@ namespace Quan_li_nhan_su
             // 
             // btnCheckConnection
             // 
-            this.btnCheckConnection.Location = new System.Drawing.Point(269, 250);
+            this.btnCheckConnection.Location = new System.Drawing.Point(269, 252);
             this.btnCheckConnection.Name = "btnCheckConnection";
             this.btnCheckConnection.Size = new System.Drawing.Size(112, 23);
             this.btnCheckConnection.TabIndex = 22;
@@ -170,7 +170,7 @@ namespace Quan_li_nhan_su
             // 
             // btnApplyConfig
             // 
-            this.btnApplyConfig.Location = new System.Drawing.Point(269, 214);
+            this.btnApplyConfig.Location = new System.Drawing.Point(269, 216);
             this.btnApplyConfig.Name = "btnApplyConfig";
             this.btnApplyConfig.Size = new System.Drawing.Size(112, 23);
             this.btnApplyConfig.TabIndex = 23;
