@@ -6,11 +6,9 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 using System.CodeDom.Compiler;
 using System.Configuration;
 using System.Runtime.CompilerServices;
-
 namespace Quan_li_nhan_su.Properties {
     
     

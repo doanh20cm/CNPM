@@ -94,13 +94,11 @@ namespace Quan_li_nhan_su
                 MessageBox.Show("Bạn phải chọn hoặc chọn 1 nhân viên sau khi nhập từ danh sách", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             if (cbTenPhongBan.SelectedItem == null || cbTenPhongBan.GetItemText(cbTenPhongBan.SelectedItem) != cbTenPhongBan.Text)
             {
                 MessageBox.Show("Bạn phải chọn hoặc chọn 1 phòng ban sau khi nhập từ danh sách", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             if (txtLoaiHopDong.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập loại hợp đồng", "Cảnh báo", MessageBoxButtons.OK,
@@ -184,13 +182,11 @@ namespace Quan_li_nhan_su
                 MessageBox.Show("Bạn phải chọn hoặc chọn 1 nhân viên sau khi nhập từ danh sách", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             if (cbTenPhongBan.SelectedItem == null || cbTenPhongBan.GetItemText(cbTenPhongBan.SelectedItem) != cbTenPhongBan.Text)
             {
                 MessageBox.Show("Bạn phải chọn hoặc chọn 1 phòng ban sau khi nhập từ danh sách", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             if (txtLoaiHopDong.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập loại hợp đồng", "Cảnh báo", MessageBoxButtons.OK,
@@ -368,15 +364,11 @@ namespace Quan_li_nhan_su
         {
             GetData();
         }
-
         private void cbHoTenNV_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
-
         private void cbTimTenPhongBan_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
     }
 }

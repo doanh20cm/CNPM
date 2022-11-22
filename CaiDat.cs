@@ -8,14 +8,12 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-
 namespace Quan_li_nhan_su
 {
     public partial class CaiDat : Form
     {
         private static readonly byte[] Key = Encoding.ASCII.GetBytes("VTFlZUlncTgrZz09");
         private static readonly byte[] Iv = Encoding.ASCII.GetBytes("HR$2pIjHR$2pIj12");
-
         protected override void WndProc(ref Message m)
         {
             if (m.Msg == 0x216)
@@ -37,12 +35,10 @@ namespace Quan_li_nhan_su
             public int right;
             public int bottom;
         }
-
         public CaiDat()
         {
             InitializeComponent();
         }
-
         private static void EncryptString_Aes(string plainText, byte[] key, byte[] iv)
         {
             byte[] encrypted;
@@ -59,15 +55,12 @@ namespace Quan_li_nhan_su
                         {
                             swEncrypt.Write(plainText);
                         }
-
                         encrypted = msEncrypt.ToArray();
                     }
                 }
             }
-
             File.WriteAllBytes("config.bin", encrypted);
         }
-
         private void btnApplyConfig_Click(object sender, EventArgs e)
         {
             try
@@ -84,22 +77,18 @@ namespace Quan_li_nhan_su
                     MessageBoxIcon.Error);
             }
         }
-
         private void btnCheckConnection_Click(object sender, EventArgs e)
         {
             Enabled = false;
-
             var bw = new BackgroundWorker
             {
                 WorkerReportsProgress = true,
                 WorkerSupportsCancellation = true
             };
-
             var workerTimer = new BackgroundWorker
             {
                 WorkerSupportsCancellation = true
             };
-
             bw.ProgressChanged += (sender3, e3) =>
             {
                 progressBar1.Value = e3.ProgressPercentage;
@@ -127,7 +116,6 @@ namespace Quan_li_nhan_su
                         MessageBoxIcon.Information);
                     ((SqlConnection)e4.Result).Close();
                 }
-
                 label7.Text = "Chờ kiểm tra...";
                 progressBar1.Value = 0;
             };
@@ -141,11 +129,9 @@ namespace Quan_li_nhan_su
                         e2.Cancel = true;
                         return;
                     }
-
                     bw.ReportProgress(i * 100 / 15);
                     Thread.Sleep(1000);
                 }
-
                 bw.ReportProgress(100);
             };
             workerTimer.RunWorkerAsync();

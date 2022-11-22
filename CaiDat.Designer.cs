@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
-
 namespace Quan_li_nhan_su
 {
     partial class CaiDat
@@ -9,7 +8,6 @@ namespace Quan_li_nhan_su
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -22,9 +20,7 @@ namespace Quan_li_nhan_su
             }
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -229,11 +225,8 @@ namespace Quan_li_nhan_su
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
-
         #endregion
-
         private TextBox txtPassword;
         private Label label5;
         private TextBox txtUsername;

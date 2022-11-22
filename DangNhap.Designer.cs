@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
-
 namespace Quan_li_nhan_su
 {
     partial class DangNhap
@@ -9,7 +8,6 @@ namespace Quan_li_nhan_su
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -22,9 +20,7 @@ namespace Quan_li_nhan_su
             }
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -170,11 +166,8 @@ namespace Quan_li_nhan_su
             this.Load += new System.EventHandler(this.DangNhap_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
-
         #endregion
-
         private Label label1;
         private Label label2;
         private TextBox txtPassword;
@@ -186,4 +179,3 @@ namespace Quan_li_nhan_su
         private Button button2;
     }
 }
-

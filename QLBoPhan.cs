@@ -3,18 +3,15 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-
 namespace Quan_li_nhan_su
 {
     public partial class QLBoPhan : Form
     {
         private int _index = -1;
-
         public QLBoPhan()
         {
             InitializeComponent();
         }
-
         private void QLBoPhan_Load(object sender, EventArgs e)
         {
             dgvBoPhan.RowsDefaultCellStyle.WrapMode = DataGridViewTriState.True;
@@ -22,7 +19,6 @@ namespace Quan_li_nhan_su
             dgvBoPhan.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             //GetData();
         }
-
         private void GetData()
         {
             Enabled = false;
@@ -32,26 +28,21 @@ namespace Quan_li_nhan_su
             label14.Visible = true;
             label14.BringToFront();
             dgvBoPhan.Visible = false;
-
             txtSDT.Text = rtGhiChu.Text = txtTenBoPhan.Text = rtGhiChu.Text = "";
             dtpNgayThanhLap.Value = DateTime.Now;
-
             var bw = new BackgroundWorker
             {
                 WorkerSupportsCancellation = true
             };
-
             bw.DoWork += (s1, e1) =>
             {
                 var table = KetNoi.GetData("select * from xemBoPhan");
                 e1.Result = table;
             };
-
             bw.RunWorkerCompleted += (s2, e2) =>
             {
                 progressBar1.Visible = false;
                 label14.Visible = false;
-
                 if (e2.Error != null)
                 {
                     MessageBox.Show("Có lỗi khi tải dữ liệu", "Thông báo", MessageBoxButtons.OK,
@@ -60,10 +51,8 @@ namespace Quan_li_nhan_su
                 else
                 {
                     dgvBoPhan.DataSource = e2.Result as DataTable;
-
                     for (var i = 0; i < dgvBoPhan.Columns.Count; i++)
                         dgvBoPhan.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-
                     dgvBoPhan.Columns[0].HeaderText = "Mã bộ phận";
                     dgvBoPhan.Columns[1].HeaderText = "Tên bộ phận";
                     dgvBoPhan.Columns[2].HeaderText = "Ngày thành lập";
@@ -72,14 +61,11 @@ namespace Quan_li_nhan_su
                     dgvBoPhan.Columns[0].Visible = false;
                     dgvBoPhan.Refresh();
                 }
-
                 dgvBoPhan.Visible = true;
                 Enabled = true;
             };
-
             bw.RunWorkerAsync();
         }
-
         private void dgvBoPhan_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1) return;
@@ -103,7 +89,6 @@ namespace Quan_li_nhan_su
                 dtpNgayThanhLap.Value = DateTime.Now;
             }
         }
-
         private void dgvBoPhan_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             for (var i = 0; i < dgvBoPhan.Rows.Count; i++)
@@ -114,7 +99,6 @@ namespace Quan_li_nhan_su
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
         }
-
         private void btnThem_Click(object sender, EventArgs e)
         {
             if (txtTenBoPhan.Text.Trim().Length == 0)
@@ -124,7 +108,6 @@ namespace Quan_li_nhan_su
                 txtTenBoPhan.Focus();
                 return;
             }
-
             if (!int.TryParse(txtSDT.Text, out _) || txtSDT.Text.Length != 10)
             {
                 MessageBox.Show("Số điện thoại phải có 10 số", "Cảnh báo", MessageBoxButtons.OK,
@@ -132,7 +115,6 @@ namespace Quan_li_nhan_su
                 txtSDT.Focus();
                 return;
             }
-
             try
             {
                 using (var connection = new SqlConnection(GiaoDienChinh.ConnStr))
@@ -159,10 +141,8 @@ namespace Quan_li_nhan_su
             {
                 MessageBox.Show("Thêm thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             GetData();
         }
-
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (txtTenBoPhan.Text.Trim().Length == 0)
@@ -172,7 +152,6 @@ namespace Quan_li_nhan_su
                 txtTenBoPhan.Focus();
                 return;
             }
-
             if (!int.TryParse(txtSDT.Text, out _) || txtSDT.Text.Length != 10)
             {
                 MessageBox.Show("Số điện thoại phải có 10 số", "Cảnh báo", MessageBoxButtons.OK,
@@ -180,7 +159,6 @@ namespace Quan_li_nhan_su
                 txtSDT.Focus();
                 return;
             }
-
             var luachon = MessageBox.Show("Bạn chắc chắn muốn sửa ?", "Xác nhận sửa", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
             if (luachon != DialogResult.Yes) return;
@@ -212,10 +190,8 @@ namespace Quan_li_nhan_su
             {
                 MessageBox.Show("Sửa thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             GetData();
         }
-
         private void btnXoa_Click(object sender, EventArgs e)
         {
             var luachon = MessageBox.Show("Bạn chắc chắn muốn xoá ?", "Xác nhận xoá", MessageBoxButtons.YesNo,
@@ -244,15 +220,12 @@ namespace Quan_li_nhan_su
             {
                 MessageBox.Show("Xoá thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             GetData();
         }
-
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
             GetData();
         }
-
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             if (!chkTimTen.Checked && !chkTimTruoc.Checked && !chkTimSau.Checked)
@@ -261,21 +234,18 @@ namespace Quan_li_nhan_su
                     MessageBoxIcon.Warning);
                 return;
             }
-
             if (chkTimTen.Checked && txtTimTen.Text.Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập tên bộ phận để tìm kiếm", "Cảnh báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 return;
             }
-
             if (chkTimTruoc.Checked && chkTimSau.Checked && dtpTimTruoc.Value.Date < dtpTimSau.Value.Date)
             {
                 MessageBox.Show("Ngày tìm trước phải lớn hơn ngày tìm sau", "Cảnh báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 return;
             }
-
             Enabled = false;
             WindowState = FormWindowState.Maximized;
             Activate();
@@ -283,12 +253,10 @@ namespace Quan_li_nhan_su
             label14.Visible = true;
             label14.BringToFront();
             dgvBoPhan.Visible = false;
-
             var bw = new BackgroundWorker
             {
                 WorkerSupportsCancellation = true
             };
-
             bw.DoWork += (s1, e1) =>
             {
                 using (var connection = new SqlConnection(GiaoDienChinh.ConnStr))
@@ -330,26 +298,20 @@ namespace Quan_li_nhan_su
                     }
                 }
             };
-
             bw.RunWorkerCompleted += (s2, e2) =>
             {
                 progressBar1.Visible = false;
                 label14.Visible = false;
-
-
                 if (e2.Error != null)
                     MessageBox.Show("Có lỗi khi tải dữ liệu", "Thông báo", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 else
                     dgvBoPhan.DataSource = e2.Result as DataTable;
-
                 dgvBoPhan.Visible = true;
                 Enabled = true;
             };
-
             bw.RunWorkerAsync();
         }
-
         private void QLBoPhan_Shown(object sender, EventArgs e)
         {
             GetData();

@@ -7,7 +7,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Quan_li_nhan_su.Properties {
     using System;
     

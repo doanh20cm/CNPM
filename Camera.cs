@@ -7,14 +7,12 @@ using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-
 namespace Quan_li_nhan_su
 {
     public partial class Camera : Form
     {
         private readonly FilterInfoCollection _videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
         private VideoCaptureDevice _videoSource;
-
         protected override void WndProc(ref Message m)
         {
             if (m.Msg == 0x216)
@@ -36,12 +34,10 @@ namespace Quan_li_nhan_su
             public int right;
             public int bottom;
         }
-
         public Camera()
         {
             InitializeComponent();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -58,7 +54,6 @@ namespace Quan_li_nhan_su
                             cropRect,
                             GraphicsUnit.Pixel);
                     }
-
                     clone.Dispose();
                     pictureBox2.Image?.Dispose();
                     pictureBox2.Image = target;
@@ -71,7 +66,6 @@ namespace Quan_li_nhan_su
                 MessageBox.Show("Không chụp được ảnh", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             saveFileDialog1.Filter = "JPG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png";
@@ -95,7 +89,6 @@ namespace Quan_li_nhan_su
                 MessageBox.Show("Không lưu được ảnh", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
             comboBox1.Enabled = false;
@@ -105,13 +98,11 @@ namespace Quan_li_nhan_su
                 _videoSource.NewFrame -= videoSource_NewFrame;
                 _videoSource = null;
             }
-
             _videoSource = new VideoCaptureDevice(_videoDevices[comboBox1.SelectedIndex].MonikerString);
             _videoSource.NewFrame += videoSource_NewFrame;
             _videoSource.Start();
             comboBox1.Enabled = true;
         }
-
         private void videoSource_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
             var newFrame = (Bitmap)eventArgs.Frame.Clone();
@@ -123,7 +114,6 @@ namespace Quan_li_nhan_su
                 pictureBox1.Image = newFrame;
             }));
         }
-
         private void Camera_Load(object sender, EventArgs e)
         {
             if (_videoDevices.Count == 0)
@@ -133,14 +123,12 @@ namespace Quan_li_nhan_su
                 Close();
                 return;
             }
-
             foreach (FilterInfo device in _videoDevices) comboBox1.Items.Add(device.Name);
             comboBox1.SelectedIndex = 0;
             _videoSource = new VideoCaptureDevice(_videoDevices[comboBox1.SelectedIndex].MonikerString);
             _videoSource.NewFrame += videoSource_NewFrame;
             _videoSource.Start();
         }
-
         private void Camera_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_videoSource != null)
@@ -150,7 +138,6 @@ namespace Quan_li_nhan_su
                 _videoSource = null;
             }
         }
-
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             if (pictureBox2.Image != null)
@@ -175,7 +162,6 @@ namespace Quan_li_nhan_su
             else
                 MessageBox.Show("Chụp ít nhất 1 ảnh", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
             QLHoSoNhanVien.AnhChup.Image = pictureBox2.Image;

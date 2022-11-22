@@ -12,13 +12,11 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-
 namespace Quan_li_nhan_su
 {
     public partial class DangNhap : Form
     {
         private static List<string> _savedUsers = new List<string>();
-
         protected override void WndProc(ref Message m)
         {
             if (m.Msg == 0x216)
@@ -40,12 +38,10 @@ namespace Quan_li_nhan_su
             public int right;
             public int bottom;
         }
-
         public DangNhap()
         {
             InitializeComponent();
         }
-
         public static string GetMd5(string pass)
         {
             using (var hash = MD5.Create())
@@ -53,7 +49,6 @@ namespace Quan_li_nhan_su
                 return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(pass)).Select(x => x.ToString("x2")));
             }
         }
-
         private static byte[] ObjectToByteArray(object obj)
         {
             if (obj == null)
@@ -65,7 +60,6 @@ namespace Quan_li_nhan_su
                 return ms.ToArray();
             }
         }
-
         private static object ByteArrayToObject(byte[] arrBytes)
         {
             using (var memStream = new MemoryStream())
@@ -76,7 +70,6 @@ namespace Quan_li_nhan_su
                 return binForm.Deserialize(memStream);
             }
         }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
             var taikhoan = comboBox1.Text.Trim();
@@ -87,29 +80,24 @@ namespace Quan_li_nhan_su
                 comboBox1.Focus();
                 return;
             }
-
             if (matkhau.Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập mật khẩu!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtPassword.Focus();
                 return;
             }
-
             if (!Regex.IsMatch(taikhoan, @"^[A-Za-z][A-Za-z0-9_]{7,49}$"))
             {
                 MessageBox.Show("Tài khoản không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 comboBox1.Focus();
                 return;
             }
-
             Enabled = false;
             progressBar1.Visible = true;
-
             var bw = new BackgroundWorker
             {
                 WorkerSupportsCancellation = true
             };
-
             bw.DoWork += (s1, e1) =>
             {
                 using (var connection = new SqlConnection(GiaoDienChinh.ConnStr))
@@ -133,12 +121,10 @@ namespace Quan_li_nhan_su
                     }
                 }
             };
-
             bw.RunWorkerCompleted += (s2, e2) =>
             {
                 Enabled = true;
                 progressBar1.Visible = false;
-
                 if (e2.Error != null)
                 {
                     MessageBox.Show("Không thể kết nối đến máy chủ, hãy liên hệ IT công ty", "Lỗi",
@@ -153,7 +139,6 @@ namespace Quan_li_nhan_su
                             MessageBoxIcon.Error);
                         return;
                     }
-
                     GiaoDienChinh.Chucvu = quyen.Rows[0][0].ToString();
                     GiaoDienChinh.Username = quyen.Rows[0][1].ToString();
                     Visible = false;
@@ -179,19 +164,16 @@ namespace Quan_li_nhan_su
                             MessageBox.Show("Có lỗi khi lưu tài khoản", "Thông báo", MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
                         }
-
                     Close();
                 }
             };
             bw.RunWorkerAsync();
         }
-
         private void DangNhap_FormClosed(object sender, FormClosedEventArgs e)
         {
             Dispose();
             GC.Collect();
         }
-
         private void DangNhap_Load(object sender, EventArgs e)
         {
             if (!File.Exists("save.bin")) return;
@@ -207,7 +189,6 @@ namespace Quan_li_nhan_su
                 MessageBox.Show("Có lỗi khi tải tài khoản đã lưu", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btnRemoveSaved_Click(object sender, EventArgs e)
         {
             if (!_savedUsers.Contains(comboBox1.Text))
@@ -216,7 +197,6 @@ namespace Quan_li_nhan_su
                     MessageBoxIcon.Error);
                 return;
             }
-
             var wantToRemove = MessageBox.Show("Bạn có muốn bỏ lưu tài khoản này không?", "Thông báo",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (wantToRemove != DialogResult.Yes) return;
@@ -237,7 +217,6 @@ namespace Quan_li_nhan_su
                     MessageBoxIcon.Error);
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (_savedUsers.Count == 0)
@@ -246,7 +225,6 @@ namespace Quan_li_nhan_su
                     MessageBoxIcon.Error);
                 return;
             }
-
             var wantToRemove = MessageBox.Show("Bạn có muốn xoá tất cả tài khoản đã lưu không?", "Thông báo",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (wantToRemove != DialogResult.Yes) return;
@@ -267,7 +245,6 @@ namespace Quan_li_nhan_su
                     MessageBoxIcon.Error);
             }
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             txtPassword.UseSystemPasswordChar = !txtPassword.UseSystemPasswordChar;

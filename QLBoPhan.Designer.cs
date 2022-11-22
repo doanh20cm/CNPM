@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
-
 namespace Quan_li_nhan_su
 {
     partial class QLBoPhan
@@ -9,7 +8,6 @@ namespace Quan_li_nhan_su
         /// Required designer variable.
         /// </summary>
         private IContainer components = null;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -22,9 +20,7 @@ namespace Quan_li_nhan_su
             }
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -378,11 +374,8 @@ namespace Quan_li_nhan_su
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
-
         #endregion
-
         private DataGridView dgvBoPhan;
         private GroupBox groupBox1;
         private GroupBox groupBox2;

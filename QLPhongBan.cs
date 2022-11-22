@@ -8,18 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace Quan_li_nhan_su
 {
     public partial class QLPhongBan : Form
     {
         private int _index = -1;
-
         public QLPhongBan()
         {
             InitializeComponent();
         }
-
         private void QLPhongBan_Load(object sender, EventArgs e)
         {
             dgvPhongBan.RowsDefaultCellStyle.WrapMode = DataGridViewTriState.True;
@@ -27,7 +24,6 @@ namespace Quan_li_nhan_su
             dgvPhongBan.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvPhongBan.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
-
         private void GetData()
         {
             Enabled = false;
@@ -37,27 +33,22 @@ namespace Quan_li_nhan_su
             label14.Visible = true;
             label14.BringToFront();
             dgvPhongBan.Visible = false;
-
             txtTenPhongBan.Text = txtSDT.Text = txtTruongPhong.Text = rtGhiChu.Text = "";
             dtpNgayThanhLap.Value = DateTime.Now;
-
             var bw = new BackgroundWorker
             {
                 WorkerSupportsCancellation = true
             };
-
             bw.DoWork += (s1, e1) =>
             {
                 var table = KetNoi.GetData("select * from xempb");
                 var table1 = KetNoi.GetData("select MaBoPhan, TenBoPhan from BoPhan");
                 e1.Result = new[] { table, table1 };
             };
-
             bw.RunWorkerCompleted += (s2, e2) =>
             {
                 progressBar1.Visible = false;
                 label14.Visible = false;
-
                 if (e2.Error != null)
                 {
                     MessageBox.Show("Có lỗi khi tải dữ liệu", "Thông báo", MessageBoxButtons.OK,
@@ -67,10 +58,8 @@ namespace Quan_li_nhan_su
                 {
                     var tbArr = (DataTable[])e2.Result;
                     dgvPhongBan.DataSource = tbArr[0];
-
                     for (var i = 0; i < dgvPhongBan.Columns.Count; i++)
                         dgvPhongBan.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-
                     dgvPhongBan.Columns[0].HeaderText = "Mã phòng ban";
                     dgvPhongBan.Columns[1].HeaderText = "Tên phòng ban";
                     dgvPhongBan.Columns[2].HeaderText = "Mã bộ phận";
@@ -79,27 +68,21 @@ namespace Quan_li_nhan_su
                     dgvPhongBan.Columns[5].HeaderText = "Trưởng phòng";
                     dgvPhongBan.Columns[6].HeaderText = "SDT";
                     dgvPhongBan.Columns[7].HeaderText = "Ghi chú";
-
                     cbTenBoPhan.DataSource = tbArr[1];
                     cbTenBoPhan.DisplayMember = "TenBoPhan";
                     cbTenBoPhan.ValueMember = "MaBoPhan";
-
                     cbTimTheoTenBoPhan.DataSource = tbArr[1];
                     cbTimTheoTenBoPhan.DisplayMember = "TenBoPhan";
                     cbTimTheoTenBoPhan.ValueMember = "MaBoPhan";
-
                     dgvPhongBan.Columns[0].Visible = false;
                     dgvPhongBan.Columns[2].Visible = false;
                     dgvPhongBan.Refresh();
                 }
-
                 dgvPhongBan.Visible = true;
                 Enabled = true;
             };
-
             bw.RunWorkerAsync();
         }
-
         private void dgvPhongBan_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             for (var i = 0; i < dgvPhongBan.Rows.Count; i++)
@@ -110,12 +93,10 @@ namespace Quan_li_nhan_su
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
         }
-
         private void QLPhongBan_Shown(object sender, EventArgs e)
         {
             GetData();
         }
-
         private void dgvPhongBan_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1) return;
@@ -141,12 +122,10 @@ namespace Quan_li_nhan_su
                 dtpNgayThanhLap.Value = DateTime.Now;
             }
         }
-
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
             GetData();
         }
-
         private void btnThem_Click(object sender, EventArgs e)
         {
             if (txtTenPhongBan.Text.Trim().Length == 0)
@@ -156,13 +135,11 @@ namespace Quan_li_nhan_su
                 txtTenPhongBan.Focus();
                 return;
             }
-
             if (cbTenBoPhan.SelectedItem == null || cbTenBoPhan.GetItemText(cbTenBoPhan.SelectedItem) != cbTenBoPhan.Text)
             {
                 MessageBox.Show("Bạn phải chọn hoặc chọn 1 bộ phận sau khi nhập từ danh sách", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             if (txtTruongPhong.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập tên trưởng phòng", "Cảnh báo", MessageBoxButtons.OK,
@@ -215,7 +192,6 @@ namespace Quan_li_nhan_su
             }
             GetData();
         }
-
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (txtTenPhongBan.Text.Trim().Length == 0)
@@ -286,7 +262,6 @@ namespace Quan_li_nhan_su
             }
             GetData();
         }
-
         private void btnXoa_Click(object sender, EventArgs e)
         {
             var luachon = MessageBox.Show("Bạn chắc chắn muốn xoá ?", "Xác nhận xoá", MessageBoxButtons.YesNo,
@@ -317,7 +292,6 @@ namespace Quan_li_nhan_su
             }
             GetData();
         }
-
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             if (!chkTenBoPhan.Checked && !chkTenPhongBan.Checked)

@@ -1,6 +1,5 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
-
 namespace Quan_li_nhan_su
 {
     internal static class KetNoi
@@ -16,7 +15,6 @@ namespace Quan_li_nhan_su
                 }
             }
         }
-
         //public static bool Execute(string exec)
         //{
         //    try

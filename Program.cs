@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-
 namespace Quan_li_nhan_su
 {
     internal static class Program

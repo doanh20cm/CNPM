@@ -8,19 +8,16 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
-
 namespace Quan_li_nhan_su
 {
     public partial class QLHoSoNhanVien : Form
     {
         public static PictureBox AnhChup = new PictureBox();
         private int _index = -1;
-
         public QLHoSoNhanVien()
         {
             InitializeComponent();
         }
-
         private void GetData()
         {
             Enabled = false;
@@ -47,8 +44,6 @@ namespace Quan_li_nhan_su
             {
                 progressBar1.Visible = false;
                 label14.Visible = false;
-
-
                 if (e2.Error != null)
                 {
                     MessageBox.Show("Có lỗi khi tải dữ liệu", "Thông báo", MessageBoxButtons.OK,
@@ -75,13 +70,11 @@ namespace Quan_li_nhan_su
                     dgvHoSoNhanVien.Columns[11].Visible = false;
                     dgvHoSoNhanVien.Refresh();
                 }
-
                 dgvHoSoNhanVien.Visible = true;
                 Enabled = true;
             };
             bw.RunWorkerAsync();
         }
-
         private void QLHoSoNhanVien_Load(object sender, EventArgs e)
         {
             dgvHoSoNhanVien.RowsDefaultCellStyle.WrapMode = DataGridViewTriState.True;
@@ -90,7 +83,6 @@ namespace Quan_li_nhan_su
             dgvHoSoNhanVien.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             //GetData();
         }
-
         private Image BytesToImage(byte[] data)
         {
             using (var ms = new MemoryStream(data))
@@ -98,7 +90,6 @@ namespace Quan_li_nhan_su
                 return Image.FromStream(ms);
             }
         }
-
         private byte[] ImagetoBytes(Image img)
         {
             using (var ms = new MemoryStream())
@@ -107,7 +98,6 @@ namespace Quan_li_nhan_su
                 return ms.ToArray();
             }
         }
-
         private void dgvHoSoNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1) return;
@@ -141,7 +131,6 @@ namespace Quan_li_nhan_su
                 dgvHoSoNhanVien.ClearSelection();
             }
         }
-
         private void btnThem_Click(object sender, EventArgs e)
         {
             if (txtHoTen.Text.Trim().Length == 0)
@@ -150,21 +139,18 @@ namespace Quan_li_nhan_su
                 txtHoTen.Focus();
                 return;
             }
-
             if (txtNoiSinh.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập nơi sinh", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNoiSinh.Focus();
                 return;
             }
-
             if (txtDiaChi.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập địa chỉ", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtDiaChi.Focus();
                 return;
             }
-
             if (!int.TryParse(txtSDT.Text, out _) || txtSDT.Text.Length != 10)
             {
                 MessageBox.Show("Số điện thoại phải có 10 số", "Cảnh báo", MessageBoxButtons.OK,
@@ -172,28 +158,24 @@ namespace Quan_li_nhan_su
                 txtSDT.Focus();
                 return;
             }
-
             if (txtDanToc.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập dân tộc", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtDanToc.Focus();
                 return;
             }
-
             if (txtTonGiao.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập tôn giáo", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtTonGiao.Focus();
                 return;
             }
-
             if (txtHocVan.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập học vấn", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtHocVan.Focus();
                 return;
             }
-
             try
             {
                 using (var connection = new SqlConnection(GiaoDienChinh.ConnStr))
@@ -228,10 +210,8 @@ namespace Quan_li_nhan_su
             {
                 MessageBox.Show("Thêm thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             GetData();
         }
-
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (txtHoTen.Text.Trim().Length == 0)
@@ -240,21 +220,18 @@ namespace Quan_li_nhan_su
                 txtHoTen.Focus();
                 return;
             }
-
             if (txtNoiSinh.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập nơi sinh", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNoiSinh.Focus();
                 return;
             }
-
             if (txtDiaChi.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập địa chỉ", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtDiaChi.Focus();
                 return;
             }
-
             if (!int.TryParse(txtSDT.Text, out _) || txtSDT.Text.Length != 10)
             {
                 MessageBox.Show("Số điện thoại phải có 10 số", "Cảnh báo", MessageBoxButtons.OK,
@@ -262,28 +239,24 @@ namespace Quan_li_nhan_su
                 txtSDT.Focus();
                 return;
             }
-
             if (txtDanToc.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập dân tộc", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtDanToc.Focus();
                 return;
             }
-
             if (txtTonGiao.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập tôn giáo", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtTonGiao.Focus();
                 return;
             }
-
             if (txtHocVan.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập học vấn", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtHocVan.Focus();
                 return;
             }
-
             var luachon = MessageBox.Show("Bạn chắc chắn muốn sửa ?", "Xác nhận sửa", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
             if (luachon != DialogResult.Yes) return;
@@ -322,10 +295,8 @@ namespace Quan_li_nhan_su
             {
                 MessageBox.Show("Sửa thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             GetData();
         }
-
         private void btnXoa_Click(object sender, EventArgs e)
         {
             var luachon = MessageBox.Show("Bạn chắc chắn muốn xoá ?", "Xác nhận xoá", MessageBoxButtons.YesNo,
@@ -354,19 +325,15 @@ namespace Quan_li_nhan_su
             {
                 MessageBox.Show("Xoá thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             GetData();
         }
-
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
             GetData();
         }
-
         private void groupBox1_Enter(object sender, EventArgs e)
         {
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (!chkTimTheoTen.Checked && !chkTimTheoHocVan.Checked)
@@ -375,21 +342,18 @@ namespace Quan_li_nhan_su
                     MessageBoxIcon.Warning);
                 return;
             }
-
             if (chkTimTheoTen.Checked && txtTimTheoTen.Text?.Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập tên để tìm kiếm", "Cảnh báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 return;
             }
-
             if (chkTimTheoHocVan.Checked && txtTimTheoHocVan.Text?.Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập học vấn để tìm kiếm", "Cảnh báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 return;
             }
-
             Enabled = false;
             WindowState = FormWindowState.Maximized;
             Activate();
@@ -397,12 +361,10 @@ namespace Quan_li_nhan_su
             label14.Visible = true;
             label14.BringToFront();
             dgvHoSoNhanVien.Visible = false;
-
             var bw = new BackgroundWorker
             {
                 WorkerSupportsCancellation = true
             };
-
             bw.DoWork += (s1, e1) =>
             {
                 using (var connection = new SqlConnection(GiaoDienChinh.ConnStr))
@@ -434,27 +396,20 @@ namespace Quan_li_nhan_su
                     }
                 }
             };
-
             bw.RunWorkerCompleted += (s2, e2) =>
             {
                 progressBar1.Visible = false;
                 label14.Visible = false;
-
-
                 if (e2.Error != null)
                     MessageBox.Show("Có lỗi khi tải dữ liệu", "Thông báo", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 else
                     dgvHoSoNhanVien.DataSource = e2.Result as DataTable;
-
                 dgvHoSoNhanVien.Visible = true;
                 Enabled = true;
             };
-
             bw.RunWorkerAsync();
         }
-
-
         private void button2_Click(object sender, EventArgs e)
         {
             using (var ofd = new OpenFileDialog
@@ -483,12 +438,10 @@ namespace Quan_li_nhan_su
                 }
             }
         }
-
         private void button1_Click_1(object sender, EventArgs e)
         {
             pbAnhHoSo.Image = Resources.noimage;
         }
-
         private void pbAnhHoSo_Click(object sender, EventArgs e)
         {
             pbAnhHoSo.Image.Save(Path.Combine(Path.GetTempPath(), "temp.png"));
@@ -503,7 +456,6 @@ namespace Quan_li_nhan_su
                 }
             }) process.Start();
         }
-
         private void dgvHoSoNhanVien_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             for (var i = 0; i < dgvHoSoNhanVien.Rows.Count; i++)
@@ -514,7 +466,6 @@ namespace Quan_li_nhan_su
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
             var c = new Camera();
@@ -525,15 +476,12 @@ namespace Quan_li_nhan_su
             pbAnhHoSo.Image = AnhChup.Image;
             AnhChup.Image = null;
         }
-
         private void QLHoSoNhanVien_Shown(object sender, EventArgs e)
         {
             GetData();
         }
-
         private void QLHoSoNhanVien_Enter(object sender, EventArgs e)
         {
-  
 
         }
     }
