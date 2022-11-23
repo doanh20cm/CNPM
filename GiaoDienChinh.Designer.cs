@@ -80,7 +80,7 @@ namespace Quan_li_nhan_su
             // 
             this.menuDangNhap.Image = global::Quan_li_nhan_su.Properties.Resources.icons8_login;
             this.menuDangNhap.Name = "menuDangNhap";
-            this.menuDangNhap.Size = new System.Drawing.Size(145, 22);
+            this.menuDangNhap.Size = new System.Drawing.Size(180, 22);
             this.menuDangNhap.Text = "Đăng nhập";
             this.menuDangNhap.Click += new System.EventHandler(this.menuDangNhap_Click);
             // 
@@ -88,7 +88,7 @@ namespace Quan_li_nhan_su
             // 
             this.menuDoiMatKhau.Enabled = false;
             this.menuDoiMatKhau.Name = "menuDoiMatKhau";
-            this.menuDoiMatKhau.Size = new System.Drawing.Size(145, 22);
+            this.menuDoiMatKhau.Size = new System.Drawing.Size(180, 22);
             this.menuDoiMatKhau.Text = "Đổi mật khẩu";
             this.menuDoiMatKhau.Click += new System.EventHandler(this.menuDoiMatKhau_Click);
             // 
@@ -96,7 +96,7 @@ namespace Quan_li_nhan_su
             // 
             this.menuDangXuat.Enabled = false;
             this.menuDangXuat.Name = "menuDangXuat";
-            this.menuDangXuat.Size = new System.Drawing.Size(145, 22);
+            this.menuDangXuat.Size = new System.Drawing.Size(180, 22);
             this.menuDangXuat.Text = "Đăng xuất";
             this.menuDangXuat.Click += new System.EventHandler(this.menuDangXuat_Click);
             // 
@@ -177,14 +177,15 @@ namespace Quan_li_nhan_su
             // 
             this.menuBCLuong.Enabled = false;
             this.menuBCLuong.Name = "menuBCLuong";
-            this.menuBCLuong.Size = new System.Drawing.Size(171, 22);
+            this.menuBCLuong.Size = new System.Drawing.Size(180, 22);
             this.menuBCLuong.Text = "Báo cáo lương";
+            this.menuBCLuong.Click += new System.EventHandler(this.menuBCLuong_Click);
             // 
             // menuBCNhanVien
             // 
             this.menuBCNhanVien.Enabled = false;
             this.menuBCNhanVien.Name = "menuBCNhanVien";
-            this.menuBCNhanVien.Size = new System.Drawing.Size(171, 22);
+            this.menuBCNhanVien.Size = new System.Drawing.Size(180, 22);
             this.menuBCNhanVien.Text = "Báo cáo nhân viên";
             // 
             // mstCaiDat
@@ -263,6 +264,7 @@ namespace Quan_li_nhan_su
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private MenuStrip menuStrip1;

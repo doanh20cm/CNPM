@@ -390,6 +390,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Quản lý phòng ban";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Activated += new System.EventHandler(this.QLPhongBan_Activated);
             this.Load += new System.EventHandler(this.QLPhongBan_Load);
             this.Shown += new System.EventHandler(this.QLPhongBan_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhongBan)).EndInit();
@@ -399,6 +400,7 @@
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private System.Windows.Forms.DataGridView dgvPhongBan;

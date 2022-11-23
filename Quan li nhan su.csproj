@@ -131,6 +131,12 @@
     <Compile Include="QLTaiKhoan.Designer.cs">
       <DependentUpon>QLTaiKhoan.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThongKeLuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThongKeLuong.Designer.cs">
+      <DependentUpon>ThongKeLuong.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CaiDat.resx">
       <DependentUpon>CaiDat.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QLTaiKhoan.resx">
       <DependentUpon>QLTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThongKeLuong.resx">
+      <DependentUpon>ThongKeLuong.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

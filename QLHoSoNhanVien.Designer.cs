@@ -531,6 +531,7 @@ namespace Quan_li_nhan_su
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Quản lý hồ sơ nhân viên";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Activated += new System.EventHandler(this.QLHoSoNhanVien_Activated);
             this.Load += new System.EventHandler(this.QLHoSoNhanVien_Load);
             this.Shown += new System.EventHandler(this.QLHoSoNhanVien_Shown);
             this.Enter += new System.EventHandler(this.QLHoSoNhanVien_Enter);
@@ -542,6 +543,7 @@ namespace Quan_li_nhan_su
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
 		}
 		private System.Windows.Forms.DataGridView dgvHoSoNhanVien;
         #endregion

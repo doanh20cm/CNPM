@@ -369,5 +369,10 @@ namespace Quan_li_nhan_su
             };
             bw.RunWorkerAsync();
         }
+
+        private void QLPhongBan_Activated(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Maximized;
+        }
     }
 }

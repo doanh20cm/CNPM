@@ -444,6 +444,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Quản lý tài khoản";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Activated += new System.EventHandler(this.QLTaiKhoan_Activated);
             this.Load += new System.EventHandler(this.QLTaiKhoan_Load);
             this.Shown += new System.EventHandler(this.QLTaiKhoan_Shown);
             this.groupBox2.ResumeLayout(false);
@@ -453,6 +454,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvTaiKhoan)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private System.Windows.Forms.Label label14;

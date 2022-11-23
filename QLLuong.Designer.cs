@@ -35,6 +35,14 @@
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.numTruoc = new System.Windows.Forms.NumericUpDown();
+            this.numSau = new System.Windows.Forms.NumericUpDown();
+            this.chkTimSau = new System.Windows.Forms.CheckBox();
+            this.chkTimTruoc = new System.Windows.Forms.CheckBox();
+            this.txtTimTen = new System.Windows.Forms.TextBox();
+            this.chkTimTen = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -61,23 +69,15 @@
             this.cbTenNV = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvLuong = new System.Windows.Forms.DataGridView();
-            this.chkTimSau = new System.Windows.Forms.CheckBox();
-            this.chkTimTruoc = new System.Windows.Forms.CheckBox();
-            this.txtTimTen = new System.Windows.Forms.TextBox();
-            this.chkTimTen = new System.Windows.Forms.CheckBox();
-            this.numSau = new System.Windows.Forms.NumericUpDown();
-            this.numTruoc = new System.Windows.Forms.NumericUpDown();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTruoc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSau)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numNam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numThang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSoGioLamThem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSoNgayCong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLuong)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSau)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numTruoc)).BeginInit();
             this.SuspendLayout();
             // 
             // label14
@@ -169,6 +169,86 @@
             this.groupBox2.Size = new System.Drawing.Size(314, 187);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(236, 130);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(55, 13);
+            this.label16.TabIndex = 14;
+            this.label16.Text = "triệu đồng";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(236, 82);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(55, 13);
+            this.label15.TabIndex = 13;
+            this.label15.Text = "triệu đồng";
+            // 
+            // numTruoc
+            // 
+            this.numTruoc.Location = new System.Drawing.Point(161, 130);
+            this.numTruoc.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.numTruoc.Name = "numTruoc";
+            this.numTruoc.Size = new System.Drawing.Size(66, 20);
+            this.numTruoc.TabIndex = 12;
+            // 
+            // numSau
+            // 
+            this.numSau.Location = new System.Drawing.Point(161, 80);
+            this.numSau.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.numSau.Name = "numSau";
+            this.numSau.Size = new System.Drawing.Size(66, 20);
+            this.numSau.TabIndex = 11;
+            // 
+            // chkTimSau
+            // 
+            this.chkTimSau.AutoSize = true;
+            this.chkTimSau.Location = new System.Drawing.Point(26, 83);
+            this.chkTimSau.Name = "chkTimSau";
+            this.chkTimSau.Size = new System.Drawing.Size(106, 17);
+            this.chkTimSau.TabIndex = 10;
+            this.chkTimSau.Text = "Có lương TK trên";
+            this.chkTimSau.UseVisualStyleBackColor = true;
+            // 
+            // chkTimTruoc
+            // 
+            this.chkTimTruoc.AutoSize = true;
+            this.chkTimTruoc.Location = new System.Drawing.Point(26, 133);
+            this.chkTimTruoc.Name = "chkTimTruoc";
+            this.chkTimTruoc.Size = new System.Drawing.Size(108, 17);
+            this.chkTimTruoc.TabIndex = 9;
+            this.chkTimTruoc.Text = "Có lương TK dưới";
+            this.chkTimTruoc.UseVisualStyleBackColor = true;
+            // 
+            // txtTimTen
+            // 
+            this.txtTimTen.Location = new System.Drawing.Point(161, 32);
+            this.txtTimTen.MaxLength = 50;
+            this.txtTimTen.Name = "txtTimTen";
+            this.txtTimTen.Size = new System.Drawing.Size(125, 20);
+            this.txtTimTen.TabIndex = 8;
+            // 
+            // chkTimTen
+            // 
+            this.chkTimTen.AutoSize = true;
+            this.chkTimTen.Location = new System.Drawing.Point(26, 34);
+            this.chkTimTen.Name = "chkTimTen";
+            this.chkTimTen.Size = new System.Drawing.Size(113, 17);
+            this.chkTimTen.TabIndex = 7;
+            this.chkTimTen.Text = "Của nhân viên tên";
+            this.chkTimTen.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -477,86 +557,6 @@
             this.dgvLuong.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLuong_CellContentClick);
             this.dgvLuong.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvLuong_DataBindingComplete);
             // 
-            // chkTimSau
-            // 
-            this.chkTimSau.AutoSize = true;
-            this.chkTimSau.Location = new System.Drawing.Point(26, 83);
-            this.chkTimSau.Name = "chkTimSau";
-            this.chkTimSau.Size = new System.Drawing.Size(106, 17);
-            this.chkTimSau.TabIndex = 10;
-            this.chkTimSau.Text = "Có lương TK trên";
-            this.chkTimSau.UseVisualStyleBackColor = true;
-            // 
-            // chkTimTruoc
-            // 
-            this.chkTimTruoc.AutoSize = true;
-            this.chkTimTruoc.Location = new System.Drawing.Point(26, 133);
-            this.chkTimTruoc.Name = "chkTimTruoc";
-            this.chkTimTruoc.Size = new System.Drawing.Size(108, 17);
-            this.chkTimTruoc.TabIndex = 9;
-            this.chkTimTruoc.Text = "Có lương TK dưới";
-            this.chkTimTruoc.UseVisualStyleBackColor = true;
-            // 
-            // txtTimTen
-            // 
-            this.txtTimTen.Location = new System.Drawing.Point(161, 32);
-            this.txtTimTen.MaxLength = 50;
-            this.txtTimTen.Name = "txtTimTen";
-            this.txtTimTen.Size = new System.Drawing.Size(125, 20);
-            this.txtTimTen.TabIndex = 8;
-            // 
-            // chkTimTen
-            // 
-            this.chkTimTen.AutoSize = true;
-            this.chkTimTen.Location = new System.Drawing.Point(26, 34);
-            this.chkTimTen.Name = "chkTimTen";
-            this.chkTimTen.Size = new System.Drawing.Size(113, 17);
-            this.chkTimTen.TabIndex = 7;
-            this.chkTimTen.Text = "Của nhân viên tên";
-            this.chkTimTen.UseVisualStyleBackColor = true;
-            // 
-            // numSau
-            // 
-            this.numSau.Location = new System.Drawing.Point(161, 80);
-            this.numSau.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.numSau.Name = "numSau";
-            this.numSau.Size = new System.Drawing.Size(66, 20);
-            this.numSau.TabIndex = 11;
-            // 
-            // numTruoc
-            // 
-            this.numTruoc.Location = new System.Drawing.Point(161, 130);
-            this.numTruoc.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.numTruoc.Name = "numTruoc";
-            this.numTruoc.Size = new System.Drawing.Size(66, 20);
-            this.numTruoc.TabIndex = 12;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(236, 82);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(55, 13);
-            this.label15.TabIndex = 13;
-            this.label15.Text = "triệu đồng";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(236, 130);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(55, 13);
-            this.label16.TabIndex = 14;
-            this.label16.Text = "triệu đồng";
-            // 
             // QLLuong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -583,10 +583,13 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Quản lý lương";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Activated += new System.EventHandler(this.QLLuong_Activated);
             this.Load += new System.EventHandler(this.QLLuong_Load);
             this.Shown += new System.EventHandler(this.QLLuong_Shown);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTruoc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSau)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numNam)).EndInit();
@@ -594,8 +597,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numSoGioLamThem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSoNgayCong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLuong)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSau)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numTruoc)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

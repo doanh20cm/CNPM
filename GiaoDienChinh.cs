@@ -303,10 +303,7 @@ namespace Quan_li_nhan_su
 			foreach (var f in MdiChildren)
 				if (f is QLHoSoNhanVien)
 				{
-					f.Visible = false;
 					f.Activate();
-					f.WindowState = FormWindowState.Maximized;
-					f.Visible = true;
 					return;
 				}
 			var qlhsnv = new QLHoSoNhanVien
@@ -323,10 +320,9 @@ namespace Quan_li_nhan_su
 			foreach (var f in MdiChildren)
 				if (f is QLNhanVienPhongBan)
 				{
-					f.Visible = false;
+					
 					f.Activate();
-					f.WindowState = FormWindowState.Maximized;
-					f.Visible = true;
+				
 					return;
 				}
 			var qlnvpb = new QLNhanVienPhongBan
@@ -427,10 +423,9 @@ namespace Quan_li_nhan_su
 			foreach (var f in MdiChildren)
 				if (f is QLBoPhan)
 				{
-					f.Visible = false;
+					
 					f.Activate();
-					f.WindowState = FormWindowState.Maximized;
-					f.Visible = true;
+				
 					return;
 				}
 			var qlbp = new QLBoPhan
@@ -458,10 +453,9 @@ namespace Quan_li_nhan_su
 			foreach (var f in MdiChildren)
 				if (f is QLPhongBan)
 				{
-					f.Visible = false;
+					
 					f.Activate();
-					f.WindowState = FormWindowState.Maximized;
-					f.Visible = true;
+				
 					return;
 				}
 			var qlpb = new QLPhongBan
@@ -479,10 +473,9 @@ namespace Quan_li_nhan_su
 			foreach (var f in MdiChildren)
 				if (f is QLTaiKhoan)
 				{
-					f.Visible = false;
+					
 					f.Activate();
-					f.WindowState = FormWindowState.Maximized;
-					f.Visible = true;
+				
 					return;
 				}
 			var qltk = new QLTaiKhoan
@@ -500,10 +493,9 @@ namespace Quan_li_nhan_su
 			foreach (var f in MdiChildren)
 				if (f is QLLuong)
 				{
-					f.Visible = false;
+					
 					f.Activate();
-					f.WindowState = FormWindowState.Maximized;
-					f.Visible = true;
+				
 					return;
 				}
 			var qll = new QLLuong
@@ -537,5 +529,26 @@ namespace Quan_li_nhan_su
 		{
 			notifyIcon1.Visible = true;
 		}
-	}
+        private void menuBCLuong_Click(object sender, EventArgs e)
+        {
+            label1.Visible = false;
+            label1.Visible = false;
+            label3.Visible = false;
+            label2.Visible = false;
+            foreach (var f in MdiChildren)
+                if (f is ThongKeLuong)
+                {
+                    
+                    f.Activate();
+                    f.WindowState = FormWindowState.Maximized;
+                    f.Visible = true;
+                    return;
+                }
+            var tkl = new ThongKeLuong
+            {
+                MdiParent = this
+            };
+            tkl.Show();
+        }
+    }
 }

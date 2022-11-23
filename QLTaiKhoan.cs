@@ -408,5 +408,10 @@ namespace Quan_li_nhan_su
             };
             bw.RunWorkerAsync();
         }
+
+        private void QLTaiKhoan_Activated(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Maximized;
+        }
     }
 }

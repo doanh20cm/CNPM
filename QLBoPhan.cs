@@ -316,5 +316,10 @@ namespace Quan_li_nhan_su
         {
             GetData();
         }
+
+        private void QLBoPhan_Activated(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Maximized;
+        }
     }
 }

@@ -370,5 +370,10 @@ namespace Quan_li_nhan_su
         private void cbTimTenPhongBan_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
+
+        private void QLNhanVienPhongBan_Activated(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Maximized;
+        }
     }
 }

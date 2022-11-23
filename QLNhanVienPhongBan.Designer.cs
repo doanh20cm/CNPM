@@ -27,7 +27,7 @@ namespace Quan_li_nhan_su
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvNhanVienPhongBan = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rtGhiChu = new System.Windows.Forms.RichTextBox();
@@ -72,14 +72,14 @@ namespace Quan_li_nhan_su
             this.dgvNhanVienPhongBan.MultiSelect = false;
             this.dgvNhanVienPhongBan.Name = "dgvNhanVienPhongBan";
             this.dgvNhanVienPhongBan.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNhanVienPhongBan.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNhanVienPhongBan.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvNhanVienPhongBan.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvNhanVienPhongBan.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvNhanVienPhongBan.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -389,6 +389,7 @@ namespace Quan_li_nhan_su
             this.Name = "QLNhanVienPhongBan";
             this.Text = "Quản lý nhân viên phòng ban";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Activated += new System.EventHandler(this.QLNhanVienPhongBan_Activated);
             this.Load += new System.EventHandler(this.QLNhanVienPhongBan_Load);
             this.Shown += new System.EventHandler(this.QLNhanVienPhongBan_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVienPhongBan)).EndInit();
@@ -398,6 +399,7 @@ namespace Quan_li_nhan_su
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private DataGridView dgvNhanVienPhongBan;

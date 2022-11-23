@@ -242,7 +242,7 @@ namespace Quan_li_nhan_su
                 MessageBox.Show("Hệ số lương phải là số thực >= 1", "Cảnh báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 txtLuongCoSo.Focus();
-                return;y
+                return;
             }
             if (!int.TryParse(txtPhuCap.Text, out int pc) || pc < 0)
             {
@@ -421,6 +421,11 @@ namespace Quan_li_nhan_su
                 Enabled = true;
             };
             bw.RunWorkerAsync();
+        }
+
+        private void QLLuong_Activated(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Maximized;
         }
     }
 }

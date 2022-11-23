@@ -484,5 +484,10 @@ namespace Quan_li_nhan_su
         {
 
         }
+
+        private void QLHoSoNhanVien_Activated(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Maximized;
+        }
     }
 }
