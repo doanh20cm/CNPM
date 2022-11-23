@@ -25,7 +25,7 @@ namespace Quan_li_nhan_su
             dgvLuong.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvLuong.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
-        private void 
+        private void
             GetData()
         {
             Enabled = false;

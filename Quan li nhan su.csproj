@@ -42,16 +42,20 @@
   <ItemGroup>
     <Reference Include="AForge.Imaging">
       <HintPath>..\..\..\Downloads\Compressed\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Imaging.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="AForge.Video">
       <HintPath>..\..\..\Downloads\Compressed\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="AForge.Video.DirectShow">
       <HintPath>..\..\..\Downloads\Compressed\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.DirectShow.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
