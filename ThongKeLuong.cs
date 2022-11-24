@@ -37,8 +37,8 @@ using System.Windows.Forms.DataVisualization.Charting;namespace Quan_li_nhan_su
                             chartThongKe.SaveImage(saveFileDialog1.FileName, ChartImageFormat.Jpeg);
                             break;
                         default:
-                            MessageBox.Show("Wrong type");
-                            break;
+                            MessageBox.Show("Phần mở rộng của file bạn đặt không được hỗ trợ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
                     }
                     using (var process = new Process
                     {
