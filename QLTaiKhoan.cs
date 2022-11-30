@@ -192,7 +192,49 @@ namespace Quan_li_nhan_su
                     using (var command = new SqlCommand
                     {
                         Connection = connection,
-                        CommandText = "insert into NguoiDung values(@TaiKhoan, @MatKhau, @ChucVu, @MaNV, @Email, @OTP, @LastOTPRequestTime, @GhiChu)"
+                        CommandText = "select count(*) from NguoiDung where TaiKhoan = @TaiKhoan"
+                    })
+                    {
+                        command.Parameters.AddWithValue("@TaiKhoan", txtTenTK.Text);
+                        var dupplicator = (int)command.ExecuteScalar();
+                        if (dupplicator > 0)
+                        {
+                            MessageBox.Show("Tên tài khoản này đã được sử dụng", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText = "select count(*) from NguoiDung where MaNV = @MaNV"
+                    })
+                    {
+                        command.Parameters.AddWithValue("@MaNV", cbTenNV.SelectedValue);
+                        var dupplicator = (int)command.ExecuteScalar();
+                        if (dupplicator > 0)
+                        {
+                            MessageBox.Show("Nhân viên này đã có tài khoản rồi", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText = "select count(*) from NguoiDung where Email = @Email"
+                    })
+                    {
+                        command.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        var dupplicator = (int)command.ExecuteScalar();
+                        if (dupplicator > 0)
+                        {
+                            MessageBox.Show("Email này đã được sử dụng", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText = "insert into NguoiDung values(@TaiKhoan, @MatKhau, @ChucVu, @MaNV, @Email, @LastOTPRequestTime, @GhiChu)"
                     })
                     {
                         command.Parameters.AddWithValue("@TaiKhoan", txtTenTK.Text);
@@ -200,7 +242,6 @@ namespace Quan_li_nhan_su
                         command.Parameters.AddWithValue("@ChucVu", cbChucVu.Text);
                         command.Parameters.AddWithValue("@MaNV", cbTenNV.SelectedValue);
                         command.Parameters.AddWithValue("@Email", txtEmail.Text);
-                        command.Parameters.AddWithValue("@OTP", DBNull.Value);
                         command.Parameters.AddWithValue("@LastOTPRequestTime", DBNull.Value);
                         command.Parameters.AddWithValue("@GhiChu", rtGhiChu.Text);
                         var rowsAffected = command.ExecuteNonQuery();
@@ -272,6 +313,21 @@ namespace Quan_li_nhan_su
                 using (var connection = new SqlConnection(GiaoDienChinh.ConnStr))
                 {
                     connection.Open();
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText = "select count(*) from NguoiDung where Email = @Email and TaiKhoan != @TaiKhoan"
+                    })
+                    {
+                        command.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        command.Parameters.AddWithValue("@TaiKhoan", txtTenTK.Text);
+                        var dupplicator = (int)command.ExecuteScalar();
+                        if (dupplicator > 0)
+                        {
+                            MessageBox.Show("Email này đã được sử dụng", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
                     using (var command = new SqlCommand
                     {
                         Connection = connection,

@@ -3,11 +3,14 @@
   <PropertyGroup>
     <PublishUrlHistory>C:\Users\Administrator\source\repos\Quan li nhan su\published\|publish\</PublishUrlHistory>
     <InstallUrlHistory>https://raw.githubusercontent.com/doanh20cm/CNPM/master/published/</InstallUrlHistory>
-    <SupportUrlHistory />
+    <SupportUrlHistory>https://github.com/doanh20cm/CNPM</SupportUrlHistory>
     <UpdateUrlHistory />
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EnableSecurityDebugging>false</EnableSecurityDebugging>
   </PropertyGroup>
 </Project>

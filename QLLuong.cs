@@ -163,6 +163,22 @@ namespace Quan_li_nhan_su
                     using (var command = new SqlCommand
                     {
                         Connection = connection,
+                        CommandText = "select count(*) from Luong where MaNV = @MaNV and Thang = @Thang and Nam = @Nam"
+                    })
+                    {
+                        command.Parameters.AddWithValue("@MaNV", cbTenNV.SelectedValue);
+                        command.Parameters.AddWithValue("@Thang", numThang.Value);
+                        command.Parameters.AddWithValue("@Nam", numNam.Value);
+                        var dupplicator = (int)command.ExecuteScalar();
+                        if (dupplicator > 0)
+                        {
+                            MessageBox.Show("Nhân viên đó đã có bản ghi lương vào thời gian này", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
                         CommandText =
                                    "insert into Luong values(@MaNV, @LuongCoSo, @HeSoLuong, @SoNgayCong, @SoGioLamThem, @PhuCap, @Thuong, @Phat, @Thang, @Nam, @GhiChu, 0)"
                     })
@@ -273,6 +289,23 @@ namespace Quan_li_nhan_su
                 using (var connection = new SqlConnection(GiaoDienChinh.ConnStr))
                 {
                     connection.Open();
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText = "select count(*) from Luong where MaNV = @MaNV and Thang = @Thang and Nam = @Nam and MaLuong != @MaLuong"
+                    })
+                    {
+                        command.Parameters.AddWithValue("@MaNV", cbTenNV.SelectedValue);
+                        command.Parameters.AddWithValue("@Thang", numThang.Value);
+                        command.Parameters.AddWithValue("@Nam", numNam.Value);
+                        command.Parameters.AddWithValue("@MaLuong", dgvLuong.Rows[_index].Cells[0].Value);
+                        var dupplicator = (int)command.ExecuteScalar();
+                        if (dupplicator > 0)
+                        {
+                            MessageBox.Show("Nhân viên đã có bản ghi lương vào thời gian này", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
                     using (var command = new SqlCommand
                     {
                         Connection = connection,
