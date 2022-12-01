@@ -43,7 +43,6 @@ namespace Quan_li_nhan_su
             this.menuQLTaiKhoan = new System.Windows.Forms.ToolStripMenuItem();
             this.mstThongKe = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBCLuong = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuBCNhanVien = new System.Windows.Forms.ToolStripMenuItem();
             this.mstCaiDat = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -80,7 +79,7 @@ namespace Quan_li_nhan_su
             // 
             this.menuDangNhap.Image = global::Quan_li_nhan_su.Properties.Resources.icons8_login;
             this.menuDangNhap.Name = "menuDangNhap";
-            this.menuDangNhap.Size = new System.Drawing.Size(180, 22);
+            this.menuDangNhap.Size = new System.Drawing.Size(145, 22);
             this.menuDangNhap.Text = "Đăng nhập";
             this.menuDangNhap.Click += new System.EventHandler(this.menuDangNhap_Click);
             // 
@@ -88,7 +87,7 @@ namespace Quan_li_nhan_su
             // 
             this.menuDoiMatKhau.Enabled = false;
             this.menuDoiMatKhau.Name = "menuDoiMatKhau";
-            this.menuDoiMatKhau.Size = new System.Drawing.Size(180, 22);
+            this.menuDoiMatKhau.Size = new System.Drawing.Size(145, 22);
             this.menuDoiMatKhau.Text = "Đổi mật khẩu";
             this.menuDoiMatKhau.Click += new System.EventHandler(this.menuDoiMatKhau_Click);
             // 
@@ -96,7 +95,7 @@ namespace Quan_li_nhan_su
             // 
             this.menuDangXuat.Enabled = false;
             this.menuDangXuat.Name = "menuDangXuat";
-            this.menuDangXuat.Size = new System.Drawing.Size(180, 22);
+            this.menuDangXuat.Size = new System.Drawing.Size(145, 22);
             this.menuDangXuat.Text = "Đăng xuất";
             this.menuDangXuat.Click += new System.EventHandler(this.menuDangXuat_Click);
             // 
@@ -165,8 +164,7 @@ namespace Quan_li_nhan_su
             // mstThongKe
             // 
             this.mstThongKe.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuBCLuong,
-            this.menuBCNhanVien});
+            this.menuBCLuong});
             this.mstThongKe.Enabled = false;
             this.mstThongKe.Name = "mstThongKe";
             this.mstThongKe.Size = new System.Drawing.Size(68, 20);
@@ -180,13 +178,6 @@ namespace Quan_li_nhan_su
             this.menuBCLuong.Size = new System.Drawing.Size(180, 22);
             this.menuBCLuong.Text = "Báo cáo lương";
             this.menuBCLuong.Click += new System.EventHandler(this.menuBCLuong_Click);
-            // 
-            // menuBCNhanVien
-            // 
-            this.menuBCNhanVien.Enabled = false;
-            this.menuBCNhanVien.Name = "menuBCNhanVien";
-            this.menuBCNhanVien.Size = new System.Drawing.Size(180, 22);
-            this.menuBCNhanVien.Text = "Báo cáo nhân viên";
             // 
             // mstCaiDat
             // 
@@ -279,7 +270,6 @@ namespace Quan_li_nhan_su
         private ToolStripMenuItem menuQLTaiKhoan;
         private ToolStripMenuItem mstThongKe;
         private ToolStripMenuItem menuBCLuong;
-        private ToolStripMenuItem menuBCNhanVien;
         private ToolStripMenuItem menuQLHoSo;
         private ToolStripMenuItem menuDangNhap;
         private Label label1;

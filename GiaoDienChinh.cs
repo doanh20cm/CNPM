@@ -111,7 +111,6 @@ namespace Quan_li_nhan_su
                     menuQLLuong.Enabled = true;
                     menuQLTaiKhoan.Enabled = true;
                     menuBCLuong.Enabled = true;
-                    menuBCNhanVien.Enabled = true;
                     mstThongKe.Enabled = true;
                     break;
                 case "Phó giám đốc":
@@ -122,7 +121,6 @@ namespace Quan_li_nhan_su
                     menuQLHoSo.Enabled = true;
                     menuQLLuong.Enabled = true;
                     menuBCLuong.Enabled = true;
-                    menuBCNhanVien.Enabled = true;
                     mstThongKe.Enabled = true;
                     break;
                 case "Quản trị bộ phận":
@@ -154,7 +152,6 @@ namespace Quan_li_nhan_su
                     menuQLLuong.Enabled = false;
                     menuQLTaiKhoan.Enabled = false;
                     menuBCLuong.Enabled = false;
-                    menuBCNhanVien.Enabled = false;
                     mstThongKe.Enabled = false;
                     break;
             }

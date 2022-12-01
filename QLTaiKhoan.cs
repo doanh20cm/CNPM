@@ -176,12 +176,13 @@ namespace Quan_li_nhan_su
             {
                 MessageBox.Show("Bạn chưa nhập địa chỉ email", "Cảnh báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
-                txtTenTK.Focus();
+                txtEmail.Focus();
                 return;
             }
             if (!Regex.IsMatch(txtEmail.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"))
             {
                 MessageBox.Show("Địa chỉ email không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.Focus();
                 return;
             }
             try

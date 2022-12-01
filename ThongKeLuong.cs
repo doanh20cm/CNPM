@@ -28,7 +28,7 @@ using System.Windows.Forms.DataVisualization.Charting;namespace Quan_li_nhan_su
             {
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    switch(Path.GetExtension(saveFileDialog1.FileName))
+                    switch (Path.GetExtension(saveFileDialog1.FileName))
                     {
                         case ".png":
                             chartThongKe.SaveImage(saveFileDialog1.FileName, ChartImageFormat.Png);

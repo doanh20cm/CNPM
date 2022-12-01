@@ -6,6 +6,8 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
@@ -17,6 +19,9 @@ namespace Quan_li_nhan_su
     public partial class DangNhap : Form
     {
         private static List<string> _savedUsers = new List<string>();
+        private static int otp;
+        private static int wrong_otp_count = 0;
+
         protected override void WndProc(ref Message m)
         {
             if (m.Msg == 0x216)
@@ -249,6 +254,297 @@ namespace Quan_li_nhan_su
         {
             txtPassword.UseSystemPasswordChar = !txtPassword.UseSystemPasswordChar;
             button2.BackgroundImage = txtPassword.UseSystemPasswordChar ? Properties.Resources.hide : Properties.Resources.show;
+        }
+
+        private void btnForgot_Click(object sender, EventArgs e)
+        {
+            btnBack.Visible = true;
+            btnForgot.Visible = false;
+            ShowHide(false);
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            btnForgot.Visible = true;
+            btnBack.Visible = false;
+            ShowHide(true);
+        }
+
+        private void ShowHide(bool b)
+        {
+            label1.Visible = label2.Visible = comboBox1.Visible = btnRemoveSaved.Visible = button1.Visible = txtPassword.Visible = button2.Visible = btnLogin.Visible = b;
+            txtOTP.Visible = txtEmail.Visible = btnCheckOTP.Visible = btnRequestOTP.Visible = label3.Visible = label4.Visible = btnDoiMatKhau.Visible = txtMatKhauMoi.Visible = label5.Visible = !b;
+        }
+
+        private void ResetState()
+        {
+            txtOTP.Enabled = btnCheckOTP.Enabled = false;
+            txtEmail.Enabled = btnRequestOTP.Enabled = true;
+            txtMatKhauMoi.Enabled = btnDoiMatKhau.Enabled = false;
+            txtEmail.Text = txtOTP.Text = txtMatKhauMoi.Text = "";
+            wrong_otp_count = 0;
+        }
+
+        private void btnRequestOTP_Click(object sender, EventArgs e)
+        {
+            if (txtEmail.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Bạn chưa nhập địa chỉ email", "Cảnh báo", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                return;
+            }
+            if (!Regex.IsMatch(txtEmail.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"))
+            {
+                MessageBox.Show("Địa chỉ email không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                return;
+            }
+            Enabled = false;
+            progressBar1.Visible = true;
+            var bw = new BackgroundWorker();
+            bw.DoWork += (s1, e1) =>
+            {
+                using (var connection = new SqlConnection(GiaoDienChinh.ConnStr))
+                {
+                    connection.Open();
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText = "select count(*) from NguoiDung where Email = @Email"
+                    })
+                    {
+                        command.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        if ((int)command.ExecuteScalar() != 1)
+                        {
+                            MessageBox.Show("Email không tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            throw new Exception();
+                            return;
+                        }
+                    }
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText = "SELECT TaiKhoan FROM NguoiDung WHERE DATEDIFF(MINUTE, LastOTPRequestTime, GETDATE()) > 15 and Email = @Email"
+                    })
+                    {
+                        command.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        if (command.ExecuteScalar() == null)
+                        {
+                            MessageBox.Show("Bạn phải chờ 15 phút để yêu cầu lại mã OTP", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            throw new Exception();
+                            return;
+                        }
+                    }
+                }
+                otp = new Random().Next(000000, 999999);
+                using (var smtpClient = new SmtpClient("smtp.gmail.com")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential("doanhidm1@gmail.com", "fuekddbixngkafsw"),
+                    EnableSsl = true,
+                }) using (var mm = new MailMessage()
+                {
+                    From = new MailAddress("doanhidm1@gmail.com"),
+                    Subject = "Yêu cầu đặt lại mật khẩu",
+                    Body = $"OTP đặt lại mật khẩu là: {otp}",
+                    To = { new MailAddress(txtEmail.Text) }
+                })
+                {
+                    smtpClient.Send(mm);
+                }
+                using (var connection = new SqlConnection(GiaoDienChinh.ConnStr))
+                {
+                    connection.Open();
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText = "update NguoiDung set LastOTPRequestTime = GETDATE() where Email = @Email"
+                    })
+                    {
+                        command.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        if (command.ExecuteNonQuery() != 1)
+                        {
+                            MessageBox.Show("Có lỗi khi hoàn tất yêu cầu OTP", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            ResetState();
+                            throw new Exception();
+                            return;
+                        }
+                    }
+                }
+            };
+            bw.RunWorkerCompleted += (s2, e2) =>
+            {
+                Enabled = true;
+                progressBar1.Visible = false;
+                if (e2.Error != null)
+                {
+                    MessageBox.Show("Đã có lỗi xảy ra trong quá trình yêu cầu OTP", "Lỗi",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    txtOTP.Enabled = btnCheckOTP.Enabled = true;
+                    txtEmail.Enabled = btnRequestOTP.Enabled = false;
+                }
+            };
+            bw.RunWorkerAsync();
+        }
+
+        private void btnCheckOTP_Click(object sender, EventArgs e)
+        {
+            Enabled = false;
+            progressBar1.Visible = true;
+            var bw = new BackgroundWorker();
+            bw.DoWork += (s1, e1) =>
+            {
+                using (var connection = new SqlConnection(GiaoDienChinh.ConnStr))
+                {
+                    connection.Open();
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText = "select count(*) from NguoiDung where Email = @Email"
+                    })
+                    {
+                        command.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        if ((int)command.ExecuteScalar() != 1)
+                        {
+                            MessageBox.Show("Email không tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            throw new Exception();
+                            return;
+                        }
+                    }
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText = "select DATEDIFF(MINUTE, LastOTPRequestTime, GETDATE()) from NguoiDung where Email = @Email"
+                    })
+                    {
+                        command.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        if ((int)command.ExecuteScalar() > 15)
+                        {
+                            MessageBox.Show("OTP đã hết hạn", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            throw new Exception();
+                            return;
+                        }
+                    }
+                }
+            };
+            bw.RunWorkerCompleted += (s2, e2) =>
+            {
+                Enabled = true;
+                progressBar1.Visible = false;
+                if (e2.Error != null)
+                {
+                    ResetState();
+                    MessageBox.Show("Đã có lỗi xảy ra trong quá trình kiểm tra OTP", "Lỗi",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    if (txtOTP.Text != otp.ToString())
+                    {
+                        MessageBox.Show("OTP không đúng", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        wrong_otp_count++;
+                        if (wrong_otp_count > 5)
+                        {
+                            MessageBox.Show("Bạn đã nhập sai OTP quá 5 lần", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            ResetState();
+                            return;
+                        }
+                        return;
+                    }
+                    txtMatKhauMoi.Enabled = btnDoiMatKhau.Enabled = true;
+                    txtOTP.Enabled = btnCheckOTP.Enabled = false;
+                }
+            };
+            bw.RunWorkerAsync();
+        }
+
+        private void btnDoiMatKhau_Click(object sender, EventArgs e)
+        {
+            if (txtMatKhauMoi.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Bạn chưa nhập mật khẩu mới", "Cảnh báo", MessageBoxButtons.OK,
+                 MessageBoxIcon.Warning);
+                txtMatKhauMoi.Focus();
+                return;
+            }
+            if (!Regex.IsMatch(txtMatKhauMoi.Text, @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,50}$"))
+            {
+                MessageBox.Show("Mật khẩu phải có ít nhất 8 kí tự, bao gồm chữ hoa, chữ thường, số và kí tự đặc biệt", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            Enabled = false;
+            progressBar1.Visible = true;
+            var bw = new BackgroundWorker();
+            bw.DoWork += (s1, e1) =>
+            {
+                using (var connection = new SqlConnection(GiaoDienChinh.ConnStr))
+                {
+                    connection.Open();
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText = "select count(*) from NguoiDung where Email = @Email"
+                    })
+                    {
+                        command.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        if ((int)command.ExecuteScalar() != 1)
+                        {
+                            MessageBox.Show("Email không tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            throw new Exception();
+                            return;
+                        }
+                    }
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText = "select DATEDIFF(MINUTE, LastOTPRequestTime, GETDATE()) from NguoiDung where Email = @Email"
+                    })
+                    {
+                        command.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        if ((int)command.ExecuteScalar() > 15)
+                        {
+                            MessageBox.Show("OTP đã hết hạn", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            throw new Exception();
+                            return;
+                        }
+                    }
+                    using (var command = new SqlCommand
+                    {
+                        Connection = connection,
+                        CommandText = "update NguoiDung set MatKhau = @MatKhau where Email = @Email"
+                    })
+                    {
+                        command.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        command.Parameters.AddWithValue("@MatKhau", GetMd5(txtMatKhauMoi.Text));
+                        if (command.ExecuteNonQuery() != 1)
+                        {
+                            MessageBox.Show("Không thể hoàn tất việc đổi mật khẩu", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            throw new Exception();
+                        }
+                    }
+                }
+            };
+            bw.RunWorkerCompleted += (s2, e2) =>
+            {
+                Enabled = true;
+                progressBar1.Visible = false;
+                ResetState();
+                if (e2.Error != null)
+                {
+                    ResetState();
+                    MessageBox.Show("Đã có lỗi xảy ra trong quá trình đổi mật khẩu", "Lỗi",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Đổi mật khẩu thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            };
+            bw.RunWorkerAsync();
         }
     }
 }
