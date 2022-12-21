@@ -147,9 +147,6 @@ namespace Quan_li_nhan_su
                     GiaoDienChinh.Chucvu = quyen.Rows[0][0].ToString();
                     GiaoDienChinh.Username = quyen.Rows[0][1].ToString();
                     Visible = false;
-                    MessageBox.Show($"Chào {quyen.Rows[0][1]}, đăng nhập thành công với quyền {quyen.Rows[0][0]}!",
-                        "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (_savedUsers.Contains(taikhoan)) return;
                     var wantToSave = MessageBox.Show("Bạn có muốn lưu tài khoản này không?", "Thông báo",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
