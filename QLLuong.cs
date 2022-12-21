@@ -9,6 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
+using DataTable = System.Data.DataTable;
+using ExcelApplication = Microsoft.Office.Interop.Excel.Application;
 namespace Quan_li_nhan_su
 {
     public partial class QLLuong : Form
@@ -36,7 +39,9 @@ namespace Quan_li_nhan_su
             label14.BringToFront();
             dgvLuong.Visible = false;
             cbTenNV.Enabled = true;
-            txtLuongCoSo.Text = txtHeSoLuong.Text = cbTenNV.Text = txtPhuCap.Text = txtThuong.Text = txtPhat.Text = rtGhiChu.Text = "";
+            txtLuongCoSo.Text = GiaoDienChinh.Luongcoso; 
+            txtHeSoLuong.Text = cbTenNV.Text = txtPhuCap.Text = txtThuong.Text = txtPhat.Text = rtGhiChu.Text = "";
+           
             numSoNgayCong.Value = numSoGioLamThem.Value = 0;
             numThang.Value = DateTime.Now.Month;
             numNam.Value = DateTime.Now.Year;
@@ -236,7 +241,7 @@ namespace Quan_li_nhan_su
                 btnSua.Enabled = false;
                 btnXoa.Enabled = false;
                 cbTenNV.Enabled = true;
-                txtLuongCoSo.Text = txtHeSoLuong.Text = cbTenNV.Text = txtPhuCap.Text = txtThuong.Text = txtPhat.Text = rtGhiChu.Text = "";
+                txtLuongCoSo.Text = GiaoDienChinh.Luongcoso; txtHeSoLuong.Text = cbTenNV.Text = txtPhuCap.Text = txtThuong.Text = txtPhat.Text = rtGhiChu.Text = "";
                 numSoNgayCong.Value = numSoGioLamThem.Value = 0;
                 numThang.Value = DateTime.Now.Month;
                 numNam.Value = DateTime.Now.Year;
@@ -460,5 +465,64 @@ namespace Quan_li_nhan_su
         {
             WindowState = FormWindowState.Maximized;
         }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            //if (dgvLuong.Rows.Count > 0)
+            //{
+            //    Microsoft.Office.Interop.Excel.Application xcelApp = new Microsoft.Office.Interop.Excel.Application();
+            //    xcelApp.Application.Workbooks.Add(Type.Missing);
+
+            //    for (int i = 1; i < dgvLuong.Rows.Count + 1; i++)
+            //    {
+            //        xcelApp.Cells[1, i] = dgvLuong.Columns[i - 1].HeaderText;
+            //    }      
+
+            //    for (int i = 0; i < dgvLuong.Rows.Count; i++)
+            //    {
+            //        for (int j = 0; j < dgvLuong.Columns.Count; j++)
+            //        {    
+            //            xcelApp.Cells[i + 2, j + 1] = dgvLuong.Rows[i].Cells[j].Value.ToString();
+            //        }    
+            //    }
+            //    xcelApp.Columns.AutoFit();
+            //    xcelApp.Visible = true;
+
+            //-----------------------------------------------------------------------------------
+            // lấy dữ liệu từ bảng
+            GetData();
+
+            // Tạo một ứng dụng Excel mới
+            ExcelApplication excel = new ExcelApplication();
+
+            // Tạo sổ làm việc Excel mới
+            Workbook workbook = excel.Workbooks.Add();
+
+            // Lấy trang tính đầu tiên trong sổ làm việc
+            Worksheet worksheet = workbook.Sheets[1];
+
+            // Thêm tên cột vào hàng đầu tiên của trang tính
+            for (int i = 0; i < dgvLuong.Columns.Count; i++)
+            {
+                worksheet.Cells[1, i + 1] = dgvLuong.Columns[i].HeaderText;
+            }
+
+            // Thêm dữ liệu từ DataTable vào trang tính
+            for (int i = 0; i < dgvLuong.Rows.Count; i++)
+            {
+                for (int j = 0; j < dgvLuong.Columns.Count; j++)
+                {
+                    worksheet.Cells[i + 2, j + 1] = dgvLuong.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+
+            // Lưu file vào địa chỉ đường link ngay khi ấn nút xuất
+            workbook.SaveAs("D:\\Word\\Báo cáo lương quý 1.xlsx");
+
+            // Kết thúc
+            workbook.Close();
+            excel.Quit();
+        }    
+        }
     }
-}
+

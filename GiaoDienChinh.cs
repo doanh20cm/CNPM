@@ -14,6 +14,7 @@ namespace Quan_li_nhan_su
         public static string Chucvu = "";
         public static string Username = "";
         public static string ConnStr = "";
+        public static string Luongcoso = "";
         private static readonly byte[] Key = Encoding.ASCII.GetBytes("VTFlZUlncTgrZz09");
         private static readonly byte[] Iv = Encoding.ASCII.GetBytes("HR$2pIjHR$2pIj12");
         private readonly Timer _time = new Timer();
@@ -100,6 +101,8 @@ namespace Quan_li_nhan_su
             menuDoiMatKhau.Enabled = true;
             menuDangXuat.Enabled = true;
             mstCaiDat.Enabled = false;
+            kếtNốiToolStripMenuItem.Enabled = false;
+            lươngMặcĐịnhToolStripMenuItem.Enabled = false;
             switch (Chucvu)
             {
                 case "Giám đốc":
@@ -112,6 +115,8 @@ namespace Quan_li_nhan_su
                     menuQLTaiKhoan.Enabled = true;
                     menuBCLuong.Enabled = true;
                     mstThongKe.Enabled = true;
+                    mstCaiDat.Enabled = true;
+                    lươngMặcĐịnhToolStripMenuItem.Enabled = true;
                     break;
                 case "Phó giám đốc":
                     mstQuanLy.Enabled = true;
@@ -122,6 +127,8 @@ namespace Quan_li_nhan_su
                     menuQLLuong.Enabled = true;
                     menuBCLuong.Enabled = true;
                     mstThongKe.Enabled = true;
+                    mstCaiDat.Enabled = true;
+                    lươngMặcĐịnhToolStripMenuItem.Enabled = true;
                     break;
                 case "Quản trị bộ phận":
                     menuQLPhongBan.Enabled = true;
@@ -134,6 +141,8 @@ namespace Quan_li_nhan_su
                 case "Kế toán":
                     mstQuanLy.Enabled = true;
                     menuQLLuong.Enabled = true;
+                    mstCaiDat.Enabled = true;
+                    lươngMặcĐịnhToolStripMenuItem.Enabled = true;
                     break;
                 case "Quản trị nhân lực":
                     mstQuanLy.Enabled = true;
@@ -153,6 +162,8 @@ namespace Quan_li_nhan_su
                     menuQLTaiKhoan.Enabled = false;
                     menuBCLuong.Enabled = false;
                     mstThongKe.Enabled = false;
+                    kếtNốiToolStripMenuItem.Enabled = false;
+                    lươngMặcĐịnhToolStripMenuItem.Enabled = false;
                     break;
             }
         }
@@ -433,7 +444,7 @@ namespace Quan_li_nhan_su
         }
         private void mstCaiDat_Click(object sender, EventArgs e)
         {
-            new CaiDat().ShowDialog();
+            //new CaiDat().ShowDialog();
         }
         private void GiaoDienChinh_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -546,6 +557,16 @@ namespace Quan_li_nhan_su
                 MdiParent = this
             };
             tkl.Show();
+        }
+
+        private void kếtNốiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new CaiDat().ShowDialog();
+        }
+
+        private void lươngMặcĐịnhToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Default().ShowDialog();
         }
     }
 }
