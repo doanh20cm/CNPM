@@ -196,14 +196,15 @@ namespace Quan_li_nhan_su
             // kếtNốiToolStripMenuItem
             // 
             this.kếtNốiToolStripMenuItem.Name = "kếtNốiToolStripMenuItem";
-            this.kếtNốiToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.kếtNốiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.kếtNốiToolStripMenuItem.Text = "Kết nối";
             this.kếtNốiToolStripMenuItem.Click += new System.EventHandler(this.kếtNốiToolStripMenuItem_Click);
             // 
             // lươngMặcĐịnhToolStripMenuItem
             // 
+            this.lươngMặcĐịnhToolStripMenuItem.Enabled = false;
             this.lươngMặcĐịnhToolStripMenuItem.Name = "lươngMặcĐịnhToolStripMenuItem";
-            this.lươngMặcĐịnhToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.lươngMặcĐịnhToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lươngMặcĐịnhToolStripMenuItem.Text = " Dữ liệu mặc định";
             this.lươngMặcĐịnhToolStripMenuItem.Click += new System.EventHandler(this.lươngMặcĐịnhToolStripMenuItem_Click);
             // 

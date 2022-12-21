@@ -467,61 +467,87 @@ namespace Quan_li_nhan_su
         }
 
         private void btnXuatExcel_Click(object sender, EventArgs e)
-        {
-            //if (dgvLuong.Rows.Count > 0)
-            //{
-            //    Microsoft.Office.Interop.Excel.Application xcelApp = new Microsoft.Office.Interop.Excel.Application();
-            //    xcelApp.Application.Workbooks.Add(Type.Missing);
-
-            //    for (int i = 1; i < dgvLuong.Rows.Count + 1; i++)
-            //    {
-            //        xcelApp.Cells[1, i] = dgvLuong.Columns[i - 1].HeaderText;
-            //    }      
-
-            //    for (int i = 0; i < dgvLuong.Rows.Count; i++)
-            //    {
-            //        for (int j = 0; j < dgvLuong.Columns.Count; j++)
-            //        {    
-            //            xcelApp.Cells[i + 2, j + 1] = dgvLuong.Rows[i].Cells[j].Value.ToString();
-            //        }    
-            //    }
-            //    xcelApp.Columns.AutoFit();
-            //    xcelApp.Visible = true;
-
+        {        
             //-----------------------------------------------------------------------------------
-            // lấy dữ liệu từ bảng
-            GetData();
 
-            // Tạo một ứng dụng Excel mới
-            ExcelApplication excel = new ExcelApplication();
+            //// lấy dữ liệu từ bảng
+            //GetData();
 
-            // Tạo sổ làm việc Excel mới
-            Workbook workbook = excel.Workbooks.Add();
+            //// Tạo một ứng dụng Excel mới
+            //ExcelApplication excel = new ExcelApplication();
 
-            // Lấy trang tính đầu tiên trong sổ làm việc
-            Worksheet worksheet = workbook.Sheets[1];
+            //// Tạo sổ làm việc Excel mới
+            //Workbook workbook = excel.Workbooks.Add();
 
-            // Thêm tên cột vào hàng đầu tiên của trang tính
-            for (int i = 0; i < dgvLuong.Columns.Count; i++)
+            //// Lấy trang tính đầu tiên trong sổ làm việc
+            //Worksheet worksheet = workbook.Sheets[1];
+
+            //// Thêm tên cột vào hàng đầu tiên của trang tính
+            //for (int i = 0; i < dgvLuong.Columns.Count; i++)
+            //{
+            //    worksheet.Cells[1, i + 1] = dgvLuong.Columns[i].HeaderText;
+            //}
+
+            //// Thêm dữ liệu từ DataTable vào trang tính
+            //for (int i = 0; i < dgvLuong.Rows.Count; i++)
+            //{
+            //    for (int j = 0; j < dgvLuong.Columns.Count; j++)
+            //    {
+            //        worksheet.Cells[i + 2, j + 1] = dgvLuong.Rows[i].Cells[j].Value.ToString();
+            //    }
+            //}
+
+            //// Lưu file vào địa chỉ đường link ngay khi ấn nút xuất
+            ////workbook.SaveAs("D:\\Word\\Báo cáo lương quý 1.xlsx");
+            //SaveFileDialog saveFileDialog = new SaveFileDialog();
+            //saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+            //saveFileDialog.FilterIndex = 1;
+            //saveFileDialog.RestoreDirectory = true;
+
+            //if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    string filePath = saveFileDialog.FileName;
+            //    // Save the file to the selected folder here
+            //}
+
+            //// Kết thúc
+            //workbook.Close();
+            //excel.Quit();
+            //--------------------------------------------------------------------------------
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
             {
-                worksheet.Cells[1, i + 1] = dgvLuong.Columns[i].HeaderText;
-            }
+                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                saveDialog.FilterIndex = 1;
 
-            // Thêm dữ liệu từ DataTable vào trang tính
-            for (int i = 0; i < dgvLuong.Rows.Count; i++)
-            {
-                for (int j = 0; j < dgvLuong.Columns.Count; j++)
+                if (saveDialog.ShowDialog() == DialogResult.OK)
                 {
-                    worksheet.Cells[i + 2, j + 1] = dgvLuong.Rows[i].Cells[j].Value.ToString();
+                    // Tạo một lớp Ứng dụng Excel và hiển thị nó
+                    ExcelApplication excelApp = new ExcelApplication();
+                    excelApp.Visible = true;
+
+                    // Tạo một sổ làm việc mới và thêm một trang tính vào đó
+                    Workbook workbook = excelApp.Workbooks.Add();
+                    Worksheet worksheet = workbook.ActiveSheet;
+
+                    // Lặp lại qua các hàng và cột của DataGridView và ghi các giá trị ô vào trang tính
+                    for (int i = 1; i < dgvLuong.Columns.Count + 1; i++)
+                    {
+                        worksheet.Cells[1, i] = dgvLuong.Columns[i - 1].HeaderText;
+                    }
+
+                    for (int i = 0; i < dgvLuong.Rows.Count; i++)
+                    {
+                        for (int j = 0; j < dgvLuong.Columns.Count; j++)
+                        {
+                            worksheet.Cells[i + 2, j + 1] = dgvLuong.Rows[i].Cells[j].Value.ToString();
+                        }
+                    }
+
+                    // Lưu sổ làm việc vào tệp do người dùng chọn và đóng ứng dụng Excel
+                    workbook.SaveAs(saveDialog.FileName);
+                    excelApp.Quit();
                 }
             }
-
-            // Lưu file vào địa chỉ đường link ngay khi ấn nút xuất
-            workbook.SaveAs("D:\\Word\\Báo cáo lương quý 1.xlsx");
-
-            // Kết thúc
-            workbook.Close();
-            excel.Quit();
         }    
         }
     }
