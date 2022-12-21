@@ -117,44 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="show" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\show.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="noimage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\noimage1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="daniela-cuevas-t7YycgAoVSw-unsplash" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\daniela-cuevas-t7YycgAoVSw-unsplash.jpg;System.Drawing.Bitmap, System.Drawing,
-            Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="space blue sky pastel background" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\space blue sky pastel background.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0,
-            Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_360_F_122719641_V0yw2cAOrfxsON3HeWi2Sf4iVxhv27QO" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\_360_F_122719641_V0yw2cAOrfxsON3HeWi2Sf4iVxhv27QO.jpg;System.Drawing.Bitmap, System.Drawing,
-            Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-login" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-login.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="hide" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="istockphoto-1327530057-612x612 (3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\istockphoto-1327530057-612x612 (3).jpg;System.Drawing.Bitmap, System.Drawing,
-            Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Trải qua quá trình xây dựng và phát triển, hiện nay An Phát Holdings là Tập đoàn hoạt động trong lĩnh vực sản xuất nhựa công nghệ cao và thân thiện với môi trường hàng đầu tại khu vực Đông Nam Á.
+
+Với nhiều Công ty thành viên trong hệ sinh thái ngành nhựa, chúng tôi đã khẳng định được thương hiệu, uy tín và vị trí của mình để đưa sản phẩm ra thị trường ngoài nước như Châu Âu, Mỹ, Các tiểu vương quốc Ả Rập, Nhật Bản, Hàn Quốc, Singapore, Đài Loan, Philippines…
+
+Đến thời điểm hiện tại, chúng tôi đã hoàn toàn tự tin với năng lực và vị thế cạnh tranh của mình để chuyển sang một giai đoạn phát triển mới với những dự án đầu tư tập trung vào các lĩnh vực chủ lực là sản phẩm sinh học phân hủy hoàn toàn AnEco và nguyên liệu phân hủy sinh học AnBio, bao bì, nhựa kỹ thuật và nhựa nội thất, cơ khí chính xác và khuôn mẫu, nguyên vật liệu và hóa chất ngành nhựa, bất động sản công nghiệp…
+Thông qua nghiên cứu, sáng tạo và đổi mới; chúng tôi luôn mong muốn đem lại những giá trị tốt nhất cho khách hàng và cổ đông, người lao động của mình.
+
+Cùng với xu hướng trên thế giới bắt đầu dịch chuyển tiêu thụ các sản phẩm nhựa sinh học phân hủy hoàn toàn mang hàm lượng kĩ thuật cao thay thế các loại nhựa thông thường, Tập đoàn An Phát Holdings với mong muốn hướng tới những giá trị bền vững và bảo vệ lợi ích con người, thiên nhiên, môi trường đã xây dựng nên tầm nhìn thương hiệu trở thành kim chỉ nam cho các hoạt động của Tập đoàn trong tương lai. Giờ đây, con đường chúng tôi đi sẽ dài hơn, ý nghĩa hơn khi mỗi sản phẩm, mỗi sự nỗ lực đều hướng tới mục tiêu cao nhất vì cộng đồng kiến tạo tương lai xanh.
+
+Địa chỉ: Tầng 17, Tòa nhà PV Oil, 148 Hoàng Quốc Việt, Cầu Giấy, Hà Nội
+
+Điện thoại: (024) 3206 1199
+
+Hotline CSKH: 18009050
+
+Email: info@anphatholdings.com
+
+Website: anphatholdings.com
+</value>
   </data>
 </root>

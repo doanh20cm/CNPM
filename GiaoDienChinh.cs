@@ -568,5 +568,26 @@ namespace Quan_li_nhan_su
         {
             new Default().ShowDialog();
         }
+
+        private void giớiThiệuCôngTyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            label1.Visible = false;
+            label1.Visible = false;
+            label3.Visible = false;
+            label2.Visible = false;
+            foreach (var f in MdiChildren)
+                if (f is Gioithieu)
+                {
+
+                    f.Activate();
+
+                    return;
+                }
+            var gt = new Gioithieu
+            {
+                MdiParent = this
+            };
+            gt.Show();
+        }
     }
 }

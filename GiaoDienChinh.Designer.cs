@@ -46,6 +46,7 @@ namespace Quan_li_nhan_su
             this.mstCaiDat = new System.Windows.Forms.ToolStripMenuItem();
             this.kếtNốiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lươngMặcĐịnhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.giớiThiệuCôngTyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -60,7 +61,8 @@ namespace Quan_li_nhan_su
             this.mstTaiKhoan,
             this.mstQuanLy,
             this.mstThongKe,
-            this.mstCaiDat});
+            this.mstCaiDat,
+            this.giớiThiệuCôngTyToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -196,7 +198,7 @@ namespace Quan_li_nhan_su
             // kếtNốiToolStripMenuItem
             // 
             this.kếtNốiToolStripMenuItem.Name = "kếtNốiToolStripMenuItem";
-            this.kếtNốiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.kếtNốiToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.kếtNốiToolStripMenuItem.Text = "Kết nối";
             this.kếtNốiToolStripMenuItem.Click += new System.EventHandler(this.kếtNốiToolStripMenuItem_Click);
             // 
@@ -204,9 +206,16 @@ namespace Quan_li_nhan_su
             // 
             this.lươngMặcĐịnhToolStripMenuItem.Enabled = false;
             this.lươngMặcĐịnhToolStripMenuItem.Name = "lươngMặcĐịnhToolStripMenuItem";
-            this.lươngMặcĐịnhToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lươngMặcĐịnhToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.lươngMặcĐịnhToolStripMenuItem.Text = " Dữ liệu mặc định";
             this.lươngMặcĐịnhToolStripMenuItem.Click += new System.EventHandler(this.lươngMặcĐịnhToolStripMenuItem_Click);
+            // 
+            // giớiThiệuCôngTyToolStripMenuItem
+            // 
+            this.giớiThiệuCôngTyToolStripMenuItem.Name = "giớiThiệuCôngTyToolStripMenuItem";
+            this.giớiThiệuCôngTyToolStripMenuItem.Size = new System.Drawing.Size(113, 20);
+            this.giớiThiệuCôngTyToolStripMenuItem.Text = "Giới thiệu công ty";
+            this.giớiThiệuCôngTyToolStripMenuItem.Click += new System.EventHandler(this.giớiThiệuCôngTyToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -301,5 +310,6 @@ namespace Quan_li_nhan_su
         private NotifyIcon notifyIcon1;
         private ToolStripMenuItem kếtNốiToolStripMenuItem;
         private ToolStripMenuItem lươngMặcĐịnhToolStripMenuItem;
+        private ToolStripMenuItem giớiThiệuCôngTyToolStripMenuItem;
     }
 }

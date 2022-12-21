@@ -39,9 +39,9 @@ namespace Quan_li_nhan_su
             label14.BringToFront();
             dgvLuong.Visible = false;
             cbTenNV.Enabled = true;
-            txtLuongCoSo.Text = GiaoDienChinh.Luongcoso; 
+            txtLuongCoSo.Text = GiaoDienChinh.Luongcoso;
             txtHeSoLuong.Text = cbTenNV.Text = txtPhuCap.Text = txtThuong.Text = txtPhat.Text = rtGhiChu.Text = "";
-           
+
             numSoNgayCong.Value = numSoGioLamThem.Value = 0;
             numThang.Value = DateTime.Now.Month;
             numNam.Value = DateTime.Now.Year;
@@ -467,7 +467,7 @@ namespace Quan_li_nhan_su
         }
 
         private void btnXuatExcel_Click(object sender, EventArgs e)
-        {        
+        {
             //-----------------------------------------------------------------------------------
 
             //// lấy dữ liệu từ bảng
@@ -514,41 +514,48 @@ namespace Quan_li_nhan_su
             //workbook.Close();
             //excel.Quit();
             //--------------------------------------------------------------------------------
-            using (SaveFileDialog saveDialog = new SaveFileDialog())
+            try
             {
-                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-                saveDialog.FilterIndex = 1;
-
-                if (saveDialog.ShowDialog() == DialogResult.OK)
+                using (SaveFileDialog saveDialog = new SaveFileDialog())
                 {
-                    // Tạo một lớp Ứng dụng Excel và hiển thị nó
-                    ExcelApplication excelApp = new ExcelApplication();
-                    excelApp.Visible = true;
+                    saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                    saveDialog.FilterIndex = 1;
 
-                    // Tạo một sổ làm việc mới và thêm một trang tính vào đó
-                    Workbook workbook = excelApp.Workbooks.Add();
-                    Worksheet worksheet = workbook.ActiveSheet;
-
-                    // Lặp lại qua các hàng và cột của DataGridView và ghi các giá trị ô vào trang tính
-                    for (int i = 1; i < dgvLuong.Columns.Count + 1; i++)
+                    if (saveDialog.ShowDialog() == DialogResult.OK)
                     {
-                        worksheet.Cells[1, i] = dgvLuong.Columns[i - 1].HeaderText;
-                    }
+                        // Tạo một lớp Ứng dụng Excel và hiển thị nó
+                        ExcelApplication excelApp = new ExcelApplication();
+                        excelApp.Visible = true;
 
-                    for (int i = 0; i < dgvLuong.Rows.Count; i++)
-                    {
-                        for (int j = 0; j < dgvLuong.Columns.Count; j++)
+                        // Tạo một sổ làm việc mới và thêm một trang tính vào đó
+                        Workbook workbook = excelApp.Workbooks.Add();
+                        Worksheet worksheet = workbook.ActiveSheet;
+
+                        // Lặp lại qua các hàng và cột của DataGridView và ghi các giá trị ô vào trang tính
+                        for (int i = 1; i < dgvLuong.Columns.Count + 1; i++)
                         {
-                            worksheet.Cells[i + 2, j + 1] = dgvLuong.Rows[i].Cells[j].Value.ToString();
+                            worksheet.Cells[1, i] = dgvLuong.Columns[i - 1].HeaderText;
                         }
-                    }
 
-                    // Lưu sổ làm việc vào tệp do người dùng chọn và đóng ứng dụng Excel
-                    workbook.SaveAs(saveDialog.FileName);
-                    excelApp.Quit();
+                        for (int i = 0; i < dgvLuong.Rows.Count; i++)
+                        {
+                            for (int j = 0; j < dgvLuong.Columns.Count; j++)
+                            {
+                                worksheet.Cells[i + 2, j + 1] = dgvLuong.Rows[i].Cells[j].Value.ToString();
+                            }
+                        }
+
+                        // Lưu sổ làm việc vào tệp do người dùng chọn và đóng ứng dụng Excel
+                        workbook.SaveAs(saveDialog.FileName);
+                        excelApp.Quit();
+                    }
                 }
             }
-        }    
+            catch (Exception)
+            {
+                MessageBox.Show("Xuất thất bại!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
+}
 
