@@ -56,6 +56,8 @@ namespace Quan_li_nhan_su
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVienPhongBan)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -92,6 +94,7 @@ namespace Quan_li_nhan_su
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.rtGhiChu);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtThoiGian);
@@ -111,7 +114,6 @@ namespace Quan_li_nhan_su
             this.groupBox1.Size = new System.Drawing.Size(724, 187);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Thông tin nhân viên phòng ban";
             // 
             // rtGhiChu
             // 
@@ -242,6 +244,7 @@ namespace Quan_li_nhan_su
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.txtTimTenHopDong);
             this.groupBox2.Controls.Add(this.chkTenHopDong);
             this.groupBox2.Controls.Add(this.cbTimTenPhongBan);
@@ -251,7 +254,6 @@ namespace Quan_li_nhan_su
             this.groupBox2.Size = new System.Drawing.Size(247, 187);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Tìm kiếm nhân viên phòng ban";
             // 
             // txtTimTenHopDong
             // 
@@ -366,6 +368,24 @@ namespace Quan_li_nhan_su
             this.progressBar1.TabIndex = 10;
             this.progressBar1.Visible = false;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(267, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(156, 13);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Thông tin nhân viên phòng ban";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(45, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(156, 13);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "Tìm kiếm nhân viên phòng ban";
+            // 
             // QLNhanVienPhongBan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -430,5 +450,7 @@ namespace Quan_li_nhan_su
         private TextBox txtTimTenHopDong;
         private Label label14;
         private ProgressBar progressBar1;
+        private Label label8;
+        private Label label9;
     }
 }

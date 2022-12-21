@@ -273,8 +273,6 @@ namespace Quan_li_nhan_su
             for (var i = 0; i < dgvNhanVienPhongBan.Rows.Count; i++)
                 dgvNhanVienPhongBan.Rows[i].HeaderCell.Value = (i + 1).ToString();
             dgvNhanVienPhongBan.TopLeftHeaderCell.Value = $"Tống: {dgvNhanVienPhongBan.RowCount}";
-            dgvNhanVienPhongBan.Rows[dgvNhanVienPhongBan.Rows.Count - 1].HeaderCell.Value =
-                dgvNhanVienPhongBan.Rows.Count.ToString();
             dgvNhanVienPhongBan.ClearSelection();
             button1.Enabled = true;
             btnSua.Enabled = false;
