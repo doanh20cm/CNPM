@@ -5,6 +5,8 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using ClosedXML.Excel;
 using System.Linq;
+using System.Diagnostics;
+
 namespace Quan_li_nhan_su
 {
     public partial class QLBoPhan : Form
@@ -344,34 +346,29 @@ namespace Quan_li_nhan_su
                         var workbook = new XLWorkbook();
 
                         // Thêm một trang tính vào workbook
-                        var worksheet = workbook.Worksheets.Add("Sheet1");
+                        var table = KetNoi.GetData("select * from xemBoPhan");
+                        workbook.Worksheets.Add(table, "Bộ phận");
 
-                        // Lấy phạm vi ô chứa dữ liệu cần xuất
-
-                        var range = worksheet.Range(1, 1, dgvBoPhan.RowCount + 1, dgvBoPhan.ColumnCount);
-
-                        // Đặt giá trị của hàng đầu tiên thành tên cột
-                        for (int i = 0; i < dgvBoPhan.ColumnCount; i++)
-                        {
-                            worksheet.Cell(1, i + 1).Value = dgvBoPhan.Columns[i].HeaderText;
-                        }
-                        // Đặt giá trị của phạm vi thành dữ liệu từ DataGridView
-                        for (int i = 0; i < dgvBoPhan.RowCount; i++)
-                        {
-                            for (int j = 0; j < dgvBoPhan.ColumnCount; j++)
-                            {
-                                worksheet.Cell(i + 2, j + 1).Value = dgvBoPhan.Rows[i].Cells[j].Value;
-                            }
-                        }
-
-                        // Lưu sổ file vào tệp do người dùng chỉ định
                         workbook.SaveAs(saveFileDialog.FileName);
+                        if (DialogResult.Yes == MessageBox.Show(
+                                @"Xuất dữ liệu thành công, bạn có muốn mở vị trí file không?",
+                                @"Thông báo", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question))
+                            using (var process = new Process
+                            {
+                                StartInfo = new ProcessStartInfo
+                                {
+                                    FileName = "explorer.exe",
+                                    Arguments = "/select," + saveFileDialog.FileName,
+                                    UseShellExecute = false
+                                }
+                            }) process.Start();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi khi xuất dữ liệu: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã xảy ra lỗi khi xuất dữ liệu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

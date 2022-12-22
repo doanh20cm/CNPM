@@ -399,36 +399,30 @@ namespace Quan_li_nhan_su
                     {
                         // Tạo workbook mới
                         var workbook = new XLWorkbook();
+                        var table = KetNoi.GetData(
+                    "select NhanVienPhongBan.MaNV, HoTen, NhanVienPhongBan.MaPhongBan, TenPhongBan, LoaiHD, NgayKy, NgayHetHan, ThoiGian, NhanVienPhongBan.GhiChu from NhanVienPhongBan, HoSoNhanVien, PhongBan where NhanVienPhongBan.MaNV = HoSoNhanVien.MaNV and PhongBan.MaPhongBan = NhanVienPhongBan.MaPhongBan");
+                        workbook.Worksheets.Add(table, "Ds Nhân viên ở phòng ban");
 
-                        // Thêm một trang tính vào workbook
-                        var worksheet = workbook.Worksheets.Add("Sheet1");
-
-                        // Lấy phạm vi ô chứa dữ liệu cần xuất
-
-                        var range = worksheet.Range(1, 1, dgvNhanVienPhongBan.RowCount + 1, dgvNhanVienPhongBan.ColumnCount);
-
-                        // Đặt giá trị của hàng đầu tiên thành tên cột
-                        for (int i = 0; i < dgvNhanVienPhongBan.ColumnCount; i++)
-                        {
-                            worksheet.Cell(1, i + 1).Value = dgvNhanVienPhongBan.Columns[i].HeaderText;
-                        }
-                        // Đặt giá trị của phạm vi thành dữ liệu từ DataGridView
-                        for (int i = 0; i < dgvNhanVienPhongBan.RowCount; i++)
-                        {
-                            for (int j = 0; j < dgvNhanVienPhongBan.ColumnCount; j++)
-                            {
-                                worksheet.Cell(i + 2, j + 1).Value = dgvNhanVienPhongBan.Rows[i].Cells[j].Value;
-                            }
-                        }
-
-                        // Lưu sổ file vào tệp do người dùng chỉ định
                         workbook.SaveAs(saveFileDialog.FileName);
+                        if (DialogResult.Yes == MessageBox.Show(
+                                @"Xuất dữ liệu thành công, bạn có muốn mở vị trí file không?",
+                                @"Thông báo", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question))
+                            using (var process = new Process
+                            {
+                                StartInfo = new ProcessStartInfo
+                                {
+                                    FileName = "explorer.exe",
+                                    Arguments = "/select," + saveFileDialog.FileName,
+                                    UseShellExecute = false
+                                }
+                            }) process.Start();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi khi xuất dữ liệu: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã xảy ra lỗi khi xuất dữ liệu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
