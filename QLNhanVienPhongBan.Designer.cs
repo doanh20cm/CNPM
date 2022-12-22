@@ -30,6 +30,7 @@ namespace Quan_li_nhan_su
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvNhanVienPhongBan = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.rtGhiChu = new System.Windows.Forms.RichTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtThoiGian = new System.Windows.Forms.TextBox();
@@ -45,6 +46,7 @@ namespace Quan_li_nhan_su
             this.cbHoTenNV = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.txtTimTenHopDong = new System.Windows.Forms.TextBox();
             this.chkTenHopDong = new System.Windows.Forms.CheckBox();
             this.cbTimTenPhongBan = new System.Windows.Forms.ComboBox();
@@ -56,8 +58,7 @@ namespace Quan_li_nhan_su
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.btnXuatExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVienPhongBan)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -114,6 +115,15 @@ namespace Quan_li_nhan_su
             this.groupBox1.Size = new System.Drawing.Size(724, 187);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(267, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(156, 13);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Thông tin nhân viên phòng ban";
             // 
             // rtGhiChu
             // 
@@ -255,6 +265,15 @@ namespace Quan_li_nhan_su
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(45, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(156, 13);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "Tìm kiếm nhân viên phòng ban";
+            // 
             // txtTimTenHopDong
             // 
             this.txtTimTenHopDong.Location = new System.Drawing.Point(24, 142);
@@ -339,7 +358,7 @@ namespace Quan_li_nhan_su
             // 
             // btnTimKiem
             // 
-            this.btnTimKiem.Location = new System.Drawing.Point(873, 237);
+            this.btnTimKiem.Location = new System.Drawing.Point(955, 237);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(75, 23);
             this.btnTimKiem.TabIndex = 7;
@@ -368,23 +387,15 @@ namespace Quan_li_nhan_su
             this.progressBar1.TabIndex = 10;
             this.progressBar1.Visible = false;
             // 
-            // label8
+            // btnXuatExcel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(267, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(156, 13);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Thông tin nhân viên phòng ban";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(45, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(156, 13);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "Tìm kiếm nhân viên phòng ban";
+            this.btnXuatExcel.Location = new System.Drawing.Point(831, 237);
+            this.btnXuatExcel.Name = "btnXuatExcel";
+            this.btnXuatExcel.Size = new System.Drawing.Size(75, 23);
+            this.btnXuatExcel.TabIndex = 12;
+            this.btnXuatExcel.Text = "Xuất Excel";
+            this.btnXuatExcel.UseVisualStyleBackColor = true;
+            this.btnXuatExcel.Click += new System.EventHandler(this.btnXuatExcel_Click);
             // 
             // QLNhanVienPhongBan
             // 
@@ -394,6 +405,7 @@ namespace Quan_li_nhan_su
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1074, 691);
             this.ControlBox = false;
+            this.Controls.Add(this.btnXuatExcel);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnTimKiem);
@@ -452,5 +464,6 @@ namespace Quan_li_nhan_su
         private ProgressBar progressBar1;
         private Label label8;
         private Label label9;
+        private Button btnXuatExcel;
     }
 }

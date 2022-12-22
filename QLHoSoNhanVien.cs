@@ -8,6 +8,8 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
+using ClosedXML.Excel;
+using System.Linq;
 namespace Quan_li_nhan_su
 {
     public partial class QLHoSoNhanVien : Form
@@ -488,6 +490,55 @@ namespace Quan_li_nhan_su
         private void QLHoSoNhanVien_Activated(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Maximized;
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Tạo một SaveFileDialog mới
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    // Set the filter for the file extension
+                    saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+
+                    // Set the default file extension
+                    saveFileDialog.DefaultExt = "xlsx";
+
+                    // Display the SaveFileDialog and check if the user clicked the Save button
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        // Create a new workbook
+                        var workbook = new XLWorkbook();
+
+                        // Add a worksheet to the workbook
+                        var worksheet = workbook.Worksheets.Add("Sheet1");
+
+                        // Get the range of cells that contain the data to be exported
+                        var range = worksheet.Range(1, 1, dgvHoSoNhanVien.RowCount + 1, dgvHoSoNhanVien.ColumnCount);
+
+                        // Set the value of the first row to the column names
+                        for (int i = 0; i < dgvHoSoNhanVien.ColumnCount; i++)
+                        {
+                            worksheet.Cell(1, i + 1).Value = dgvHoSoNhanVien.Columns[i].HeaderText;
+                        }
+                        // Set the value of the range to the data from the DataGridView
+                        for (int i = 0; i < dgvHoSoNhanVien.RowCount; i++)
+                        {
+                            for (int j = 0; j < dgvHoSoNhanVien.ColumnCount; j++)
+                            {
+                                var value = dgvHoSoNhanVien.Rows[i].Cells[j].Value;
+                            }
+                        }
+                        // Save the workbook to the file specified by the user
+                        workbook.SaveAs(saveFileDialog.FileName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi khi xuất dữ liệu: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
