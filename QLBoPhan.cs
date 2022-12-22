@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using ClosedXML.Excel;
+using System.Linq;
 namespace Quan_li_nhan_su
 {
     public partial class QLBoPhan : Form
@@ -320,6 +322,57 @@ namespace Quan_li_nhan_su
         private void QLBoPhan_Activated(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Maximized;
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Tạo một SaveFileDialog mới
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    // Đặt bộ lọc cho phần mở rộng tệp
+                    saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+
+                    // Đặt phần mở rộng tệp mặc định
+                    saveFileDialog.DefaultExt = "xlsx";
+
+                    // Hiển thị SaveFileDialog và kiểm tra xem người dùng có nhấp vào nút Lưu không
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        // Tạo workbook mới
+                        var workbook = new XLWorkbook();
+
+                        // Thêm một trang tính vào workbook
+                        var worksheet = workbook.Worksheets.Add("Sheet1");
+
+                        // Lấy phạm vi ô chứa dữ liệu cần xuất
+
+                        var range = worksheet.Range(1, 1, dgvBoPhan.RowCount + 1, dgvBoPhan.ColumnCount);
+
+                        // Đặt giá trị của hàng đầu tiên thành tên cột
+                        for (int i = 0; i < dgvBoPhan.ColumnCount; i++)
+                        {
+                            worksheet.Cell(1, i + 1).Value = dgvBoPhan.Columns[i].HeaderText;
+                        }
+                        // Đặt giá trị của phạm vi thành dữ liệu từ DataGridView
+                        for (int i = 0; i < dgvBoPhan.RowCount; i++)
+                        {
+                            for (int j = 0; j < dgvBoPhan.ColumnCount; j++)
+                            {
+                                worksheet.Cell(i + 2, j + 1).Value = dgvBoPhan.Rows[i].Cells[j].Value;
+                            }
+                        }
+
+                        // Lưu sổ file vào tệp do người dùng chỉ định
+                        workbook.SaveAs(saveFileDialog.FileName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi khi xuất dữ liệu: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

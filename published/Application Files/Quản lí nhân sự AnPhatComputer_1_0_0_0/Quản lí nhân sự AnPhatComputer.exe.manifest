@@ -44,14 +44,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Quản lí nhân sự AnPhatComputer.exe" size="7031296">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Quản lí nhân sự AnPhatComputer.exe" size="7663104">
       <assemblyIdentity name="Quản lí nhân sự AnPhatComputer" version="1.0.0.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>+U1NwIlgVMPec1ZtOyo1FTqO8r2G+whnKEZaMGdR0v8=</dsig:DigestValue>
+        <dsig:DigestValue>p/tLbqt4jXWN13zbMyCHqxDDNG2qS3bOnt1+DqdBwLs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

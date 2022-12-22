@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Administrator\Desktop\CNPM\published\</PublishUrl>
+    <PublishUrl>C:\Users\LaptopAZ.vn\source\repos\CNPM\published\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -27,7 +27,7 @@
     <SupportUrl>https://github.com/doanh20cm/CNPM</SupportUrl>
     <ProductName>Phần mềm Quản lí nhân sự công ty AnPhat</ProductName>
     <PublisherName>doanh20cm</PublisherName>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -176,6 +176,12 @@
     <Compile Include="GiaoDienChinh.Designer.cs">
       <DependentUpon>GiaoDienChinh.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gioithieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gioithieu.Designer.cs">
+      <DependentUpon>Gioithieu.cs</DependentUpon>
+    </Compile>
     <Compile Include="KetNoi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -241,6 +247,9 @@
     <EmbeddedResource Include="GiaoDienChinh.resx">
       <DependentUpon>GiaoDienChinh.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Gioithieu.resx">
+      <DependentUpon>Gioithieu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -297,6 +306,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\anh4.jpg" />
+    <None Include="Resources\anh3.jpg" />
+    <None Include="Resources\anh2.jpg" />
+    <None Include="Resources\anh1.jpg" />
+    <None Include="Resources\3.jpg" />
+    <None Include="Resources\2.jpg" />
+    <None Include="Resources\1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

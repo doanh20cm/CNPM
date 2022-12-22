@@ -55,6 +55,7 @@ namespace Quan_li_nhan_su
             this.btnThem = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.btnXuatExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBoPhan)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -270,7 +271,7 @@ namespace Quan_li_nhan_su
             // 
             // btnTimKiem
             // 
-            this.btnTimKiem.Location = new System.Drawing.Point(868, 236);
+            this.btnTimKiem.Location = new System.Drawing.Point(955, 236);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(75, 23);
             this.btnTimKiem.TabIndex = 12;
@@ -341,6 +342,16 @@ namespace Quan_li_nhan_su
             this.progressBar1.TabIndex = 13;
             this.progressBar1.Visible = false;
             // 
+            // btnXuatExcel
+            // 
+            this.btnXuatExcel.Location = new System.Drawing.Point(819, 236);
+            this.btnXuatExcel.Name = "btnXuatExcel";
+            this.btnXuatExcel.Size = new System.Drawing.Size(75, 23);
+            this.btnXuatExcel.TabIndex = 15;
+            this.btnXuatExcel.Text = "Xuất Excel";
+            this.btnXuatExcel.UseVisualStyleBackColor = true;
+            this.btnXuatExcel.Click += new System.EventHandler(this.btnXuatExcel_Click);
+            // 
             // QLBoPhan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -349,6 +360,7 @@ namespace Quan_li_nhan_su
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1074, 691);
             this.ControlBox = false;
+            this.Controls.Add(this.btnXuatExcel);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnTimKiem);
@@ -404,5 +416,6 @@ namespace Quan_li_nhan_su
         private CheckBox chkTimTruoc;
         private Label label14;
         private ProgressBar progressBar1;
+        private Button btnXuatExcel;
     }
 }

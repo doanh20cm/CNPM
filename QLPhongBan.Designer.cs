@@ -55,6 +55,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.btnXuatExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhongBan)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -98,7 +99,7 @@
             // 
             // btnTimKiem
             // 
-            this.btnTimKiem.Location = new System.Drawing.Point(868, 236);
+            this.btnTimKiem.Location = new System.Drawing.Point(955, 236);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(75, 23);
             this.btnTimKiem.TabIndex = 19;
@@ -366,6 +367,16 @@
             this.progressBar1.TabIndex = 20;
             this.progressBar1.Visible = false;
             // 
+            // btnXuatExcel
+            // 
+            this.btnXuatExcel.Location = new System.Drawing.Point(824, 236);
+            this.btnXuatExcel.Name = "btnXuatExcel";
+            this.btnXuatExcel.Size = new System.Drawing.Size(75, 23);
+            this.btnXuatExcel.TabIndex = 22;
+            this.btnXuatExcel.Text = "Xuất Excel";
+            this.btnXuatExcel.UseVisualStyleBackColor = true;
+            this.btnXuatExcel.Click += new System.EventHandler(this.btnXuatExcel_Click);
+            // 
             // QLPhongBan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -374,6 +385,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1074, 691);
             this.ControlBox = false;
+            this.Controls.Add(this.btnXuatExcel);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnTimKiem);
@@ -431,5 +443,6 @@
         private System.Windows.Forms.CheckBox chkTenBoPhan;
         private System.Windows.Forms.TextBox txtTimTheoTenPhongBan;
         private System.Windows.Forms.CheckBox chkTenPhongBan;
+        private System.Windows.Forms.Button btnXuatExcel;
     }
 }

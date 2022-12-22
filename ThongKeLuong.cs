@@ -20,9 +20,7 @@ namespace Quan_li_nhan_su
         {
             WindowState = FormWindowState.Maximized;
         }
-        private void ThongKeLuong_Load(object sender, EventArgs e)
-        {
-        }
+
         private void chart1_Click(object sender, EventArgs e)
         {
             try
