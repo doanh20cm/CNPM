@@ -27,5 +27,9 @@ namespace Quan_li_nhan_su
             i++;
         }
 
+        private void Gioithieu_Activated(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Maximized;
+        }
     }
 }

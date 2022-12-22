@@ -59,6 +59,7 @@ namespace Quan_li_nhan_su
             this.label14 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnXuatExcel = new System.Windows.Forms.Button();
+            this.btnExportWord = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVienPhongBan)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -270,9 +271,9 @@ namespace Quan_li_nhan_su
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(45, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(156, 13);
+            this.label9.Size = new System.Drawing.Size(153, 13);
             this.label9.TabIndex = 4;
-            this.label9.Text = "Tìm kiếm nhân viên phòng ban";
+            this.label9.Text = "Tìm kiếm nhân viên phòng ban";
             // 
             // txtTimTenHopDong
             // 
@@ -327,7 +328,7 @@ namespace Quan_li_nhan_su
             // btnSua
             // 
             this.btnSua.Enabled = false;
-            this.btnSua.Location = new System.Drawing.Point(288, 237);
+            this.btnSua.Location = new System.Drawing.Point(231, 237);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(75, 23);
             this.btnSua.TabIndex = 4;
@@ -338,7 +339,7 @@ namespace Quan_li_nhan_su
             // btnXoa
             // 
             this.btnXoa.Enabled = false;
-            this.btnXoa.Location = new System.Drawing.Point(490, 237);
+            this.btnXoa.Location = new System.Drawing.Point(388, 237);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(75, 23);
             this.btnXoa.TabIndex = 5;
@@ -348,7 +349,7 @@ namespace Quan_li_nhan_su
             // 
             // btnCapNhat
             // 
-            this.btnCapNhat.Location = new System.Drawing.Point(681, 237);
+            this.btnCapNhat.Location = new System.Drawing.Point(549, 237);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.Size = new System.Drawing.Size(75, 23);
             this.btnCapNhat.TabIndex = 6;
@@ -389,13 +390,23 @@ namespace Quan_li_nhan_su
             // 
             // btnXuatExcel
             // 
-            this.btnXuatExcel.Location = new System.Drawing.Point(831, 237);
+            this.btnXuatExcel.Location = new System.Drawing.Point(702, 237);
             this.btnXuatExcel.Name = "btnXuatExcel";
             this.btnXuatExcel.Size = new System.Drawing.Size(75, 23);
             this.btnXuatExcel.TabIndex = 12;
             this.btnXuatExcel.Text = "Xuất Excel";
             this.btnXuatExcel.UseVisualStyleBackColor = true;
             this.btnXuatExcel.Click += new System.EventHandler(this.btnXuatExcel_Click);
+            // 
+            // btnExportWord
+            // 
+            this.btnExportWord.Location = new System.Drawing.Point(831, 237);
+            this.btnExportWord.Name = "btnExportWord";
+            this.btnExportWord.Size = new System.Drawing.Size(75, 23);
+            this.btnExportWord.TabIndex = 13;
+            this.btnExportWord.Text = "Xuất Word";
+            this.btnExportWord.UseVisualStyleBackColor = true;
+            this.btnExportWord.Click += new System.EventHandler(this.btnExportWord_Click);
             // 
             // QLNhanVienPhongBan
             // 
@@ -405,6 +416,7 @@ namespace Quan_li_nhan_su
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1074, 691);
             this.ControlBox = false;
+            this.Controls.Add(this.btnExportWord);
             this.Controls.Add(this.btnXuatExcel);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.progressBar1);
@@ -465,5 +477,6 @@ namespace Quan_li_nhan_su
         private Label label8;
         private Label label9;
         private Button btnXuatExcel;
+        private Button btnExportWord;
     }
 }

@@ -273,6 +273,8 @@
     <EmbeddedResource Include="ThongKeLuong.resx">
       <DependentUpon>ThongKeLuong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MBCLuong.doc" />
+    <EmbeddedResource Include="MBCNhanVienPhongBan.doc" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">

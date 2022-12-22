@@ -71,6 +71,7 @@
             this.dgvLuong = new System.Windows.Forms.DataGridView();
             this.btnXuatExcel = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnExportWord = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numTruoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSau)).BeginInit();
@@ -115,7 +116,7 @@
             // 
             // btnCapNhat
             // 
-            this.btnCapNhat.Location = new System.Drawing.Point(671, 236);
+            this.btnCapNhat.Location = new System.Drawing.Point(549, 236);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.Size = new System.Drawing.Size(75, 23);
             this.btnCapNhat.TabIndex = 21;
@@ -126,7 +127,7 @@
             // btnXoa
             // 
             this.btnXoa.Enabled = false;
-            this.btnXoa.Location = new System.Drawing.Point(476, 236);
+            this.btnXoa.Location = new System.Drawing.Point(395, 236);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(75, 23);
             this.btnXoa.TabIndex = 20;
@@ -137,7 +138,7 @@
             // btnSua
             // 
             this.btnSua.Enabled = false;
-            this.btnSua.Location = new System.Drawing.Point(286, 236);
+            this.btnSua.Location = new System.Drawing.Point(237, 236);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(75, 23);
             this.btnSua.TabIndex = 19;
@@ -147,7 +148,7 @@
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(99, 236);
+            this.btnThem.Location = new System.Drawing.Point(84, 236);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(75, 23);
             this.btnThem.TabIndex = 18;
@@ -561,13 +562,23 @@
             // 
             // btnXuatExcel
             // 
-            this.btnXuatExcel.Location = new System.Drawing.Point(819, 236);
+            this.btnXuatExcel.Location = new System.Drawing.Point(701, 236);
             this.btnXuatExcel.Name = "btnXuatExcel";
             this.btnXuatExcel.Size = new System.Drawing.Size(75, 23);
             this.btnXuatExcel.TabIndex = 25;
             this.btnXuatExcel.Text = "Xuất Excel";
             this.btnXuatExcel.UseVisualStyleBackColor = true;
             this.btnXuatExcel.Click += new System.EventHandler(this.btnXuatExcel_Click);
+            // 
+            // btnExportWord
+            // 
+            this.btnExportWord.Location = new System.Drawing.Point(822, 236);
+            this.btnExportWord.Name = "btnExportWord";
+            this.btnExportWord.Size = new System.Drawing.Size(75, 23);
+            this.btnExportWord.TabIndex = 26;
+            this.btnExportWord.Text = "Xuất Word";
+            this.btnExportWord.UseVisualStyleBackColor = true;
+            this.btnExportWord.Click += new System.EventHandler(this.btnExportWord_Click);
             // 
             // QLLuong
             // 
@@ -577,6 +588,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1074, 687);
             this.ControlBox = false;
+            this.Controls.Add(this.btnExportWord);
             this.Controls.Add(this.btnXuatExcel);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.progressBar1);
@@ -659,5 +671,6 @@
         private System.Windows.Forms.CheckBox chkTimTen;
         private System.Windows.Forms.Button btnXuatExcel;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button btnExportWord;
     }
 }

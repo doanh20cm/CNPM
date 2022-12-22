@@ -1,5 +1,6 @@
 ﻿using Aspose.Words;
 using Aspose.Words.Tables;
+using ClosedXML.Excel;
 using Quan_li_nhan_su.Properties;
 using System;
 using System.ComponentModel;
@@ -9,10 +10,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
-using ClosedXML.Excel;
-using System.Linq;
 namespace Quan_li_nhan_su
 {
     public partial class QLHoSoNhanVien : Form
@@ -555,7 +555,7 @@ namespace Quan_li_nhan_su
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi khi xuất dữ liệu" , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã xảy ra lỗi khi xuất dữ liệu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
