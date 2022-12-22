@@ -537,12 +537,25 @@ namespace Quan_li_nhan_su
 
                         // Lưu sổ file vào tệp do người dùng chỉ định
                         workbook.SaveAs(saveFileDialog.FileName);
+                        if (DialogResult.Yes == MessageBox.Show(
+                                @"Xuất dữ liệu thành công, bạn có muốn mở vị trí file không?",
+                                @"Thông báo", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question))
+                            using (var process = new Process
+                            {
+                                StartInfo = new ProcessStartInfo
+                                {
+                                    FileName = "explorer.exe",
+                                    Arguments = "/select," + saveFileDialog.FileName,
+                                    UseShellExecute = false
+                                }
+                            }) process.Start();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi khi xuất dữ liệu: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã xảy ra lỗi khi xuất dữ liệu" , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
