@@ -1,4 +1,6 @@
-﻿using Quan_li_nhan_su.Properties;
+﻿using Aspose.Words;
+using Aspose.Words.Tables;
+using Quan_li_nhan_su.Properties;
 using System;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +9,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
+
 namespace Quan_li_nhan_su
 {
     public partial class QLHoSoNhanVien : Form
@@ -488,6 +492,53 @@ namespace Quan_li_nhan_su
         private void QLHoSoNhanVien_Activated(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Maximized;
+        }
+
+        private void btnExportWord_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
+            {
+                saveDialog.Filter = "Word files (*.doc)|*.doc|All files (*.*)|*.*";
+                saveDialog.FilterIndex = 1;
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var templateFileName = "MBCHoSoNhanVien.doc";
+
+                    var assembly = Assembly.GetExecutingAssembly();
+                    using (var stream = assembly.GetManifestResourceStream("Quan_li_nhan_su." + templateFileName))
+                    {
+                        var doc = new Document(stream);
+                        doc.MailMerge.Execute(new[] { "date" }, new[] { $"Hà Nội, ngày {DateTime.Now.Day} tháng {DateTime.Now.Month} năm {DateTime.Now.Year}" });
+                        var table = doc.GetChild(NodeType.Table, 1, true) as Table;
+                        var source = dgvHoSoNhanVien.DataSource as DataTable;
+                        table.InsertRows(1, 1, source.Rows.Count + 5);
+                        for (var i = 0; i < source.Rows.Count; i++)
+                        {
+                            table.PutValue(i + 1, 0, (i + 1).ToString());
+                            for (var j = 1; j < source.Columns.Count - 1; j++)
+                            {
+                                table.PutValue(i + 1, j, source.Rows[i][j].ToString());
+                            }
+                        }
+                        doc.MailMerge.Execute(new[] { "user" }, new[] { GiaoDienChinh.Username });
+                        doc.Save(saveDialog.FileName);
+                        if (DialogResult.Yes == MessageBox.Show(
+                                @"Xuất dữ liệu thành công, bạn có muốn mở vị trí file không?",
+                                @"Thông báo", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question))
+                            using (var process = new Process
+                            {
+                                StartInfo = new ProcessStartInfo
+                                {
+                                    FileName = "explorer.exe",
+                                    Arguments = "/select," + saveDialog.FileName,
+                                    UseShellExecute = false
+                                }
+                            }) process.Start();
+                    }
+                }
+            }
         }
     }
 }
