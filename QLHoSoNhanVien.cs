@@ -499,38 +499,40 @@ namespace Quan_li_nhan_su
                 // Tạo một SaveFileDialog mới
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
-                    // Set the filter for the file extension
+                    // Đặt bộ lọc cho phần mở rộng tệp
                     saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
 
-                    // Set the default file extension
+                    // Đặt phần mở rộng tệp mặc định
                     saveFileDialog.DefaultExt = "xlsx";
 
-                    // Display the SaveFileDialog and check if the user clicked the Save button
+                    // Hiển thị SaveFileDialog và kiểm tra xem người dùng có nhấp vào nút Lưu không
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        // Create a new workbook
+                        // Tạo workbook mới
                         var workbook = new XLWorkbook();
 
-                        // Add a worksheet to the workbook
+                        // Thêm một trang tính vào workbook
                         var worksheet = workbook.Worksheets.Add("Sheet1");
 
-                        // Get the range of cells that contain the data to be exported
+                        // Lấy phạm vi ô chứa dữ liệu cần xuất
+
                         var range = worksheet.Range(1, 1, dgvHoSoNhanVien.RowCount + 1, dgvHoSoNhanVien.ColumnCount);
 
-                        // Set the value of the first row to the column names
+                        // Đặt giá trị của hàng đầu tiên thành tên cột
                         for (int i = 0; i < dgvHoSoNhanVien.ColumnCount; i++)
                         {
                             worksheet.Cell(1, i + 1).Value = dgvHoSoNhanVien.Columns[i].HeaderText;
                         }
-                        // Set the value of the range to the data from the DataGridView
+                        // Đặt giá trị của phạm vi thành dữ liệu từ DataGridView
                         for (int i = 0; i < dgvHoSoNhanVien.RowCount; i++)
                         {
-                            for (int j = 0; j < dgvHoSoNhanVien.ColumnCount; j++)
+                            for (int j = 0; j < dgvHoSoNhanVien.ColumnCount - 1; j++)//- cột cuối(ảnh hồ sơ) của bảng
                             {
-                                var value = dgvHoSoNhanVien.Rows[i].Cells[j].Value;
+                                worksheet.Cell(i + 2, j + 1).Value = dgvHoSoNhanVien.Rows[i].Cells[j].Value;
                             }
                         }
-                        // Save the workbook to the file specified by the user
+
+                        // Lưu sổ file vào tệp do người dùng chỉ định
                         workbook.SaveAs(saveFileDialog.FileName);
                     }
                 }
