@@ -12,6 +12,9 @@ namespace Quan_li_nhan_su
 {
     public partial class Gioithieu : Form
     {
+        static int i = 0;
+        Bitmap[] mang = new Bitmap[] { Properties.Resources.anh1, Properties.Resources.anh2, Properties.Resources.anh3, Properties.Resources.anh4 };
+
         public Gioithieu()
         {
             InitializeComponent();
@@ -19,26 +22,9 @@ namespace Quan_li_nhan_su
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (pictureBox1.Visible == true)
-            {
-                pictureBox1.Visible = false;
-                pictureBox2.Visible = true;
-            }
-            else if (pictureBox2.Visible == true)
-            {
-                pictureBox2.Visible = false;
-                pictureBox3.Visible = true;
-            }
-            else if (pictureBox3.Visible == true)
-            {
-                pictureBox3.Visible = false;
-                pictureBox4.Visible = true;
-            }
-            else if (pictureBox4.Visible == true)
-            {
-                pictureBox4.Visible = false;
-                pictureBox1.Visible = true;
-            }    
+            pictureBox2.Image.Dispose();
+            pictureBox2.Image = new Bitmap(mang[i % 4]);
+            i++;
         }
 
     }
