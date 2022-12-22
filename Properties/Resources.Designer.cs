@@ -103,6 +103,46 @@ namespace Quan_li_nhan_su.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap anh1 {
+            get {
+                object obj = ResourceManager.GetObject("anh1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap anh2 {
+            get {
+                object obj = ResourceManager.GetObject("anh2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap anh3 {
+            get {
+                object obj = ResourceManager.GetObject("anh3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap anh4 {
+            get {
+                object obj = ResourceManager.GetObject("anh4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap daniela_cuevas_t7YycgAoVSw_unsplash {
             get {
                 object obj = ResourceManager.GetObject("daniela-cuevas-t7YycgAoVSw-unsplash", resourceCulture);

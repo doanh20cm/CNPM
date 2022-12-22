@@ -32,8 +32,13 @@ namespace Quan_li_nhan_su
             else if (pictureBox3.Visible == true)
             {
                 pictureBox3.Visible = false;
-                pictureBox1.Visible = true;
+                pictureBox4.Visible = true;
             }
+            else if (pictureBox4.Visible == true)
+            {
+                pictureBox4.Visible = false;
+                pictureBox1.Visible = true;
+            }    
         }
 
     }

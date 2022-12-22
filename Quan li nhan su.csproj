@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Administrator\Desktop\CNPM\published\</PublishUrl>
+    <PublishUrl>C:\Users\LaptopAZ.vn\source\repos\CNPM\published\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -27,7 +27,7 @@
     <SupportUrl>https://github.com/doanh20cm/CNPM</SupportUrl>
     <ProductName>Phần mềm Quản lí nhân sự công ty AnPhat</ProductName>
     <PublisherName>doanh20cm</PublisherName>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -301,6 +301,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\anh4.jpg" />
+    <None Include="Resources\anh3.jpg" />
+    <None Include="Resources\anh2.jpg" />
+    <None Include="Resources\anh1.jpg" />
     <None Include="Resources\3.jpg" />
     <None Include="Resources\2.jpg" />
     <None Include="Resources\1.jpg" />
