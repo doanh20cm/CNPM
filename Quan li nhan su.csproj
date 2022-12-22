@@ -107,9 +107,6 @@
     <PackageReference Include="EPPlus.Interfaces">
       <Version>6.1.1</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.Office.Interop.Word">
-      <Version>15.0.4797.1004</Version>
-    </PackageReference>
     <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
       <HintPath>packages\AForge.2.2.5\lib\AForge.dll</HintPath>
     </Reference>
