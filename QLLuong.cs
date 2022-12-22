@@ -9,9 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Office.Interop.Excel;
-using DataTable = System.Data.DataTable;
-using ExcelApplication = Microsoft.Office.Interop.Excel.Application;
+using ClosedXML.Excel;
+//using Microsoft.Office.Interop.Excel;
+//using DataTable = System.Data.DataTable;
+//using ExcelApplication = Microsoft.Office.Interop.Excel.Application;
 namespace Quan_li_nhan_su
 {
     public partial class QLLuong : Form
@@ -468,92 +469,94 @@ namespace Quan_li_nhan_su
 
         private void btnXuatExcel_Click(object sender, EventArgs e)
         {
-            //-----------------------------------------------------------------------------------
-
-            //// lấy dữ liệu từ bảng
-            //GetData();
-
-            //// Tạo một ứng dụng Excel mới
-            //ExcelApplication excel = new ExcelApplication();
-
-            //// Tạo sổ làm việc Excel mới
-            //Workbook workbook = excel.Workbooks.Add();
-
-            //// Lấy trang tính đầu tiên trong sổ làm việc
-            //Worksheet worksheet = workbook.Sheets[1];
-
-            //// Thêm tên cột vào hàng đầu tiên của trang tính
-            //for (int i = 0; i < dgvLuong.Columns.Count; i++)
+            //try
             //{
-            //    worksheet.Cells[1, i + 1] = dgvLuong.Columns[i].HeaderText;
-            //}
-
-            //// Thêm dữ liệu từ DataTable vào trang tính
-            //for (int i = 0; i < dgvLuong.Rows.Count; i++)
-            //{
-            //    for (int j = 0; j < dgvLuong.Columns.Count; j++)
+            //    using (SaveFileDialog saveDialog = new SaveFileDialog())
             //    {
-            //        worksheet.Cells[i + 2, j + 1] = dgvLuong.Rows[i].Cells[j].Value.ToString();
+            //        saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+            //        saveDialog.FilterIndex = 1;
+
+            //        if (saveDialog.ShowDialog() == DialogResult.OK)
+            //        {
+            //            // Tạo một lớp Ứng dụng Excel và hiển thị nó
+            //            ExcelApplication excelApp = new ExcelApplication();
+            //            excelApp.Visible = true;
+
+            //            // Tạo một sổ làm việc mới và thêm một trang tính vào đó
+            //            Workbook workbook = excelApp.Workbooks.Add();
+            //            Worksheet worksheet = workbook.ActiveSheet;
+
+            //            // Lặp lại qua các hàng và cột của DataGridView và ghi các giá trị ô vào trang tính
+            //            for (int i = 1; i < dgvLuong.Columns.Count + 1; i++)
+            //            {
+            //                worksheet.Cells[1, i] = dgvLuong.Columns[i - 1].HeaderText;
+            //            }
+
+            //            for (int i = 0; i < dgvLuong.Rows.Count; i++)
+            //            {
+            //                for (int j = 0; j < dgvLuong.Columns.Count; j++)
+            //                {
+            //                    worksheet.Cells[i + 2, j + 1] = dgvLuong.Rows[i].Cells[j].Value.ToString();
+            //                }
+            //            }
+
+            //            // Lưu sổ làm việc vào tệp do người dùng chọn và đóng ứng dụng Excel
+            //            workbook.SaveAs(saveDialog.FileName);
+            //            excelApp.Quit();
+            //        }
             //    }
             //}
-
-            //// Lưu file vào địa chỉ đường link ngay khi ấn nút xuất
-            ////workbook.SaveAs("D:\\Word\\Báo cáo lương quý 1.xlsx");
-            //SaveFileDialog saveFileDialog = new SaveFileDialog();
-            //saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-            //saveFileDialog.FilterIndex = 1;
-            //saveFileDialog.RestoreDirectory = true;
-
-            //if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            //catch (Exception)
             //{
-            //    string filePath = saveFileDialog.FileName;
-            //    // Save the file to the selected folder here
+            //    MessageBox.Show("Xuất thất bại!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //}
-
-            //// Kết thúc
-            //workbook.Close();
-            //excel.Quit();
-            //--------------------------------------------------------------------------------
+            //--------------------------------------------------------------------------------------------
             try
             {
-                using (SaveFileDialog saveDialog = new SaveFileDialog())
+                // Tạo một SaveFileDialog mới
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
-                    saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-                    saveDialog.FilterIndex = 1;
+                    // Đặt bộ lọc cho phần mở rộng tệp
+                    saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
 
-                    if (saveDialog.ShowDialog() == DialogResult.OK)
+                    // Đặt phần mở rộng tệp mặc định
+                    saveFileDialog.DefaultExt = "xlsx";
+
+                    // Hiển thị SaveFileDialog và kiểm tra xem người dùng có nhấp vào nút Lưu không
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        // Tạo một lớp Ứng dụng Excel và hiển thị nó
-                        ExcelApplication excelApp = new ExcelApplication();
-                        excelApp.Visible = true;
+                        // Tạo workbook mới
+                        var workbook = new XLWorkbook();
 
-                        // Tạo một sổ làm việc mới và thêm một trang tính vào đó
-                        Workbook workbook = excelApp.Workbooks.Add();
-                        Worksheet worksheet = workbook.ActiveSheet;
+                        // Thêm một trang tính vào workbook
+                        var worksheet = workbook.Worksheets.Add("Sheet1");
 
-                        // Lặp lại qua các hàng và cột của DataGridView và ghi các giá trị ô vào trang tính
-                        for (int i = 1; i < dgvLuong.Columns.Count + 1; i++)
+                        // Lấy phạm vi ô chứa dữ liệu cần xuất
+
+                        var range = worksheet.Range(1, 1, dgvLuong.RowCount + 1, dgvLuong.ColumnCount);
+
+                        // Đặt giá trị của hàng đầu tiên thành tên cột
+                        for (int i = 0; i < dgvLuong.ColumnCount; i++)
                         {
-                            worksheet.Cells[1, i] = dgvLuong.Columns[i - 1].HeaderText;
+                            worksheet.Cell(1, i + 1).Value = dgvLuong.Columns[i].HeaderText;
                         }
-
-                        for (int i = 0; i < dgvLuong.Rows.Count; i++)
+                        // Đặt giá trị của phạm vi thành dữ liệu từ DataGridView
+                        for (int i = 0; i < dgvLuong.RowCount; i++)
                         {
-                            for (int j = 0; j < dgvLuong.Columns.Count; j++)
+                            for (int j = 0; j < dgvLuong.ColumnCount; j++)
                             {
-                                worksheet.Cells[i + 2, j + 1] = dgvLuong.Rows[i].Cells[j].Value.ToString();
+                                worksheet.Cell(i + 2, j + 1).Value = dgvLuong.Rows[i].Cells[j].Value;
                             }
                         }
 
-                        // Lưu sổ làm việc vào tệp do người dùng chọn và đóng ứng dụng Excel
-                        workbook.SaveAs(saveDialog.FileName);
-                        excelApp.Quit();
+                        // Lưu sổ file vào tệp do người dùng chỉ định
+                        workbook.SaveAs(saveFileDialog.FileName);
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Xuất thất bại!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã xảy ra lỗi khi xuất dữ liệu: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
