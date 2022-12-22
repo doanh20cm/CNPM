@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using ClosedXML.Excel;
 namespace Quan_li_nhan_su
 {
     public partial class ThongKeLuong : Form
@@ -243,7 +244,13 @@ namespace Quan_li_nhan_su
 
         private void btnLuuExcel_Click(object sender, EventArgs e)
         {
-            
+            try { 
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi khi xuất dữ liệu: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
