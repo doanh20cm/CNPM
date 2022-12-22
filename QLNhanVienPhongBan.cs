@@ -450,7 +450,6 @@ namespace Quan_li_nhan_su
                             table.PutValue(i + 1, 0, (i + 1).ToString());
                             for (var j = 1; j < source.Columns.Count; j++)
                             {
-                                if (j == 2) continue; 
                                 table.PutValue(i + 1, j, source.Rows[i][j].ToString());
                             }
                         }
