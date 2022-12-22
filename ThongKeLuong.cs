@@ -241,16 +241,5 @@ namespace Quan_li_nhan_su
         {
 
         }
-
-        private void btnLuuExcel_Click(object sender, EventArgs e)
-        {
-            try { 
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã xảy ra lỗi khi xuất dữ liệu: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
     }
 }

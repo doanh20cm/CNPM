@@ -33,7 +33,6 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartThongKe = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnLuuExcel = new System.Windows.Forms.Button();
             this.btnLuuWord = new System.Windows.Forms.Button();
             this.btnLuuAnh = new System.Windows.Forms.Button();
             this.btnBaoCao = new System.Windows.Forms.Button();
@@ -93,7 +92,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnLuuExcel);
             this.groupBox1.Controls.Add(this.btnLuuWord);
             this.groupBox1.Controls.Add(this.btnLuuAnh);
             this.groupBox1.Controls.Add(this.btnBaoCao);
@@ -105,17 +103,6 @@
             this.groupBox1.Size = new System.Drawing.Size(998, 177);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            // 
-            // btnLuuExcel
-            // 
-            this.btnLuuExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLuuExcel.Location = new System.Drawing.Point(883, 143);
-            this.btnLuuExcel.Name = "btnLuuExcel";
-            this.btnLuuExcel.Size = new System.Drawing.Size(100, 23);
-            this.btnLuuExcel.TabIndex = 11;
-            this.btnLuuExcel.Text = "Lưu file excel";
-            this.btnLuuExcel.UseVisualStyleBackColor = true;
-            this.btnLuuExcel.Click += new System.EventHandler(this.btnLuuExcel_Click);
             // 
             // btnLuuWord
             // 
@@ -556,6 +543,5 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.Button btnLuuExcel;
     }
 }
