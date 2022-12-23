@@ -20,7 +20,12 @@ namespace Quan_li_nhan_su
         private void btnCapnhat_Click(object sender, EventArgs e)
         {
             GiaoDienChinh.Luongcoso = txtLuongcoso.Text;
+            GiaoDienChinh.Hesoluong = txtHesoluong.Text;
+            GiaoDienChinh.Phucap = txtPhucap.Text;
+            GiaoDienChinh.Thuong = txtThuong.Text;
+            GiaoDienChinh.Phat = txtPhat.Text;
             MessageBox.Show("Cập nhật mặc định thành công!","Thông báo");
         }
+
     }
 }

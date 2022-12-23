@@ -45,6 +45,10 @@ namespace Quan_li_nhan_su
             dgvLuong.Visible = false;
             cbTenNV.Enabled = true;
             txtLuongCoSo.Text = GiaoDienChinh.Luongcoso;
+            txtHeSoLuong.Text = GiaoDienChinh.Hesoluong;
+            txtPhuCap.Text = GiaoDienChinh.Phucap;
+            txtThuong.Text = GiaoDienChinh.Thuong;
+            txtPhat.Text = GiaoDienChinh.Phat;
             txtHeSoLuong.Text = cbTenNV.Text = txtPhuCap.Text = txtThuong.Text = txtPhat.Text = rtGhiChu.Text = "";
 
             numSoNgayCong.Value = numSoGioLamThem.Value = 0;

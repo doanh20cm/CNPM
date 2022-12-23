@@ -15,6 +15,10 @@ namespace Quan_li_nhan_su
         public static string Username = "";
         public static string ConnStr = "";
         public static string Luongcoso = "";
+        public static string Hesoluong = "";
+        public static string Phucap = "";
+        public static string Thuong = "";
+        public static string Phat = "";
         private static readonly byte[] Key = Encoding.ASCII.GetBytes("VTFlZUlncTgrZz09");
         private static readonly byte[] Iv = Encoding.ASCII.GetBytes("HR$2pIjHR$2pIj12");
         private readonly Timer _time = new Timer();

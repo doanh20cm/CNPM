@@ -305,6 +305,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\default.jpg" />
     <None Include="Resources\anh4.jpg" />
     <None Include="Resources\anh3.jpg" />
     <None Include="Resources\anh2.jpg" />
