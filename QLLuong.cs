@@ -44,12 +44,13 @@ namespace Quan_li_nhan_su
             label14.BringToFront();
             dgvLuong.Visible = false;
             cbTenNV.Enabled = true;
+            
+            txtHeSoLuong.Text = cbTenNV.Text = txtPhuCap.Text = txtThuong.Text = txtPhat.Text = rtGhiChu.Text = "";
             txtLuongCoSo.Text = GiaoDienChinh.Luongcoso;
             txtHeSoLuong.Text = GiaoDienChinh.Hesoluong;
             txtPhuCap.Text = GiaoDienChinh.Phucap;
             txtThuong.Text = GiaoDienChinh.Thuong;
             txtPhat.Text = GiaoDienChinh.Phat;
-            txtHeSoLuong.Text = cbTenNV.Text = txtPhuCap.Text = txtThuong.Text = txtPhat.Text = rtGhiChu.Text = "";
 
             numSoNgayCong.Value = numSoGioLamThem.Value = 0;
             numThang.Value = DateTime.Now.Month;
@@ -252,6 +253,11 @@ namespace Quan_li_nhan_su
                 cbTenNV.Enabled = true;
                 txtLuongCoSo.Text = GiaoDienChinh.Luongcoso; txtHeSoLuong.Text = cbTenNV.Text = txtPhuCap.Text = txtThuong.Text = txtPhat.Text = rtGhiChu.Text = "";
                 numSoNgayCong.Value = numSoGioLamThem.Value = 0;
+                txtLuongCoSo.Text = GiaoDienChinh.Luongcoso;
+                txtHeSoLuong.Text = GiaoDienChinh.Hesoluong;
+                txtPhuCap.Text = GiaoDienChinh.Phucap;
+                txtThuong.Text = GiaoDienChinh.Thuong;
+                txtPhat.Text = GiaoDienChinh.Phat;
                 numThang.Value = DateTime.Now.Month;
                 numNam.Value = DateTime.Now.Year;
                 dgvLuong.ClearSelection();
